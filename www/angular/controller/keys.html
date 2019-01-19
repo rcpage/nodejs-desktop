@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <form target="_blank" method="POST" action="http://api.userdesktop.com/v1/keys/storeKey">
+      <fieldset>
+        <legend> Store Key </legend>
+        Username:<br>
+        <input type="text" name="name" value="">
+        <br>
+        Password:<br>
+        <input type="text" name="password" value="">
+        <br><br>
+        <input type="submit" value="Store Key">
+      </fieldset>
+    </form>
+
+    <form target="_blank" method="POST" action="http://api.userdesktop.com/v1/keys/searchKeys">
+      <fieldset>
+        <legend> Search Keys </legend>
+        Username:<br>
+        <input type="text" name="name" value="">
+        <br>
+        <input type="submit" value="Search">
+      </fieldset>
+    </form>
+    
+    <form target="_blank" method="POST" action="http://api.userdesktop.com/v1/keys/decryptKey">
+      <fieldset>
+        <legend> Decrypt Key </legend>
+        ID:<br>
+        <input type="text" name="id" value="">
+        <br>
+        <input type="submit" value="Search">
+      </fieldset>
+    </form>
+
+  </body>
+</html>
+

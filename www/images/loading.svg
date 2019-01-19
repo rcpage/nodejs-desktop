@@ -1,0 +1,8 @@
+<svg width="200" height="90" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <image xlink:href="http://stacknext.com/images/ajax-loader.gif" id="svg_1" height="32" width="32" y="31.5" x="24"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_2" y="57.5" x="114" stroke-width="0" stroke="#000000" fill="#000000">Loading...</text>
+ </g>
+</svg>

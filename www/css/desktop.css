@@ -1,0 +1,564 @@
+@import '/css/sprite-icons.css';
+html,body{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom:0;
+  overflow:hidden;
+  background-color: #0074D9;
+}
+
+#template{
+  display:none;
+}
+
+#taskbar {
+  position: absolute;
+  top: 0px;
+  left:0;
+  width: 50px;
+  bottom: 0;
+  background-color: #111;
+}
+
+#tasks {
+  position: absolute;
+  top: 42px;
+  left:0;
+  width: 50px;
+  bottom: 0;
+}
+
+.task {
+
+  cursor: pointer;
+  text-align : center;
+  margin: 2px;
+  height: 40px;
+  font-size: 30px;
+  background-color: #555;
+}
+
+
+
+.task:hover, .task-focus {
+  background-color: #eee;
+  color: #111;
+}
+
+#workspace {
+  position: absolute;
+  top: 0px;
+  left: 50px;
+  right:0px;
+  bottom: 0;
+}
+
+#right-drawer {
+  position: absolute;
+  width: 0px;
+  top: 0px;
+  right:0;
+  bottom: 0;
+  background-color: #111;
+}
+
+.panel {
+  border-radius: 0px;
+}
+
+.panel-sub-heading{
+  height: 30px;
+  background-color: #eee;
+  border-bottom: solid 1px #ccc;
+  padding: 4px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+
+}
+
+.win-btn-back{
+  float: left;
+}
+.win-btn-fwd{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.win-btn-refresh{
+  float: right;
+  margin-left: 1px;
+}
+
+.win-btn-up{
+  float: left;
+  margin-right: 5px;
+}
+
+.win-btn-search{
+  float: right;
+  margin-left: 5px;
+}
+
+.panel-sub-heading span.textbox{
+  margin-left: 4px;
+  display: block;
+  overflow: hidden;
+
+}
+
+.panel-sub-heading input.path
+, .panel-sub-heading input.search {
+  height: 22px;
+  width:100%;
+}
+
+.panel-body {
+  padding: 0px;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.panel-body .content {
+  position: absolute;
+  overflow: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: 30px;
+}
+
+.panel-body .content tr {
+  cursor:pointer; 
+  
+  -webkit-user-select: none; /* Safari, iOS, and Android */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+  supported by Chrome and Opera */
+}
+
+
+.window {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.window iframe {
+
+  width: 100%;
+  border: none;
+  height: 100%;
+
+}
+
+.window .table thead td {
+  font-weight: bold;
+  color: #444;
+}
+
+.window .table td {
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.window .panel-heading {
+  background-color: #0074D9;
+  color: white;
+  padding: 0px;
+  line-height: 35px;
+  min-height: 35px;
+}
+
+.exit, .minimize {
+  float: right;
+}
+
+.window .panel-heading button {
+  width: 35px;
+  height: 35px;
+
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  font-size: 21px;
+  line-height: 1;
+  color: #fff;
+
+
+}
+
+.window .panel-heading button.exit:hover {
+  background-color: #bf0000;
+  color: white;
+}
+
+
+.window .panel-heading button:hover {
+  background-color: #2b89db;
+  color: white;
+}
+
+.window .panel-heading .left {
+  float:left;
+  width: 152px;
+  height: 35px;
+}
+
+.window .panel-heading .center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.window .panel-heading .right {
+  float:right;
+  width: 145px;
+  height: 35px;
+}
+
+.noselect {
+  -webkit-user-select: none; /* Safari, iOS, and Android */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+  supported by Chrome and Opera */
+}
+
+
+.nav .open>a,
+.nav .open>a:hover,
+.nav .open>a:focus {
+  background-color: transparent;
+}
+/*-------------------------------*/
+/*           Wrappers            */
+/*-------------------------------*/
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-left: 220px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  left: 220px;
+  width: 0;
+  height: 100%;
+  margin-left: -220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#sidebar-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 220px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  padding-top: 70px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -220px;
+}
+/*-------------------------------*/
+/*     Sidebar nav styles        */
+/*-------------------------------*/
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 220px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  position: relative;
+  line-height: 20px;
+  display: inline-block;
+  width: 100%;
+}
+
+.sidebar-nav li:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100%;
+  width: 3px;
+  background-color: #1c1c1c;
+  -webkit-transition: width .2s ease-in;
+  -moz-transition: width .2s ease-in;
+  -ms-transition: width .2s ease-in;
+  transition: width .2s ease-in;
+}
+
+.sidebar-nav li:first-child a {
+  color: #fff;
+  background-color: #000;
+}
+
+.sidebar-nav li:nth-child(2):before {
+  background-color: #4787ed;
+}
+
+.sidebar-nav li:nth-child(3):before {
+  background-color: #4787ed;
+}
+
+.sidebar-nav li:nth-child(4):before {
+  background-color: #4787ed;
+}
+
+.sidebar-nav li:nth-child(5):before {
+  background-color: #4787ed;
+}
+
+.sidebar-nav li:nth-child(6):before {
+  background-color: #4787ed;
+}
+
+.sidebar-nav li:nth-child(7):before {
+  background-color: #4787ed;
+}
+
+.sidebar-nav li:nth-child(8):before {
+  background-color: #4787ed;
+}
+
+
+
+.sidebar-nav li:hover:before,
+.sidebar-nav li.open:hover:before {
+  width: 100%;
+  -webkit-transition: width .2s ease-in;
+  -moz-transition: width .2s ease-in;
+  -ms-transition: width .2s ease-in;
+  transition: width .2s ease-in;
+}
+
+.sidebar-nav li a {
+  display: block;
+  color: #4787ed;
+  text-decoration: none;
+  padding: 10px 15px 10px 30px;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus,
+.sidebar-nav li.open a:hover,
+.sidebar-nav li.open a:active,
+.sidebar-nav li.open a:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.sidebar-nav>.sidebar-brand {
+  height: 65px;
+  font-size: 20px;
+  line-height: 44px;
+}
+
+.sidebar-nav .dropdown-menu {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  background-color: #222;
+  box-shadow: none;
+}
+/*-------------------------------*/
+/*       Hamburger-Cross         */
+/*-------------------------------*/
+
+.hamburger {
+  position: fixed;
+  top: 6px;
+  z-index: 999;
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin-left: 8px;
+  background: transparent;
+  border: none;
+  color: white;
+}
+
+.hamburger:hover,
+.hamburger:focus,
+.hamburger:active {
+  outline: none;
+}
+
+.hamburger.is-closed:before {
+  content: '';
+  display: block;
+  width: 100px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 32px;
+  text-align: center;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: all .35s ease-in-out;
+}
+
+.hamburger.is-closed:hover:before {
+  opacity: 1;
+  display: block;
+  -webkit-transform: translate3d(-100px, 0, 0);
+  -webkit-transition: all .35s ease-in-out;
+}
+
+.hamburger.is-closed .hamb-top,
+.hamburger.is-closed .hamb-middle,
+.hamburger.is-closed .hamb-bottom,
+.hamburger.is-open .hamb-top,
+.hamburger.is-open .hamb-middle,
+.hamburger.is-open .hamb-bottom {
+  position: absolute;
+  left: 0;
+  height: 4px;
+  width: 100%;
+}
+
+.hamburger.is-closed .hamb-top,
+.hamburger.is-closed .hamb-middle,
+.hamburger.is-closed .hamb-bottom {
+  background-color: #fff;
+}
+
+.hamburger.is-closed .hamb-top {
+  top: 5px;
+  -webkit-transition: all .35s ease-in-out;
+}
+
+.hamburger.is-closed .hamb-middle {
+  top: 50%;
+  margin-top: -2px;
+}
+
+.hamburger.is-closed .hamb-bottom {
+  bottom: 5px;
+  -webkit-transition: all .35s ease-in-out;
+}
+
+.hamburger.is-closed:hover .hamb-top {
+  top: 0;
+  -webkit-transition: all .35s ease-in-out;
+}
+
+.hamburger.is-closed:hover .hamb-bottom {
+  bottom: 0;
+  -webkit-transition: all .35s ease-in-out;
+}
+
+.hamburger.is-open .hamb-top,
+.hamburger.is-open .hamb-middle,
+.hamburger.is-open .hamb-bottom {
+  background-color: #1a1a1a;
+}
+
+.hamburger.is-open .hamb-top,
+.hamburger.is-open .hamb-bottom {
+  top: 50%;
+  margin-top: -2px;
+}
+
+.hamburger.is-open .hamb-top {
+  -webkit-transform: rotate(45deg);
+  -webkit-transition: -webkit-transform .2s cubic-bezier(.73, 1, .28, .08);
+}
+
+.hamburger.is-open .hamb-middle {
+  display: none;
+}
+
+.hamburger.is-open .hamb-bottom {
+  -webkit-transform: rotate(-45deg);
+  -webkit-transition: -webkit-transform .2s cubic-bezier(.73, 1, .28, .08);
+}
+
+.hamburger.is-open:before {
+  content: '';
+  display: block;
+  width: 100px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 32px;
+  text-align: center;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: all .35s ease-in-out;
+}
+
+.hamburger.is-open:hover:before {
+  opacity: 1;
+  display: block;
+  -webkit-transform: translate3d(-100px, 0, 0);
+  -webkit-transition: all .35s ease-in-out;
+}
+/*-------------------------------*/
+/*            Overlay            */
+/*-------------------------------*/
+
+.overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(250, 250, 250, 1);
+  z-index: 1;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+.folder { background:url('./file_sprite.png') right bottom no-repeat; }
+.file { background:url('./file_sprite.png') 0 0 no-repeat; }
+.file-pdf { background-position: -32px 0 }
+.file-as { background-position: -36px 0 }
+.file-c { background-position: -72px -0px }
+.file-iso { background-position: -108px -0px }
+.file-htm, .file-html, .file-xml, .file-xsl { background-position: -126px -0px }
+.file-cf { background-position: -162px -0px }
+.file-cpp { background-position: -216px -0px }
+.file-cs { background-position: -236px -0px }
+.file-sql { background-position: -272px -0px }
+.file-xls, .file-xlsx { background-position: -362px -0px }
+.file-h { background-position: -488px -0px }
+.file-crt, .file-pem, .file-cer { background-position: -452px -18px }
+.file-php { background-position: -108px -18px }
+.file-jpg, .file-jpeg, .file-png, .file-gif, .file-bmp { background-position: -126px -18px }
+.file-ppt, .file-pptx { background-position: -144px -18px }
+.file-rb { background-position: -180px -18px }
+.file-text, .file-txt, .file-md, .file-log, .file-htaccess { background-position: -254px -18px }
+.file-doc, .file-docx { background-position: -362px -18px }
+.file-zip, .file-gz, .file-tar, .file-rar { background-position: -416px -18px }
+.file-js { background-position: -434px -18px }
+.file-css { background-position: -144px -0px }
+.file-fla { background-position: -398px -0px }

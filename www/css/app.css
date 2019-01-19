@@ -1,0 +1,775 @@
+.calendar-year{
+  color: #ccc;
+  background-color: #333;
+  overflow: hidden;
+  width: 315px;/* needs to be set */
+}
+.calendar-year .months{
+  width: 3769px;/* needs to be set */
+  overflow: auto;
+}
+.calendar-year .datetime{
+ padding: 10px; 
+}
+.calendar-year .time{
+ color: #fff;
+ font-size: 30px;
+ height: 40px;
+ line-height: 30px;
+ vertical-align: middle;
+}
+.calendar-year .schedule-task a,
+.calendar-year .date a {
+  color: #348dd9;
+}
+
+.calendar-year .date {
+ font-size: 20px;
+ height: 20px;
+ line-height: 20px;
+ vertical-align: middle;
+}
+
+.calendar-year .month-selection {
+  overflow: auto;
+  margin-bottom: 93px;
+}
+.calendar-year .month-selection .month-option:hover {
+  border: solid 1px #ccc;
+}
+
+.calendar-year .month-selection .month-option {
+  border: solid 1px transparent;
+  float: left;
+  width: 74px;
+  height: 74px;
+  line-height: 74px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.calendar-year .month {
+  color: #ccc;
+  background-color: #333;
+  float: left;
+  display: inline;
+  width: 310px;/* needs to be set */
+  height: 370px;/* needs to be set */
+  margin: 2px;
+  border: solid 1px transparent;
+}
+
+.calendar-year .month-title{
+  padding: 10px;
+}
+
+.calendar-year .month-year{
+  font-size: 16px;
+}
+
+.calendar-year  .month-year:hover,
+.calendar-year  i.month-year-up:hover,
+.calendar-year  i.month-year-down:hover {
+	color: white;
+}
+
+.calendar-year  .month-year,
+.calendar-year  i.month-year-up,
+.calendar-year  i.month-year-down { 
+	cursor: pointer;
+}
+
+.calendar-year  i.month-year-up,
+.calendar-year  i.month-year-down { 
+	margin: 2px;
+}
+
+.calendar-year .month .weekdays,
+.calendar-year .month .days {
+  overflow: auto;
+}
+.selected-month,
+.today {
+  background-color: #348dd9;
+  color: white;
+}
+.today:hover{
+  color: black; 
+}
+.calendar-year .month .weekdays .weekday,
+.calendar-year .month .days .day {
+  float: left;
+  width: 40px;/* needs to be set */
+  height:40px;/* needs to be set */
+  margin: 2px;
+  border: solid 1px transparent;
+  line-height: 40px;/* needs to be set */
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+}
+
+.calendar-year .month .weekdays .weekday{
+  border: solid 1px transparent; 
+}
+.calendar-year .month .days .day-selected,
+.calendar-year .month .days .day:hover{
+  	border: solid 1px #eee;
+  	color: white;
+}
+
+
+.loading-dialog{
+  position:absolute; 
+  background-color: #fff;
+  opacity: 0.75;
+}
+.loading-dialog img{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.btn, .btn-xs {
+ border-radius: 0px;
+  border:none;
+}
+.accordion{
+  margin: 5px;    
+}
+
+.tile-red {
+  float:left;
+  display:block;
+  background: red;
+  width:200px;
+  height:150px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.app-button-red {
+  float:left;
+  display:block;
+  background: red;
+  width:20px;
+  height:20px;
+  margin-right: 5px;
+}
+
+
+.panel {
+  border-radius: 0px;
+}
+
+.panel-heading {
+  background: #fff;
+  background-color: #fff;
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 0px; 
+  border-top-right-radius: 0px; 
+}
+
+.window .nav-tabs>li.active>a
+,.window .nav-tabs>li.active>a:focus
+,.window .nav-tabs>li.active>a:hover {
+  border-top:none;
+}
+
+div.win-body-left-panel .folder { background:url('./file_sprite.png') right bottom no-repeat; }
+div.win-body-left-panel .file { background:url('./file_sprite.png') 0 0 no-repeat; }
+div.win-body-left-panel .file-pdf { background-position: -32px 0 }
+div.win-body-left-panel .file-as { background-position: -36px 0 }
+div.win-body-left-panel .file-c { background-position: -72px -0px }
+div.win-body-left-panel .file-iso { background-position: -108px -0px }
+div.win-body-left-panel .file-htm, div.win-body-left-panel .file-html, div.win-body-left-panel .file-xml, div.win-body-left-panel .file-xsl { background-position: -126px -0px }
+div.win-body-left-panel .file-cf { background-position: -162px -0px }
+div.win-body-left-panel .file-cpp { background-position: -216px -0px }
+div.win-body-left-panel .file-cs { background-position: -236px -0px }
+div.win-body-left-panel .file-sql { background-position: -272px -0px }
+div.win-body-left-panel .file-xls, div.win-body-left-panel .file-xlsx { background-position: -362px -0px }
+div.win-body-left-panel .file-h { background-position: -488px -0px }
+div.win-body-left-panel .file-crt, div.win-body-left-panel .file-pem, div.win-body-left-panel .file-cer { background-position: -452px -18px }
+div.win-body-left-panel .file-php { background-position: -108px -18px }
+div.win-body-left-panel .file-jpg, div.win-body-left-panel .file-jpeg, div.win-body-left-panel .file-png, div.win-body-left-panel .file-gif, div.win-body-left-panel .file-bmp { background-position: -126px -18px }
+div.win-body-left-panel .file-ppt, div.win-body-left-panel .file-pptx { background-position: -144px -18px }
+div.win-body-left-panel .file-rb { background-position: -180px -18px }
+div.win-body-left-panel .file-text, div.win-body-left-panel .file-txt, div.win-body-left-panel .file-md, div.win-body-left-panel .file-log, div.win-body-left-panel .file-htaccess { background-position: -254px -18px }
+div.win-body-left-panel .file-doc, div.win-body-left-panel .file-docx { background-position: -362px -18px }
+div.win-body-left-panel .file-zip, div.win-body-left-panel .file-gz, div.win-body-left-panel .file-tar, div.win-body-left-panel .file-rar { background-position: -416px -18px }
+div.win-body-left-panel .file-js { background-position: -434px -18px }
+div.win-body-left-panel .file-css { background-position: -144px -0px }
+div.win-body-left-panel .file-fla { background-position: -398px -0px }
+
+.folder { background:url('./file_sprite.png') right bottom no-repeat; }
+.file { background:url('./file_sprite.png') 0 0 no-repeat; }
+.file-pdf { background-position: -32px 0 }
+.file-as { background-position: -36px 0 }
+.file-c { background-position: -72px -0px }
+.file-iso { background-position: -108px -0px }
+.file-htm, .file-html, .file-xml, .file-xsl { background-position: -126px -0px }
+.file-cf { background-position: -162px -0px }
+.file-cpp { background-position: -216px -0px }
+.file-cs { background-position: -236px -0px }
+.file-sql { background-position: -272px -0px }
+.file-xls, .file-xlsx { background-position: -362px -0px }
+.file-h { background-position: -488px -0px }
+.file-crt, .file-pem, .file-cer { background-position: -452px -18px }
+.file-php { background-position: -108px -18px }
+.file-jpg, .file-jpeg, .file-png, .file-gif, .file-bmp { background-position: -126px -18px }
+.file-ppt, .file-pptx { background-position: -144px -18px }
+.file-rb { background-position: -180px -18px }
+.file-text, .file-txt, .file-md, .file-log, .file-htaccess { background-position: -254px -18px }
+.file-doc, .file-docx { background-position: -362px -18px }
+.file-zip, .file-gz, .file-tar, .file-rar { background-position: -416px -18px }
+.file-js { background-position: -434px -18px }
+.file-css { background-position: -144px -0px }
+.file-fla { background-position: -398px -0px }
+
+.nav-tabs>li>a {
+  border-radius: 0; 
+}
+
+#filedrag
+{
+  display: none;
+  font-weight: bold;
+  text-align: center;
+  padding: 1em 0;
+  margin: 1em 0;
+  color: #555;
+  border: 2px dashed #555;
+  border-radius: 7px;
+  cursor: default;
+}
+
+
+
+#filedrag.hover
+{
+  color: #f00;
+  border-color: #f00;
+  border-style: solid;
+  box-shadow: inset 0 3px 4px #888;
+}
+
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+html,body{
+
+  position: absolute;
+  top: 0; left: 0; 
+  right: 0; bottom: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.DesktopFrame{
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+#Desktop{
+  background: #fff;
+  position: absolute;
+  top: 0px;
+  left:0px;
+  right:0px;
+  bottom:40px;
+  /*
+  background-repeat: repeat-x;
+  background-image: -webkit-linear-gradient(160deg, #34b6d9, #3464d9);
+  background-image: linear-gradient(160deg, #34b6d9, #3464d9);
+  */
+  background-image: url('../images/loading.svg');
+  background-color: #348dd9;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  background-size:     cover; 
+
+}
+
+#Taskbar{
+  font-family: Helvetica, Arial, sans-serif;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 40px;
+  background: #eee;
+  border-top: solid 1px #999;
+  padding: 5px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4c4c4c+0,595959+12,666666+25,474747+39,2c2c2c+50,000000+51,111111+60,2b2b2b+76,1c1c1c+91,131313+100;Black+Gloss+%231 */
+  background: #4c4c4c; /* Old browsers */
+  background: -moz-linear-gradient(top,  #4c4c4c 0%, #595959 12%, #666666 25%, #474747 39%, #2c2c2c 50%, #000000 51%, #111111 60%, #2b2b2b 76%, #1c1c1c 91%, #131313 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
+
+}
+#StartButton{
+  float: left;
+  color: #fff;
+  height: 27px;
+  line-height: 27px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.menu-list{
+  overflow: auto;
+  position: relative;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 30px;
+  height: 100%;
+}
+
+.FrameTab {
+  float: left;
+  white-space: nowrap;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
+#SystemClock{
+  float: right;
+  white-space: nowrap;
+  cursor: pointer;
+  height: 27px;
+  line-height: 27px;
+}
+
+#Notifications{
+  float: right;
+  white-space: nowrap;
+  cursor: pointer;
+  height: 27px;
+  line-height: 27px;
+  background-color: #fff;
+  padding: 2px 5px 5px 5px;
+  margin-right: 3px;
+}
+
+#SystemClock .calendar{
+  position: absolute;
+  color: #fff;
+  z-index: 1;
+  right: 0px;
+  bottom: 40px;
+  background: #333;
+  padding: 20px;
+  margin: 0px;
+  border: solid 1px #000;
+  
+}
+
+#StartMenu{
+  width: 712px;
+  top: 0;
+  border: solid 1px #000;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background: #333;
+  opacity:0.95;
+  z-index:2;
+  margin: 0px;
+ 
+}
+
+#SideMenu{
+  position: absolute;
+  top: 0px;
+  left:0px;
+  bottom: 51px;
+  width: 300px;
+  border-right: solid 1px #ccc;
+  background-color: #eee;
+  z-index: 2;
+}
+
+.text-editor{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#StartMenu table {
+  width: 100%;
+  height: 100%;
+}
+
+.down-arrow {
+  float: right;
+  height: 16px;
+  padding-right: 16px;
+  background-image: url(images/default-toolbar-small-arrow.png);
+  display: table-cell;
+  background-position: right center;
+}
+.menu-item{
+  padding: 10px;
+  margin-bottom: 2px;
+  border: solid 1px #eee;
+  background: #fff;
+  cursor: pointer;
+}
+.menu-item:hover{
+  border: solid 1px #ccc;
+}
+
+.FrameTab{
+  max-width: 200px;
+  overflow: hidden;
+}
+#Windows{
+  position: absolute;
+  top: 0; left: 0; 
+  right: 0; bottom: 0;
+  overflow: hidden;
+}
+.window {
+  border: solid 1px #ccc;
+  opacity: 1;
+  position: absolute;
+  min-width: 10px;
+  min-height: 10px;
+  margin-bottom: 0px;
+  overflow:hidden;
+  /*
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  */
+}
+.panel-sub-heading{
+  height: 30px;
+  background-color: #eee;
+  border-bottom: solid 1px #ccc;
+  padding: 4px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+
+}
+
+.panel-sub-heading span.textbox{
+  margin-left: 4px;
+  display: block;
+  overflow: hidden;
+
+}
+.panel-sub-heading input.path
+, .panel-sub-heading input.search {
+  height: 22px;
+  width:100%;
+}
+
+.panel-primary>.panel-heading{
+  border-bottom: solid 1px #ccc;
+  color: #000;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+.win-handle{
+  cursor: move;
+
+}
+
+.win-btn-organize{
+  float: left;
+  margin: 4px;
+}
+
+.win-btn-newfolder{
+  float: left;
+  margin: 4px;
+}
+
+.win-btn-open{
+  float: left;
+  margin: 4px;
+}
+
+.win-btn-preview{
+  float: right;
+  margin: 4px;
+}
+.win-btn-layout{
+  float: right;
+  margin: 4px;
+}
+
+.win-btn-upload{
+  float: right;
+  margin: 4px;
+}
+.win-btn-help{
+  float: right;
+  margin: 4px;
+}
+
+
+
+.win-btn-back{
+  float: left;
+}
+.win-btn-fwd{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.win-btn-refresh{
+  float: right;
+  margin-left: 1px;
+}
+
+.win-btn-up{
+  float: left;
+  margin-right: 5px;
+}
+
+.win-btn-search{
+  float: right;
+  margin-left: 5px;
+}
+
+
+.win-controls{
+  position:absolute;
+  right: 0px;
+  top: 0px;
+}
+.win-btn-minimize{
+  float: right;
+  height: 27px;
+}
+.win-btn-maximize{
+  float: right;
+  height: 27px;
+}
+.win-btn-close{
+  float: right;
+  height: 27px;
+}
+
+.win-body-menu{
+  height: 20px;
+  border-bottom: solid 1px #ccc;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+
+}
+.win-body-menu  > ul {
+  margin: 0;
+  padding: 0;
+}
+
+.win-body-menu > ul li > ul {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  min-width: 150px;
+  border: solid 1px #ccc;
+}
+
+.win-body-menu > ul > li {
+  display: inline;
+}
+
+.win-body-menu > ul li > ul li  {
+  padding: 5px;
+}
+
+
+.win-body-menu > ul li a {
+  margin: 2px 4px;
+}
+.win-body-menu > ul li a:hover{
+  font-weight: bold;
+}
+
+.win-body-toolbar{
+  height: 30px;
+  border-bottom: solid 1px #ccc;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+
+}
+
+.win-body{
+  position: absolute;
+  left: 1px;
+  top: 0;
+  right: 1px;
+  bottom: 0;
+  margin-top: 30px;
+  opacity: 1;
+  padding: 0px;
+  overflow:hidden;
+  border-left: solid 1px #eee;
+  background-color: white;
+}
+
+.win-body-left-panel{
+  background: #eee;
+  position:absolute;
+  top: 30px;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  overflow: auto;
+
+  width: 200px;
+  border-right: solid 1px #ccc;
+
+}
+
+.win-body-center-panel{
+  position:absolute;
+  top:30px; 
+  bottom:30px; 
+  left: 0; 
+  right:0; 
+  overflow: auto; 
+  padding-left: 200px;
+  border-left: solid 1px #eee;
+}
+
+.win-body-right-panel{
+  background: #eee;
+  position:absolute;
+  top: 30px;
+  bottom: 30px;
+  width: 200px;
+  right: 0;
+  overflow: auto;
+  border-left: solid 1px #ccc;
+}
+
+.win-body-left-panel .ui-resizable-e{
+  right:0;
+} 
+
+.win-body-footer{
+  position:absolute;
+  bottom:0px;
+  width:100%;
+  height: 30px;
+  border-top: solid 1px #ccc;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+}
+
+.mouse-top-header{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 4px;
+
+  z-index: 1;
+}
+
+.window-resize-helper{
+  border: solid 1px #0000bf;
+  position: absolute;
+  z-index:0;
+  background: #fff;
+  margin:10px
+}
+
+.mouse-left-header{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  bottom: 0;
+
+  z-index: 1;
+}
+
+.mouse-right-header{
+  position: absolute;
+  width: 4px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 1;
+}
+
+.mouse-bottom-header{
+  position: absolute;
+  left: 0;
+  height: 4px;
+  right: 0;
+  bottom: 0;
+
+  z-index: 1;
+}
+
+.alt-row div:nth-child(even){
+  background-color: #eee;
+}
+.alt-row div:nth-child(odd){
+  background-color: #fff;
+}
+

@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Flot Examples: Real-time updates</title>
+    <link href="../examples.css" rel="stylesheet" type="text/css">
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
+    <script language="javascript" type="text/javascript" src="../../jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="../../jquery.flot.js"></script>
+    <script type="text/javascript">
+      /*
+      (function($) {
+        $.interpolate = function(norder, steps, noNegative) {
+          //Norder is an array of array's with x,y coordiantes..
+          norder = norder || [];
+          steps = steps || 10;
+          noNegative = noNegative || false;  //Set this to true to avoid negative values.. 
+
+          //Minimum of 4 nodes is needed to interpolate..
+          if (norder.length < 4) return norder;
+
+          var points = [];
+          var val, prevVal, nextVal;
+
+          //Setup Lagrange polynomial -------------------------------------------- 
+
+          //Read in Data Values 
+          for (var i = 0; i < norder.length; i++) {
+            points.push({ x: norder[i][0], y: norder[i][1], A: 0, B: 0, C: 0, D: 0 })
+          }
+
+          //Determine the width of the ith interval 
+          for (var i = 0; i < points.length - 1; i++) {
+            points[i].i = points[i + 1].x - points[i].x;
+          }
+
+
+          for (var i = 1; i < points.length - 1; i++) {
+            val = points[i]; prevVal = points[i - 1]; nextVal = points[i + 1];
+            prevVal.D = 2 * (prevVal.i + val.i);
+            prevVal.A = val.i;
+            prevVal.B = prevVal.i;
+            prevVal.C = 6 * ((nextVal.y - val.y) / val.i - (val.y - prevVal.y) / prevVal.i);
+          }
+
+          var R;
+          for (var i = 1; i < points.length - 2; i++) {
+            val = points[i]; prevVal = points[i - 1]; nextVal = points[i + 1];
+            R = val.B / prevVal.D;
+            val.D = val.D - (R * prevVal.A);
+            val.C = val.C - (R * prevVal.C);
+          }
+          points[points.length - 3].C = points[points.length - 3].C / points[points.length - 3].D;
+
+          for (var i = norder.length - 4; i >= 0; i--) {
+            val = points[i]; nextVal = points[i + 1];
+            val.C = (val.C - val.A * nextVal.C) / val.D;
+          }
+
+          for (var i = 1; i < norder.length - 1; i++) {
+            val = points[i]; prevVal = points[i - 1];
+            val.S = prevVal.C;
+          }
+          points[0].S = 0;
+          points[points.length - 1].S = 0;
+
+
+          for (var i = 0; i < norder.length - 1; i++) {
+            val = points[i]; prevVal = points[i - 1]; nextVal = points[i + 1];
+            val.A = (nextVal.S - val.S) / (6 * val.i);
+            val.B = val.S / 2;
+            val.C = (nextVal.y - val.y) / val.i - (2 * val.i * val.S + val.i * nextVal.S) / 6;
+            val.D = val.y;
+          }
+
+
+          var interPolated = [];
+          var xs, ys, u;
+          for (var i = 0; i < norder.length - 1; i++) {
+            val = points[i];
+            for (var j = 0; j < steps; j++) {
+              xs = val.x + (val.i / steps) * j;
+              u = xs - val.x;
+              ys = (val.A * (u * u * u)) + (val.B * (u * u)) + (val.C * u) + val.D;
+
+              if (ys < 0) ys = 0;
+
+              interPolated.push([xs, ys]);
+            }
+          }
+          val = points[points.length - 1];
+          interPolated.push([val.x, val.y]);
+          return interPolated;
+        }
+      })(jQuery);
+
+
+
+      (function($) {
+        var options = {series: { "interpolate": true, "interpolateSteps": 10 }};
+
+        init = function(plot) {
+
+          interpolate = function(plot, s, datapoints) {
+            if (!s.interpolate) return;
+            s.data = $.interpolate(s.data, s.interpolateSteps);
+          }
+
+          plot.hooks.processRawData.push(interpolate);
+        }
+
+        $.plot.plugins.push({
+          init: init,
+          options: options,
+          name: 'QubicInterpolation',
+          version: '1.0'
+        });
+
+      })(jQuery);
+
+
+*/
+
+
+
+      $(function() {
+
+
+
+        // We use an inline data source in the example, usually data would
+        // be fetched from a server
+
+        var data = [],
+            totalPoints = 300;
+        var sysinfo={};
+
+        function getRandomData() {
+
+          if (data.length > 0)
+            data = data.slice(1);
+
+          // Do a random walk
+
+          while (data.length < totalPoints) {
+
+            var prev = data.length > 0 ? data[data.length - 1] : 50,
+                y = prev + Math.random() * 10 - 5;
+
+            if (y < 0) {
+              y = 0;
+            } else if (y > 100) {
+              y = 100;
+            }
+
+            data.push(y);
+          }
+
+          // Zip the generated y values with the x values
+
+          var res = [];
+          for (var i = 0; i < data.length; ++i) {
+            res.push([i, data[i]])
+          }
+
+          return res;
+        }
+
+        // Set up the control widget
+
+        var updateInterval = 1000;
+        var xOffset = 60;
+
+        var defaultPlotOptions = {
+          series: {
+            lines:{ lineWidth: 1},
+            shadowSize: 0	// Drawing is faster without shadows
+          },
+          yaxis: {
+            min: 0,
+            max: 100
+          },
+          y2axis: {
+            min: 0,
+            //max: 866000000
+          },
+          xaxis: {
+            show: true,
+            min: 0,
+            max: xOffset,
+            tickFormatter: function(v, axis){
+              //console.log(v, axis);
+              var keys = Object.keys(sysinfo);
+              var index = xOffset - v;
+              return sysinfo[keys[index]] ? new Date(sysinfo[keys[index]].dateCreated) : "";
+            }
+          },
+          //colors:['#ccc', '#777', 'orange','red','green','blue']
+        };
+
+        var cpu = $.plot("#cpu", [  ], $.extend(defaultPlotOptions, {colors:['orange','red','green','blue']})),
+            mem = $.plot("#mem", [  ], $.extend(defaultPlotOptions, {colors:['green','#000']})),
+            net = $.plot("#net", [  ], $.extend(defaultPlotOptions, {colors:['red','green']})),
+            fs = $.plot("#fs", [  ], $.extend(defaultPlotOptions, {colors:['green','blue']})),
+            disk = $.plot("#disk", [  ], $.extend(defaultPlotOptions, {colors:['green','blue']}));
+
+
+        function getCPUData(no){
+          var res=[],c=0, keys = Object.keys(sysinfo);
+          for(var i=keys.length - 1; i>=0; i--) {
+            let x = xOffset - c++,
+                y = sysinfo[keys[i]].currentLoad.cpus[no].load;
+            res.push([x,y]); 
+          }
+          return res;
+        }
+
+        function getMEMData(swap){
+          var res=[],c=0, keys = Object.keys(sysinfo);
+          for(var i=keys.length - 1; i>=0; i--) {
+            let x = xOffset - c++,
+                total = swap ? sysinfo[keys[i]].mem.swaptotal : sysinfo[keys[i]].mem.total,
+                used = swap ? sysinfo[keys[i]].mem.swapused : sysinfo[keys[i]].mem.used,
+                y = Math.round(100 * used / total);
+            res.push([x,y]); 
+
+          }
+          return res;
+        }
+
+
+        function getNETDataRead(){
+          var res=[],c=0, keys = Object.keys(sysinfo);
+          for(var i=keys.length - 1; i>=0; i--) {
+            let x = xOffset - c++,
+                bits = sysinfo[keys[i]].networkStats.rx,
+                sec = sysinfo[keys[i]].networkStats.rx_sec,
+                y = Math.round(((bits / sec)));
+            res.push([x,y]);
+          }
+          return res;
+        }
+
+        function getNETDataTransmit(){
+          var res=[],c=0, keys = Object.keys(sysinfo);
+          for(var i=keys.length - 1; i>=0; i--) {
+            let x = xOffset - c++,
+                bits = sysinfo[keys[i]].networkStats.tx,
+                sec = sysinfo[keys[i]].networkStats.tx_sec,
+                y = Math.round(((bits / sec)));
+            res.push([x,y]);
+          }
+
+          return res;
+        }
+
+        function getDISKIODataTotal(){
+          var res=[],c=0, keys = Object.keys(sysinfo);
+          for(var i=keys.length - 1; i>=0; i--) {
+            let x = xOffset - c++,
+                bits = sysinfo[keys[i]].disksIO.tIO,
+                sec = sysinfo[keys[i]].disksIO.tIO_sec,
+                y = Math.round(((bits / sec)));
+            res.push([x,y]);
+          }
+          return res;
+        }
+
+        function getDISKIODataRead(){
+          var res=[],c=0, keys = Object.keys(sysinfo);
+          for(var i=keys.length - 1; i>=0; i--) {
+            let x = xOffset - c++,
+                bits = sysinfo[keys[i]].disksIO.rIO,
+                sec = sysinfo[keys[i]].disksIO.rIO_sec,
+                y = Math.round(((bits / sec)));
+            res.push([x,y]);
+          }
+          return res;
+        }
+
+        function getDISKIODataWrite(){
+          var res=[],c=0, keys = Object.keys(sysinfo);
+          for(var i=keys.length - 1; i>=0; i--) {
+            let x = xOffset - c++,
+                bits = sysinfo[keys[i]].disksIO.wIO,
+                sec = sysinfo[keys[i]].disksIO.wIO_sec,
+                y = Math.round(((bits / sec)));
+            res.push([x,y]);
+          }
+          return res;
+        }
+
+        function getFSDataTotal(){
+          var res=[],c=0, keys = Object.keys(sysinfo);
+          for(var i=keys.length - 1; i>=0; i--) {
+            let x = xOffset - c++,
+                bits = sysinfo[keys[i]].fsStats.tx,
+                sec = sysinfo[keys[i]].fsStats.tx_sec,
+                y = Math.round(((bits / sec)));
+            res.push([x,y]);
+          }
+          return res;
+        }
+
+        function getFSDataRead(){
+          var res=[],c=0, keys = Object.keys(sysinfo);
+          for(var i=keys.length - 1; i>=0; i--) {
+            let x = xOffset - c++,
+                bits = sysinfo[keys[i]].fsStats.rx,
+                sec = sysinfo[keys[i]].fsStats.rx_sec,
+                y = Math.round(((bits / sec)));
+            res.push([x,y]);
+          }
+          return res;
+        }
+
+        function getFSDataWrite(){
+          var res=[],c=0, keys = Object.keys(sysinfo);
+          for(var i=keys.length - 1; i>=0; i--) {
+            let x = xOffset - c++,
+                bits = sysinfo[keys[i]].fsStats.wx,
+                sec = sysinfo[keys[i]].fsStats.wx_sec,
+                y = Math.round(((bits / sec)));
+            res.push([x,y]);
+          }
+          return res;
+        }
+
+
+        function getSystemInfo(){
+          $.getJSON('/database?collection=monitor&find={}&sort={"_id":-1}&limit=1', function(data, status, xhr){
+            for(var  i in data){
+              sysinfo[data[i]._id] = data[i];
+            }
+            var keys = Object.keys(sysinfo);
+            while(keys.length > xOffset + 1){
+              let size = keys.length - (xOffset + 1);
+              for(var i=0;i<size;i++){
+                delete sysinfo[keys[i]];
+                console.log(keys[i] + " was deleted.");
+              }
+              keys = Object.keys(sysinfo)
+            }
+          })
+        }
+        setInterval(getSystemInfo, 1000);
+
+        function update() {
+
+          cpu.setData([
+            {data: getCPUData(0), label: "CPU1"},
+            {data: getCPUData(1), label: "CPU2"},
+            {data: getCPUData(2), label: "CPU3"},
+            {data: getCPUData(3), label: "CPU4"}]);
+          // Since the axes don't change, we don't need to call plot.setupGrid()
+          cpu.setupGrid();
+          cpu.draw();
+
+
+          mem.setData([{ data: getMEMData(), lines:{ fill:true }, label: "Memory" },
+                       { data: getMEMData(true), lines:{ fill:true }, label: "Swap" }]);
+          mem.setupGrid();
+          mem.draw();
+
+          net.setData([
+            { data: getNETDataRead(), yaxis: 2, lines:{ fill:true }, label: "Received" }, 
+            { data:getNETDataTransmit(), yaxis: 2, lines:{ fill:true }, label: "Sent"}
+          ]);
+          net.setupGrid();
+          net.draw();
+
+          disk.setData([
+            { data: getDISKIODataTotal(), yaxis: 2, lines:{ fill:true }, label: "Disk IO Total" },
+            { data: getDISKIODataRead(), yaxis: 2, lines:{ fill:true }, label: "Disk IO Read" },
+            { data: getDISKIODataWrite(), yaxis: 2, lines:{ fill:true }, label: "Disk IO Write"}
+          ]);
+          disk.setupGrid();
+          disk.draw();
+
+          fs.setData([
+            { data: getFSDataTotal(), yaxis: 2, lines:{ fill:true }, label: "FS Total" },
+            { data: getFSDataRead(), yaxis: 2, lines:{ fill:true }, label: "FS Read" },
+            { data: getFSDataWrite(), yaxis: 2, lines:{ fill:true }, label: "FS Write" }
+          ]);
+          fs.setupGrid();
+          fs.draw();
+
+
+          setTimeout(update, updateInterval);
+        }
+
+        update();
+
+        // Add the Flot version string to the footer
+
+        $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+
+        window.sysinfo = sysinfo;
+
+      });
+
+    </script>
+  </head>
+  <body>
+
+    <div id="header">
+      <h2>System Resources</h2>
+    </div>
+
+    <div id="content">
+
+      <div class="demo-container">
+        <div id="cpu" class="demo-placeholder"></div>
+      </div>
+
+      <div class="demo-container">
+        <div id="mem" class="demo-placeholder"></div>
+      </div>
+
+      <div class="demo-container">
+        <div id="net" class="demo-placeholder"></div>
+      </div>
+
+      <div class="demo-container">
+        <div id="fs" class="demo-placeholder"></div>
+      </div>
+
+      <div class="demo-container">
+        <div id="disk" class="demo-placeholder"></div>
+      </div>
+
+    </div>
+
+    <div id="footer">
+      Copyright &copy; 2007 - 2014 IOLA and Ole Laursen
+    </div>
+
+  </body>
+</html>
+
+
+
+
