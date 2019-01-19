@@ -1,0 +1,30 @@
+git clone https://github.com/rcpage/desktop.git
+cd desktop
+dnf install nodejs -y
+firewall-cmd --add-port 80/tcp --permanent
+firewall-cmd --reload
+sudo node HttpServerTest.js
+
+#
+#create file: vi /etc/yum.repos.d/mongodb.repo
+#
+[Mongodb]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/4.0/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
+
+# dnf install mongodb-org
+
+# firewall-cmd --add-port 27017/tcp --permanent
+# firewall-cmd --reload
+
+# systemctl enable mongod.service
+# systemctl start mongod.service
+# systemctl status mongod.service
+# mongod --version
+
+
+## Edit file: /etc/mongo.conf
+bindIp: 0.0.0.0

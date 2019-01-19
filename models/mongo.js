@@ -1,7 +1,6 @@
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient
-//var mongoDb = 'mongodb://192.168.1.66:27017/';
-var mongoDb = 'mongodb://192.168.1.153:27017/';
+var mongoDb = 'mongodb://3.2.1.11:27017/';
 var ObjectId = mongodb.ObjectId;
 var model = {};
 
