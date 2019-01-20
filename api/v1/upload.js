@@ -47,14 +47,17 @@ class Upload extends Handle  {
     for(var i in fileInfo){
       let payload = fileInfo[i].payload;
       let filename = fileInfo[i].header['Content-Disposition'].filename;
-      let uploadPath = this.req.headers['upload-path'] ? this.req.headers['upload-path'] : '/home/vagrant/stack/upload/';
+      let defaultUploadPath = global.rootDirectory + '/upload/';
+      let uploadPath = this.req.headers['upload-path'] ? this.req.headers['upload-path'] : defaultUploadPath;
       //create upload path if does not exist
-      let err = this.createUploadDir(uploadPath);
-      if(err) {
-        this.res.status(HTTPStatusCode.InternalServerError);
-        this.httpResponse = err.stack;
-        return;
-      }
+      let mkdirp = System.getModule('mkdirp');
+      mkdirp.sync(uploadPath);
+      //let err = this.createUploadDir(uploadPath);
+      //if(err) {
+      //  this.res.status(HTTPStatusCode.InternalServerError);
+      //  this.httpResponse = err.stack;
+      //  return;
+      //}
       try {
         let resource = uploadPath + filename;
         //
