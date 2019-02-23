@@ -1,0 +1,14 @@
+{
+  "filename": "create-logstash-config-email.json",
+  "task": {
+    "name": "Create all logstash config summary emails",
+    "tags": [
+      "create",
+      "logstash-config",
+      "email"
+    ],
+    "with_items": "{{ logstashConfigDir.files }}",
+    "shell": "tail -n 100 {{logstash.configDirectory}}/{{ item.split('/').pop() }} > /tmp/emailBody_{{item.split('/').pop()}}"
+  },
+  "path": "./tasks/create-logstash-config-email.json"
+}

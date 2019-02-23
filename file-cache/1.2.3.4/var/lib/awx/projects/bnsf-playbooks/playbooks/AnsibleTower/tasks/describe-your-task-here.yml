@@ -1,0 +1,13 @@
+id: 168fd314dcb-3039-1a85-0
+filename: describe-your-task-here.yml
+task:
+  name: Describe your task here
+  file:
+    path: abc/123
+    mode: '777'
+  tags:
+    - describe
+    - your
+    - task
+    - here
+dest: ./

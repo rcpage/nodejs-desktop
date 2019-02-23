@@ -1,0 +1,9 @@
+{
+  "name": "Forcestop logstash.default service",
+  "tags": [
+    "forcestop",
+    "logstash.default",
+    "service"
+  ]
+  "shell": "{{logstash.binDirectory}}/logstash.default.sh forcestop"
+}

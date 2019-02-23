@@ -1,0 +1,9 @@
+{
+  "name": "Forcestop kibana service",
+  "tags": [
+    "forcestop",
+    "kibana",
+    "service"
+  ],
+  "shell": "{{kibana.binDirectory}}/kibana.sh forcestop"
+}

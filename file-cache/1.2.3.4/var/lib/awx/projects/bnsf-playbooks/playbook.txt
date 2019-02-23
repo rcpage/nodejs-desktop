@@ -1,0 +1,1585 @@
+[
+  {
+    "name": "ELK Playbook",
+    "hosts": "all",
+    "vars": {
+      "chef_environment": "dev",
+      "ip_address": "0.0.0.127",
+      "elastic_password": 12345,
+      "templates": "playbooks/bnsf/apps/templates",
+      "files": "playbooks/bnsf/apps/files",
+      "elk": {
+        "EmailLog": "robert.wallace@bnsf.com",
+        "autostartDirectory": "/etc/init.d",
+        "rootDirectory": "/elk",
+        "baseDirectory": "/elk/app",
+        "dataDirectory": "/elk/data",
+        "logsDirectory": "/elk/logs",
+        "groupName": "vagrant",
+        "userName": "vagrant",
+        "mwelkCreds": "/home/mwelk/creds",
+        "KeystoreFull": "/home/mwelk/creds/ElasticKeystore.jks",
+        "KeystorePassword": "Bianca?161130",
+        "BnsfPem": "/home/mwelk/creds/Bnsf.pem",
+        "rootCertificate": "/home/mwelk/creds/bnsfRoot.pem",
+        "ElasticCrt": "/home/mwelk/creds/Elastic.crt",
+        "ElasticKey": "/home/mwelk/creds/Elastic.key",
+        "ElasticPem": "/home/mwelk/creds/Elastic.pem",
+        "curlOutput": "/elk/logs/curl_output.txt",
+        "secretDirectory": "/bnsf/elk",
+        "secretFile": "/bnsf/elk/secret",
+        "ArtifactoryUrl": "http://artifactory.bnsf.com/artifactory",
+        "RestartFlagFile": "/elk/app/restarted_flag",
+        "ELKCacheFileDefault": "/root/.chef/local-mode-cache/cache/cookbooks/bnsfELK/files/default"
+      },
+      "elasticSearch": {
+        "marvelZenHosts": "localhost",
+        "clusterName": "my-temp-cluster-group-name",
+        "node": {
+          "name": "elasticsearch-node",
+          "master": "false",
+          "ingest": "false",
+          "global": "false",
+          "data": "false",
+          "ip_address": "1.2.3.100",
+          "fqdn": "localhost"
+        },
+        "gateway": {
+          "recover_after_nodes": 3
+        },
+        "defaultRetentionDays": 3,
+        "recipeName": "bnsfELK::elasticsearch",
+        "user": {
+          "elastic": "elastic",
+          "kibana": "kibana",
+          "logstash": "logstash_system"
+        },
+        "applicationFullName": "org.elasticsearch.bootstrap.Elasticsearch",
+        "packageName": "elasticsearch.tar.gz",
+        "payloadName": "http://1.2.3.4:8080/ELK_Packages/5.6.10/elasticsearch-5.6.10.tar.gz",
+        "directory": "/elk/app/elasticsearch",
+        "binDirectory": "/elk/app/elasticsearch/bin",
+        "configDirectory": "/elk/app/elasticsearch/config",
+        "keystoreFileName": "ElasticKeystore.jks",
+        "keystore": "/elk/app/elasticsearch/config/x-pack/ElasticKeystore.jks",
+        "keystorePassword": "Bianca?161130",
+        "rootCertificate": "/elk/app/elasticsearch/config/x-pack/bnsfRoot.pem",
+        "homeDirectory": "/home/mwelk",
+        "credsDirectory": "/home/mwelk/creds",
+        "xpackBinDirectory": "/elk/app/elasticsearch/bin/x-pack",
+        "xpackConfigDirectory": "/elk/app/elasticsearch/config/x-pack",
+        "xpackGroupTempDirectory": "/elk/app/elasticsearch/config/grouptemp",
+        "scriptsDirectory": "/elk/app/elasticsearch/config/scripts",
+        "pluginsDirectory": "/elk/app/elasticsearch/plugins",
+        "templateDirectory": "/elk/app/elasticsearch/template",
+        "port": "9200",
+        "configFile": "elasticsearch.yml",
+        "configLogFile": "log4j2.properties",
+        "configFileJvm": "jvm.options",
+        "http.max_content_length": "256mb",
+        "transport.tcp.port": "9300",
+        "transport.connections_per_node.recovery": "2",
+        "transport.connections_per_node.bulk": "3",
+        "transport.connections_per_node.reg": "6",
+        "transport.connections_per_node.state": "1",
+        "transport.connections_per_node.ping": "1",
+        "dataDirectory": "/elk/data/elasticsearch",
+        "logsDirectory": "/elk/logs/elasticsearch",
+        "marvelAgent": "marvel-hostname",
+        "elastic_password": "12345",
+        "masterHosts": 1,
+        "minimumMasterNodes": "2",
+        "bnsfCACert": "/elk/app/elasticsearch/config/x-pack/bnsfcacert.pem",
+        "elkGroupFileCreatorSrv": "http://aspnetsrvdv/ELKGroupFileCreatorSrv",
+        "localurl": "https://rhel7:9200",
+        "nodesInputUrlEng": "[\"https://ftwlxelkt001.iss.bnr.com:9200\", \"https://ftwlxelkt002.iss.bnr.com:9200\", \"https://ftwlxelkt003.iss.bnr.com:9200\"]",
+        "nodesInputUrlDev": "[\"https://ftwlxelkd101.iss.bnr.com:9200\", \"https://ftwlxelkd102.iss.bnr.com:9200\", \"https://ftwlxelkd103.iss.bnr.com:9200\", \"https://ftwlxelkd104.iss.bnr.com:9200\", \"https://ftwlxelkd105.iss.bnr.com:9200\", \"https://ftwlxelkd106.iss.bnr.com:9200\", \"https://ftwlxelkd107.iss.bnr.com:9200\", \"https://ftwlxelkd108.iss.bnr.com:9200\", \"https://ftwlxelkd109.iss.bnr.com:9200\", \"https://ftwlxelkd110.iss.bnr.com:9200\"]",
+        "nodesInputUrlProd": "[\"https://toplxelkp101.iss.bnr.com:9200\", \"https://toplxelkp102.iss.bnr.com:9200\", \"https://toplxelkp103.iss.bnr.com:9200\", \"https://toplxelkp104.iss.bnr.com:9200\", \"https://toplxelkp105.iss.bnr.com:9200\", \"https://toplxelkp106.iss.bnr.com:9200\", \"https://toplxelkp107.iss.bnr.com:9200\", \"https://toplxelkp108.iss.bnr.com:9200\", \"https://toplxelkp109.iss.bnr.com:9200\", \"https://toplxelkp110.iss.bnr.com:9200\"]"
+      },
+      "kibana": {
+        "recipeName": "bnsfELK::kibana",
+        "applicationFullName": "/elk/app/kibana/bin/../node/bin/node",
+        "userName": "mwkibana",
+        "packageName": "kibana.tar.gz",
+        "payloadName": "http://1.2.3.4:8080/ELK_Packages/5.6.10/kibana-5.6.10-linux-x86_64.tar.gz",
+        "directory": "/elk/app/kibana",
+        "configDirectory": "/elk/app/kibana/config",
+        "homeDirectory": "/home/mwkibana",
+        "KeystoreFileName": "KibanaKeystore.jks",
+        "Keystore": "/home/mwelk/creds/KibanaKeystore.jks",
+        "pluginDirectory": "/elk/app/kibana/kibana/plugin",
+        "binDirectory": "/elk/app/kibana/bin",
+        "dataDirectory": "/elk/data/kibana",
+        "logsDirectory": "/elk/logs/kibana",
+        "port": "5601",
+        "configFile": "kibana.yml",
+        "serverHost": "0.0.0.0",
+        "elasticsearchSSLVerify": "true",
+        "verbose": "true",
+        "signedCert": "SignedCert_Kibana.pem",
+        "ElasticKey": "/elk/app/kibana/config/Elastic.key",
+        "ElasticCrt": "/elk/app/kibana/config/Elastic.crt",
+        "BnsfPem": "/elk/app/kibana/config/Bnsf.pem",
+        "KeystoreFull": "/elk/app/kibana/config/ElasticKeystore.jks"
+      },
+      "logstash": {
+        "recipeName": "bnsfELK::logstash",
+        "applicationFullName": "logstash/lib/bootstrap/environment.rb",
+        "userName": "mwlogstash",
+        "packageName": "logstash.tar.gz",
+        "payloadName": "http://1.2.3.4:8080/ELK_Packages/5.6.10/logstash-5.6.10.tar.gz",
+        "packageNamePluginUpdate": "logstash-plugin-update.zip",
+        "payloadNamePluginUpdate": "http://1.2.3.4:8080/ELK_Packages/5.6.10/logstash-plugin-update-.zip",
+        "port": "9600",
+        "directory": "/elk/app/logstash",
+        "configDirectory": "/elk/app/logstash/config",
+        "defaultConfig": "/elk/app/logstash/config/logstash.default",
+        "defaultConfigRoute": "/elk/app/logstash/config/logstash.default/route",
+        "bluemixConfig": "/elk/app/logstash/config/logstash.bluemix",
+        "bluemixConfigRoute": "/elk/app/logstash/config/logstash.bluemix/route",
+        "deadletterConfig": "/elk/app/logstash/config/logstash.deadletter",
+        "deadletterConfigRoute": "/elk/app/logstash/config/logstash.deadletter/route",
+        "homeDirectory": "/home/mwlogstash",
+        "Keystore": {
+          "dev": "/elk/app/logstash/config/kafka.dev.jks",
+          "trial": "/elk/app/logstash/config/kafka.trial.jks",
+          "prod": "/elk/app/logstash/config/kafka.prod.jks"
+        },
+        "binDirectory": "/elk/app/logstash/bin",
+        "dataDirectory": "/elk/data/logstash",
+        "logsDirectory": "/elk/logs/logstash",
+        "deadletterqueueDirectory": "/elk/data/logstash/dead_letter_queue",
+        "persistentqueueDirectory": "/elk/data/logstash/persistent_queue",
+        "deadletterqueueRetention": "4",
+        "instanceMultiple": "1",
+        "heapsize": "2g",
+        "entKafkaPort": "9092",
+        "signedCert": ".pem",
+        "ElasticKey": "/elk/app/logstash/config/Elastic.key",
+        "ElasticCrt": "/elk/app/logstash/config/Elastic.crt",
+        "ElasticPem": "/elk/app/logstash/config/Elastic.pem",
+        "BnsfPem": "/elk/app/logstash/config/Bnsf.pem",
+        "KeystoreFull": "/elk/app/logstash/config/ElasticKeystore.jks",
+        "LogLevel": "info",
+        "entKafkaServers": {
+          "Dev": "kafdv1.bnsf.com:9092,kafdv2.bnsf.com:9092,kafdv3.bnsf.com:9092",
+          "Trial": "kaftr1.bnsf.com:9092,kaftr2.bnsf.com:9092,kaftr3.bnsf.com:9092",
+          "Prod": "kafpd1.bnsf.com:9092,kafpd2.bnsf.com:9092,kafpd3.bnsf.com:9092",
+          "TestTrial": "ftwlxkafr101.iss.bnr.com:9092,ftwlxkafr102.iss.bnr.com:9092,ftwlxkafr103.iss.bnr.com:9092",
+          "TestProd": "toplxkafp101.iss.bnr.com:9092,toplxkafp102.iss.bnr.com:9092,toplxkafp103.iss.bnr.com:9092"
+        }
+      },
+      "xPackClientPlugin": {
+        "packageName": "xpack.zip",
+        "payloadName": "http://1.2.3.4:8080/ELK_Packages/5.6.10/x-pack-5.6.10.zip",
+        "configDirectory": "/elk/app/elasticsearch/config/x-pack",
+        "binDirectory": "/elk/app/elasticsearch/bin/x-pack"
+      },
+      "winlogBeat": {
+        "packageName": "winlog--windows-x86_64.zip",
+        "payloadName": "http://1.2.3.4:8080/ELK_Packages/5.6.10/winlog-5.6.10-windows-x86_64.zip",
+        "directory": "C:Program FilesWinLogBeat",
+        "configFile": "winlogbeat.yml"
+      },
+      "curator": {
+        "version": "5.5.1",
+        "payloadName": "http://1.2.3.4:8080/ELK_Packages/Curator/5.5.1/elasticsearch-curator-5.5.1-1.x86_64.rpm",
+        "packageName": "elasticsearch-curator.rpm",
+        "directory": "/elk/app/elasticsearch-curator",
+        "actionDirectory": "/elk/app/elasticsearch-curator/action",
+        "logsDirectory": "/elk/logs/elasticsearch-curator",
+        "logFile": "/elk/logs/elasticsearch-curator/curator-log.txt",
+        "configFile": "curator.yml",
+        "configFilePreamble": "curator",
+        "configFileSufix": ".yml"
+      },
+      "lmaService": {
+        "directory": "/elk/app/lma_services_config",
+        "logsDirectory": "/elk/logs/lma_services"
+      },
+      "lmaRestLogIngestion": {
+        "directory": "/elk/app/lma_restlogingestion_config",
+        "logsDirectory": "/elk/logs/lma_restlogingestion"
+      }
+    },
+    "gather_facts": "yes",
+    "tasks": [
+      {
+        "name": "Set playbook facts",
+        "tags": [
+          "Assign",
+          "playbook",
+          "facts"
+        ],
+        "set_fact": {
+          "ELK_COPY_FILES": [
+            {
+              "src": "{{ files ~ '/certificate/{{chef_environment}}/ElasticKeystore.jks' }}",
+              "dest": "/elk/app/elasticsearch/config/x-pack/ElasticKeystore.jks"
+            }
+          ],
+          "ELK_LINKS": [
+            {
+              "src": "/opt/elasticsearch-curator",
+              "path": "{{elk.baseDirectory}}/elasticsearch-curator"
+            }
+          ],
+          "ELK_INSTALL": [
+            "java",
+            "./{{curator.packageName}}"
+          ],
+          "ELK_UNINSTALL": [
+            "elasticsearch-curator"
+          ],
+          "ELK_DIRS": [
+            "{{ elk.rootDirectory }}",
+            "{{ elk.baseDirectory }}",
+            "{{ elk.dataDirectory }}",
+            "{{ elk.logsDirectory }}"
+          ],
+          "ELASTIC_SEARCH_DIRS": [
+            "{{ elasticSearch.directory }}",
+            "{{ elasticSearch.binDirectory }}",
+            "{{ elasticSearch.configDirectory }}",
+            "{{ elasticSearch.xpackBinDirectory }}",
+            "{{ elasticSearch.xpackConfigDirectory }}",
+            "{{ elasticSearch.xpackGroupTempDirectory }}",
+            "{{ elasticSearch.scriptsDirectory }}",
+            "{{ elasticSearch.pluginsDirectory }}",
+            "{{ elasticSearch.templateDirectory }}",
+            "{{ elasticSearch.dataDirectory }}",
+            "{{ elasticSearch.logsDirectory }}"
+          ],
+          "KIBANA_DIRS": [
+            "{{ kibana.directory }}",
+            "{{ kibana.configDirectory }}",
+            "{{ kibana.pluginDirectory }}",
+            "{{ kibana.binDirectory }}",
+            "{{ kibana.dataDirectory }}",
+            "{{ kibana.logsDirectory }}"
+          ],
+          "LOGSTASH_DIRS": [
+            "{{ logstash.directory }}",
+            "{{ logstash.configDirectory }}",
+            "{{ logstash.defaultConfig }}",
+            "{{ logstash.bluemixConfig }}",
+            "{{ logstash.deadletterConfig }}",
+            "{{ logstash.defaultConfigRoute }}",
+            "{{ logstash.bluemixConfigRoute }}",
+            "{{ logstash.deadletterConfigRoute }}",
+            "{{ logstash.binDirectory }}",
+            "{{ logstash.dataDirectory }}",
+            "{{ logstash.logsDirectory }}",
+            "{{ logstash.deadletterqueueDirectory }}",
+            "{{ logstash.persistentqueueDirectory }}"
+          ],
+          "XPACK_CLIENT_PLUGIN_DIRS": [
+            "{{ xPackClientPlugin.configDirectory }}",
+            "{{ xPackClientPlugin.binDirectory }}"
+          ],
+          "WINLOG_BEAT_DIRS": [
+            "{{ winlogBeat.directory }}"
+          ],
+          "CURATOR_DIRS": [
+            "{{ curator.directory }}",
+            "{{ curator.actionDirectory }}",
+            "{{ curator.logsDirectory }}"
+          ],
+          "LMA_SERVICE_DIRS": [
+            "{{ lmaService.directory }}",
+            "{{ lmaService.logsDirectory }}"
+          ],
+          "LMA_REST_LOG_INGESTION_DIRS": [
+            "{{ lmaRestLogIngestion.directory }}",
+            "{{ lmaRestLogIngestion.logsDirectory }}"
+          ],
+          "ELK_PACKAGES": [
+            {
+              "url": "{{elasticSearch.payloadName}}",
+              "dest": "./{{elasticSearch.packageName}}",
+              "mode": "770"
+            },
+            {
+              "url": "{{kibana.payloadName}}",
+              "dest": "./{{kibana.packageName}}",
+              "mode": "770"
+            },
+            {
+              "url": "{{logstash.payloadName}}",
+              "dest": "./{{logstash.packageName}}",
+              "mode": "770"
+            },
+            {
+              "url": "{{xPackClientPlugin.payloadName}}",
+              "dest": "./{{xPackClientPlugin.packageName}}",
+              "mode": "770"
+            },
+            {
+              "url": "{{curator.payloadName}}",
+              "dest": "./{{curator.packageName}}",
+              "mode": "770"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Delete curator directories",
+        "become": "yes",
+        "tags": [
+          "delete",
+          "curator",
+          "dirs"
+        ],
+        "with_items": "{{ CURATOR_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete elastic search directories",
+        "become": "yes",
+        "tags": [
+          "delete",
+          "elasticsearch",
+          "dirs"
+        ],
+        "with_items": "{{ ELASTIC_SEARCH_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete kibana directories",
+        "become": "yes",
+        "tags": [
+          "delete",
+          "kibana",
+          "dirs"
+        ],
+        "with_items": "{{ KIBANA_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete winlog beat directories",
+        "become": "yes",
+        "tags": [
+          "delete",
+          "winlog-beat",
+          "dirs"
+        ],
+        "with_items": "{{ WINLOG_BEAT_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete Xpack Client Plugin directories",
+        "become": "yes",
+        "tags": [
+          "delete",
+          "xpack-client-plugin",
+          "dirs"
+        ],
+        "with_items": "{{ XPACK_CLIENT_PLUGIN_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete logstash directories",
+        "become": "yes",
+        "tags": [
+          "create",
+          "logstash",
+          "dirs"
+        ],
+        "with_items": "{{ LOGSTASH_DIRS }}",
+        "ignore_errors": "yes",
+        "file": {
+          "path": "{{item}}",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete LMA service directories",
+        "become": "yes",
+        "tags": [
+          "delete",
+          "lma-service",
+          "dirs"
+        ],
+        "with_items": "{{ LMA_SERVICE_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete LMA REST log ingestion directories",
+        "become": "yes",
+        "tags": [
+          "delete",
+          "lma-rest-log-ingestion",
+          "dirs"
+        ],
+        "with_items": "{{ LMA_REST_LOG_INGESTION_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete all directories",
+        "become": "yes",
+        "tags": [
+          "delete",
+          "all",
+          "dirs"
+        ],
+        "with_items": [
+          "/elk"
+        ],
+        "file": {
+          "path": "{{item}}",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Create curator directories",
+        "become": "yes",
+        "tags": [
+          "create",
+          "curator",
+          "dirs"
+        ],
+        "with_items": "{{ CURATOR_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "directory"
+        }
+      },
+      {
+        "name": "Create ELK directories",
+        "become": "yes",
+        "tags": [
+          "create",
+          "elk",
+          "dirs"
+        ],
+        "with_items": "{{ ELK_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "directory"
+        }
+      },
+      {
+        "name": "Create elastic search directories",
+        "become": "yes",
+        "tags": [
+          "create",
+          "elasticsearch",
+          "dirs"
+        ],
+        "with_items": "{{ ELASTIC_SEARCH_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "directory"
+        }
+      },
+      {
+        "name": "Create kibana directories",
+        "become": "yes",
+        "tags": [
+          "create",
+          "kibana",
+          "dirs"
+        ],
+        "with_items": "{{ KIBANA_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "directory"
+        }
+      },
+      {
+        "name": "Create logstash directories",
+        "become": "yes",
+        "tags": [
+          "create",
+          "logstash",
+          "dirs"
+        ],
+        "with_items": "{{ LOGSTASH_DIRS }}",
+        "ignore_errors": "yes",
+        "file": {
+          "path": "{{item}}",
+          "state": "directory"
+        }
+      },
+      {
+        "name": "Create LMA REST log ingestion directories",
+        "become": "yes",
+        "tags": [
+          "create",
+          "lma-rest-log-ingestion",
+          "dirs"
+        ],
+        "with_items": "{{ LMA_REST_LOG_INGESTION_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "directory"
+        }
+      },
+      {
+        "name": "Create winlog beat directories",
+        "become": "yes",
+        "tags": [
+          "create",
+          "winlog-beat",
+          "dirs"
+        ],
+        "with_items": "{{ WINLOG_BEAT_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "directory"
+        }
+      },
+      {
+        "name": "Create LMA service directories",
+        "become": "yes",
+        "tags": [
+          "create",
+          "lma-service",
+          "dirs"
+        ],
+        "with_items": "{{ LMA_SERVICE_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "directory"
+        }
+      },
+      {
+        "name": "Create Xpack Client Plugin directories",
+        "become": "yes",
+        "tags": [
+          "create",
+          "xpack-client-plugin",
+          "dirs"
+        ],
+        "with_items": "{{ XPACK_CLIENT_PLUGIN_DIRS }}",
+        "file": {
+          "path": "{{item}}",
+          "state": "directory"
+        }
+      },
+      {
+        "name": "Delete all downloaded packages",
+        "tags": [
+          "delete",
+          "all",
+          "downloads"
+        ],
+        "with_items": "{{ELK_PACKAGES}}",
+        "file": {
+          "path": "{{item.dest}}",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Install Fedora package libselinux-python",
+        "when": "ansible_distribution == \"Fedora\"",
+        "become": "yes",
+        "tags": [
+          "install",
+          "fedora",
+          "libselinux-python"
+        ],
+        "dnf": {
+          "name": "libselinux-python",
+          "state": "present"
+        }
+      },
+      {
+        "name": "Download all packages",
+        "with_items": "{{ELK_PACKAGES}}",
+        "get_url": {
+          "url": "{{item.url}}",
+          "dest": "{{item.dest}}",
+          "mode": "{{item.mode}}"
+        }
+      },
+      {
+        "name": "Extract elasticsearch tar archive",
+        "become": "yes",
+        "tags": [
+          "extract",
+          "elasticsearch"
+        ],
+        "with_items": [
+          "tar -xf ./{{elasticSearch.packageName}} -C {{elasticSearch.directory}} --strip=1"
+        ],
+        "shell": "{{item}}"
+      },
+      {
+        "name": "Extract kibana tar archive",
+        "become": "yes",
+        "tags": [
+          "extract",
+          "kibana"
+        ],
+        "with_items": [
+          "tar -xf ./{{kibana.packageName}} -C {{kibana.directory}} --strip=1"
+        ],
+        "shell": "{{item}}"
+      },
+      {
+        "name": "Extract logstash tar package",
+        "become": "yes",
+        "tags": [
+          "extract",
+          "logstash"
+        ],
+        "with_items": [
+          "tar -xf ./{{logstash.packageName}} -C {{logstash.directory}} --strip=1"
+        ],
+        "shell": "{{item}}"
+      },
+      {
+        "name": "Build curator templates",
+        "become": "yes",
+        "tags": [
+          "build",
+          "curator",
+          "templates"
+        ],
+        "with_items": [
+          {
+            "src": "{{ templates ~ '/curator/curator.yml' }}",
+            "dest": "{{curator.directory ~ '/' ~ curator.configFile}}"
+          },
+          {
+            "src": "{{ templates ~ '/curator/curator.monitor.yml' }}",
+            "dest": "{{curator.directory ~ '/' ~ curator.configFile}}"
+          },
+          {
+            "src": "{{ templates ~ '/curator/action/alias.yml' }}",
+            "dest": "{{ curator.actionDirectory ~ '/alias.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/curator/action/purge.yml' }}",
+            "dest": "{{ curator.actionDirectory ~ '/purge.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/curator/action.monitor/purge.yml' }}",
+            "dest": "{{ curator.actionDirectory ~ '/purge.yml' }}"
+          }
+        ],
+        "template": {
+          "src": "{{item.src}}",
+          "dest": "{{item.dest}}",
+          "owner": "{{ elk.userName }}",
+          "group": "{{ elk.groupName }}",
+          "mode": "770"
+        }
+      },
+      {
+        "name": "Build kibana templates",
+        "become": "yes",
+        "tags": [
+          "build",
+          "kibana",
+          "templates"
+        ],
+        "with_items": [
+          {
+            "src": "{{ templates ~ '/kibana.yml' }}",
+            "dest": "{{ kibana.configDirectory ~ '/' ~ kibana.configFile }}"
+          },
+          {
+            "src": "{{ templates ~ '/kibana.marvel.yml' }}",
+            "dest": "{{ kibana.configDirectory ~ '/' ~ kibana.configFile }}"
+          },
+          {
+            "src": "{{ templates ~ '/kibana.sh' }}",
+            "dest": "{{ kibana.binDirectory ~ '/kibana.sh' }}"
+          }
+        ],
+        "template": {
+          "src": "{{item.src}}",
+          "dest": "{{item.dest}}",
+          "owner": "{{ elk.userName }}",
+          "group": "{{ elk.groupName }}",
+          "mode": "770"
+        }
+      },
+      {
+        "name": "Build elasticsearch templates",
+        "become": "yes",
+        "tags": [
+          "build",
+          "elasticsearch",
+          "templates"
+        ],
+        "with_items": [
+          {
+            "src": "{{ templates ~ '/elasticsearch/elasticsearch.yml' }}",
+            "dest": "{{ elasticSearch.configDirectory ~ '/' ~ elasticSearch.configFile }}"
+          },
+          {
+            "src": "{{ templates ~ '/elasticsearch/elasticsearch.marvel.yml' }}",
+            "dest": "{{ elasticSearch.configDirectory ~ '/' ~ elasticSearch.configFile }}"
+          },
+          {
+            "src": "{{ templates ~ '/elasticsearch/elasticsearch.sh' }}",
+            "dest": "{{ elasticSearch.binDirectory ~  '/elasticsearch.sh' }}"
+          },
+          {
+            "src": "{{ templates ~ '/elasticsearch/jvm.options.yml' }}",
+            "dest": "{{ elasticSearch.configDirectory ~ '/' ~ elasticSearch.configFileJvm }}"
+          },
+          {
+            "src": "{{ templates ~ '/elasticsearch/log4j2.properties' }}",
+            "dest": "{{ elasticSearch.configDirectory ~ '/' ~ elasticSearch.configLogFile }}"
+          },
+          {
+            "src": "role_mapping_pki.{{ chef_environment }}.yml",
+            "dest": "{{ elasticSearch.xpackConfigDirectory ~ '/role_mapping_pki.yml' }}"
+          }
+        ],
+        "template": {
+          "src": "{{item.src}}",
+          "dest": "{{item.dest}}",
+          "owner": "{{ elk.userName }}",
+          "group": "{{ elk.groupName }}",
+          "mode": "770"
+        }
+      },
+      {
+        "name": "Build lma service templates",
+        "become": "yes",
+        "tags": [
+          "build",
+          "lma-service",
+          "templates"
+        ],
+        "with_items": [
+          {
+            "src": "{{ templates ~ '/lmaservice/application.yml' }}",
+            "dest": "{{ lmaService.directory ~ '/application.yml' }}"
+          }
+        ],
+        "template": {
+          "src": "{{item.src}}",
+          "dest": "{{item.dest}}",
+          "owner": "{{ elk.userName }}",
+          "group": "{{ elk.groupName }}",
+          "mode": "770"
+        }
+      },
+      {
+        "name": "Build lma rest log ingestion templates",
+        "become": "yes",
+        "tags": [
+          "build",
+          "lma-rest-log-ingestion",
+          "templates"
+        ],
+        "with_items": [
+          {
+            "src": "{{ templates ~ '/restlogingestion/application.yml' }}",
+            "dest": "{{ lmaRestLogIngestion.directory ~ '/application.yml' }}"
+          }
+        ],
+        "template": {
+          "src": "{{item.src}}",
+          "dest": "{{item.dest}}",
+          "owner": "{{ elk.userName }}",
+          "group": "{{ elk.groupName }}",
+          "mode": "770"
+        }
+      },
+      {
+        "name": "Build logstash templates",
+        "become": "yes",
+        "tags": [
+          "build",
+          "logstash",
+          "templates"
+        ],
+        "with_items": [
+          {
+            "src": "{{ templates ~ '/logstash.sh' }}",
+            "dest": "{{ logstash.binDirectory ~ '/logstash.default.sh' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.default/jvm.options' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.default/jvm.options' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.default/log4j2.properties' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.default/log4j2.properties' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.default/logstash.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.default/logstash.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.default/route/logstash.filter.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.default/route/logstash.filter.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.default/route/logstash.input.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.default/route/logstash.input.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.default/route/logstash.output.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.default/route/logstash.output.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.sh' }}",
+            "dest": "{{ logstash.binDirectory ~ '/logstash.bluemix.sh' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.bluemix/jvm.options' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.bluemix/jvm.options' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.bluemix/log4j2.properties' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.bluemix/log4j2.properties' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.bluemix/logstash.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.bluemix/logstash.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.bluemix/route/logstash.filter.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.bluemix/route/logstash.filter.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.bluemix/route/logstash.input.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.bluemix/route/logstash.input.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.bluemix/route/logstash.output.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.bluemix/route/logstash.output.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.sh' }}",
+            "dest": "{{ logstash.binDirectory ~ '/logstash.deadletter.sh' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.deadletter/jvm.options' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.deadletter/jvm.options' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.deadletter/log4j2.properties' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.deadletter/log4j2.properties' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.deadletter/logstash.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.deadletter/logstash.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.deadletter/route/logstash.filter.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.deadletter/route/logstash.filter.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.deadletter/route/logstash.input.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.deadletter/route/logstash.input.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/logstash.deadletter/route/logstash.output.yml' }}",
+            "dest": "{{ logstash.configDirectory ~ '/logstash.deadletter/route/logstash.output.yml' }}"
+          }
+        ],
+        "ignore_errors": "yes",
+        "template": {
+          "src": "{{item.src}}",
+          "dest": "{{item.dest}}",
+          "owner": "{{ elk.userName }}",
+          "group": "{{ elk.groupName }}",
+          "mode": "770"
+        }
+      },
+      {
+        "name": "Build winlog beat templates",
+        "become": "yes",
+        "tags": [
+          "build",
+          "winlog-beat",
+          "templates"
+        ],
+        "with_items": [
+          {
+            "src": "{{ templates ~ '/winlogbeat.yml' }}",
+            "dest": "{{ winlogBeat.directory ~ '/winlogbeat.yml' }}"
+          },
+          {
+            "src": "{{ templates ~ '/winlogbeat.yml' }}",
+            "dest": "{{ winlogBeat.configDirectory ~ '/winlogbeat.yml' }}"
+          }
+        ],
+        "ignore_errors": "yes",
+        "template": {
+          "src": "{{item.src}}",
+          "dest": "{{item.dest}}",
+          "owner": "{{ elk.userName }}",
+          "group": "{{ elk.groupName }}",
+          "mode": "770"
+        }
+      },
+      {
+        "name": "Remove-ElasticSearch-XPack-package",
+        "become": "yes",
+        "shell": "{{elasticSearch.binDirectory}}/elasticsearch-plugin remove x-pack "
+      },
+      {
+        "name": "Remove-Logstash-XPack-package",
+        "become": "yes",
+        "shell": "{{logstash.binDirectory}}/logstash-plugin remove x-pack "
+      },
+      {
+        "name": "Remove Kibana XPack plugin",
+        "become": "yes",
+        "shell": "{{kibana.binDirectory}}/kibana-plugin remove x-pack "
+      },
+      {
+        "name": "Uninstall RHEL packages",
+        "when": "ansible_distribution == \"RedHat\"",
+        "become": "yes",
+        "tags": [
+          "uninstall",
+          "rhel",
+          "packages"
+        ],
+        "with_items": "{{ ELK_UNINSTALL }}",
+        "yum": {
+          "name": "{{item}}",
+          "state": "absent",
+          "autoremove": "yes"
+        }
+      },
+      {
+        "name": "Uninstall Fedora packages",
+        "become": "yes",
+        "tags": [
+          "uninstall",
+          "fedora",
+          "packages"
+        ],
+        "with_items": "{{ ELK_UNINSTALL }}",
+        "dnf": {
+          "name": "{{item}}",
+          "state": "absent",
+          "autoremove": "yes"
+        }
+      },
+      {
+        "name": "Install RHEL packages",
+        "when": "ansible_distribution == \"RedHat\"",
+        "become": "yes",
+        "vars": {
+          "packages": "{{ELK_INSTALL}}"
+        },
+        "tags": [
+          "install",
+          "rhel",
+          "packages"
+        ],
+        "yum": {
+          "name": "{{ packages }}",
+          "state": "present"
+        }
+      },
+      {
+        "name": "Install Fedora packages",
+        "when": "ansible_distribution == \"Fedora\"",
+        "become": "yes",
+        "vars": {
+          "packages": "{{ELK_INSTALL}}"
+        },
+        "tags": [
+          "install",
+          "fedora",
+          "packages"
+        ],
+        "dnf": {
+          "name": "{{ packages }}",
+          "state": "present"
+        }
+      },
+      {
+        "name": "Install elasticsearch plugin",
+        "become": "yes",
+        "tags": [
+          "install",
+          "elasticsearch",
+          "plugin"
+        ],
+        "ignore_errors": "yes",
+        "shell": "{{elasticSearch.binDirectory}}/elasticsearch-plugin install -b file://{{ansible_env.HOME}}/{{xPackClientPlugin.packageName}}"
+      },
+      {
+        "name": "Install logstash XPack plugin",
+        "become": "yes",
+        "shell": "{{logstash.binDirectory}}/logstash-plugin install file://{{ansible_env.HOME}}/{{xPackClientPlugin.packageName}} "
+      },
+      {
+        "name": "Install Kibana XPack plugin",
+        "become": "yes",
+        "shell": "{{kibana.binDirectory}}/kibana-plugin install file://{{ansible_env.HOME}}/{{xPackClientPlugin.packageName}} "
+      },
+      {
+        "name": "Copy files",
+        "become": "yes",
+        "tags": [
+          "copy",
+          "files"
+        ],
+        "with_items": "{{ ELK_COPY_FILES }}",
+        "copy": {
+          "src": "{{item.src}}",
+          "dest": "{{item.dest}}"
+        }
+      },
+      {
+        "name": "Link directories",
+        "become": "yes",
+        "tags": [
+          "link",
+          "all",
+          "dirs"
+        ],
+        "with_items": "{{ ELK_LINKS }}",
+        "ignore_errors": "yes",
+        "file": {
+          "src": "{{item.src}}",
+          "path": "{{item.path}}",
+          "state": "link",
+          "mode": "775"
+        }
+      },
+      {
+        "name": "Change ownership",
+        "become": "yes",
+        "tags": [
+          "change",
+          "permission",
+          "dirs"
+        ],
+        "with_items": [
+          "/elk"
+        ],
+        "file": {
+          "path": "{{item}}",
+          "owner": "{{elk.userName}}",
+          "group": "{{elk.groupName}}",
+          "mode": "775",
+          "state": "directory",
+          "recurse": "yes"
+        }
+      },
+      {
+        "name": "Check if elasticsearch.sh exists",
+        "register": "pathInfo",
+        "stat": {
+          "path": "{{elasticSearch.binDirectory}}/elasticsearch.sh"
+        }
+      },
+      {
+        "name": "Stop elasticsearch service",
+        "when": "pathInfo.stat.exists",
+        "tags": [
+          "stop",
+          "elasticsearch",
+          "service"
+        ],
+        "shell": "{{elasticSearch.binDirectory}}/elasticsearch.sh stop"
+      },
+      {
+        "name": "Stop kibana service",
+        "tags": [
+          "stop",
+          "kibana",
+          "service"
+        ],
+        "shell": "{{kibana.binDirectory}}/kibana.sh stop"
+      },
+      {
+        "name": "Stop logstash.default service",
+        "tags": [
+          "stop",
+          "logstash.default",
+          "service"
+        ],
+        "shell": "{{kibana.binDirectory}}/logstash.default.sh stop"
+      },
+      {
+        "name": "Stop logstash.bluemix service",
+        "tags": [
+          "stop",
+          "logstash.bluemix",
+          "service"
+        ],
+        "shell": "{{logstash.binDirectory}}/logstash.bluemix.sh stop"
+      },
+      {
+        "name": "Stop logstash.deadletter service",
+        "tags": [
+          "stop",
+          "logstash.deadletter",
+          "service"
+        ],
+        "shell": "{{logstash.binDirectory}}/logstash.deadletter.sh stop"
+      },
+      {
+        "name": "Force-stop kibana service",
+        "tags": [
+          "forcestop",
+          "kibana",
+          "service"
+        ],
+        "shell": "{{kibana.binDirectory}}/kibana.sh forcestop"
+      },
+      {
+        "name": "Force-stop logstash.default service",
+        "tags": [
+          "stop",
+          "logstash.default",
+          "service"
+        ],
+        "shell": "{{kibana.binDirectory}}/logstash.default.sh forcestop"
+      },
+      {
+        "name": "Force-stop logstash.bluemix service",
+        "tags": [
+          "forcestop",
+          "logstash.bluemix",
+          "service"
+        ],
+        "shell": "{{kibana.binDirectory}}/logstash.bluemix.sh forcestop"
+      },
+      {
+        "name": "Force-stop elasticsearch service",
+        "tags": [
+          "forcestop",
+          "elasticsearch",
+          "service"
+        ],
+        "shell": "{{elasticSearch.binDirectory}}/elasticsearch.sh forcestop"
+      },
+      {
+        "name": "Force-stop logstash.deadletter service",
+        "tags": [
+          "forcestop",
+          "logstash.deadletter",
+          "service"
+        ],
+        "shell": "{{logstash.binDirectory}}/logstash.deadletter.sh forcestop"
+      },
+      {
+        "name": "Start logstash.deadletter service",
+        "tags": [
+          "start",
+          "logstash.deadletter",
+          "service"
+        ],
+        "shell": "{{logstash.binDirectory}}/logstash.deadletter.sh start"
+      },
+      {
+        "name": "Start elasticsearch service",
+        "shell": "{{elasticSearch.binDirectory}}/elasticsearch.sh start"
+      },
+      {
+        "name": "Start kibana service",
+        "tags": [
+          "start",
+          "kibana",
+          "service"
+        ],
+        "shell": "{{kibana.binDirectory}}/kibana.sh start"
+      },
+      {
+        "name": "Start logstash.default service",
+        "tags": [
+          "start",
+          "logstash.default",
+          "service"
+        ],
+        "shell": "{{kibana.binDirectory}}/logstash.default.sh start"
+      },
+      {
+        "name": "Start logstash.bluemix service",
+        "tags": [
+          "start",
+          "logstash.bluemix",
+          "service"
+        ],
+        "shell": "{{logstash.binDirectory}}/logstash.bluemix.sh start"
+      },
+      {
+        "name": "Restart logstash.default service",
+        "tags": [
+          "restart",
+          "logstash.default",
+          "service"
+        ],
+        "with_items": [
+          "{{logstash.binDirectory}}/logstash.default.sh stop",
+          "{{logstash.binDirectory}}/logstash.default.sh forcestop",
+          "{{logstash.binDirectory}}/logstash.default.sh start"
+        ],
+        "shell": "{{ item }}"
+      },
+      {
+        "name": "Restart logstash.bluemix service",
+        "tags": [
+          "restart",
+          "logstash.bluemix",
+          "service"
+        ],
+        "with_items": [
+          "{{logstash.binDirectory}}/logstash.bluemix.sh stop",
+          "{{logstash.binDirectory}}/logstash.bluemix.sh forcestop",
+          "{{logstash.binDirectory}}/logstash.bluemix.sh start"
+        ],
+        "shell": "{{ item }}"
+      },
+      {
+        "name": "Restart logstash.deadletter service",
+        "tags": [
+          "restart",
+          "logstash.deadletter",
+          "service"
+        ],
+        "with_items": [
+          "{{logstash.binDirectory}}/logstash.deadletter.sh stop",
+          "{{logstash.binDirectory}}/logstash.deadletter.sh forcestop",
+          "{{logstash.binDirectory}}/logstash.deadletter.sh start"
+        ],
+        "shell": "{{ item }}"
+      },
+      {
+        "name": "List elasticsearch log files",
+        "become": "yes",
+        "register": "elasticSearchLogDir",
+        "stat": {
+          "path": "{{ elasticSearch.logsDirectory }}"
+        }
+      },
+      {
+        "name": "List elasticsearch config files",
+        "become": "yes",
+        "register": "elasticSearchConfigDir",
+        "stat": {
+          "path": "{{ elasticSearch.configDirectory }}"
+        }
+      },
+      {
+        "name": "List kibana log files",
+        "become": "yes",
+        "register": "kibanaLogDir",
+        "stat": {
+          "path": "{{ kibana.logsDirectory }}"
+        }
+      },
+      {
+        "name": "List kibana config files",
+        "become": "yes",
+        "register": "kibanaConfigDir",
+        "stat": {
+          "path": "{{ kibana.configDirectory }}"
+        }
+      },
+      {
+        "name": "List logstash config files",
+        "become": "yes",
+        "register": "logstashConfigDir",
+        "stat": {
+          "path": "{{ logstash.configDirectory }}"
+        }
+      },
+      {
+        "name": "List logstash log files",
+        "become": "yes",
+        "register": "logstashLogDir",
+        "stat": {
+          "path": "{{ logstash.logsDirectory }}"
+        }
+      },
+      {
+        "name": "Archive all elasticsearch logs in directory",
+        "tags": [
+          "archive",
+          "elasticsearch",
+          "logs"
+        ],
+        "with_items": "{{ elasticSearchLogDir.files }}",
+        "shell": "tar -czvf /tmp/{{ item.split('/').pop() }}.gz {{elasticSearch.logsDirectory}}/{{ item.split('/').pop() }}"
+      },
+      {
+        "name": "Archive all elasticsearch configs in directory",
+        "tags": [
+          "archive",
+          "elasticsearch",
+          "configs"
+        ],
+        "with_items": "{{ elasticSearchConfigDir.files }}",
+        "shell": "tar -czvf /tmp/{{ item.split('/').pop() }}.gz {{elasticSearch.configDirectory}}/{{ item.split('/').pop() }}"
+      },
+      {
+        "name": "Archive all kibana logs in directory",
+        "tags": [
+          "archive",
+          "kibana",
+          "logs"
+        ],
+        "with_items": "{{ kibanaLogDir.files }}",
+        "shell": "tar -czvf /tmp/{{ item.split('/').pop() }}.gz {{kibana.logsDirectory}}/{{ item.split('/').pop() }}"
+      },
+      {
+        "name": "Archive all kibana configs in directory",
+        "tags": [
+          "archive",
+          "kibana",
+          "configs"
+        ],
+        "with_items": "{{ kibanaConfigDir.files }}",
+        "shell": "tar -czvf /tmp/{{ item.split('/').pop() }}.gz {{kibana.configDirectory}}/{{ item.split('/').pop() }}"
+      },
+      {
+        "name": "Archive all logstash configs in directory",
+        "tags": [
+          "archive",
+          "logstash",
+          "configs"
+        ],
+        "with_items": "{{ logstashConfigDir.files }}",
+        "shell": "tar -czvf /tmp/{{ item.split('/').pop() }}.gz {{logstash.configDirectory}}/{{ item.split('/').pop() }}"
+      },
+      {
+        "name": "Archive all logstash logs in directory",
+        "tags": [
+          "archive",
+          "logstash",
+          "logs"
+        ],
+        "with_items": "{{ logstashLogDir.files }}",
+        "shell": "tar -czvf /tmp/{{ item.split('/').pop() }}.gz {{logstash.logsDirectory}}/{{ item.split('/').pop() }}"
+      },
+      {
+        "name": "Create all elasticsearch email body summaries",
+        "with_items": "{{ elasticSearchLogDir.files }}",
+        "shell": "tail -n 100 {{elasticSearch.logsDirectory}}/{{ item.split('/').pop() }} > /tmp/emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Create all elasticsearch config summary emails",
+        "with_items": "{{ elasticSearchConfigDir.files }}",
+        "shell": "tail -n 100 {{elasticSearch.configDirectory}}/{{ item.split('/').pop() }} > /tmp/emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Create all logstash config summary emails",
+        "with_items": "{{ logstashConfigDir.files }}",
+        "shell": "tail -n 100 {{logstash.configDirectory}}/{{ item.split('/').pop() }} > /tmp/emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Create all logstash email body summaries",
+        "with_items": "{{ logstashLogDir.files }}",
+        "shell": "tail -n 100 {{logstash.logsDirectory}}/{{ item.split('/').pop() }} > /tmp/emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Create all kibana email body summaries",
+        "with_items": "{{ kibanaLogDir.files }}",
+        "shell": "tail -n 100 {{kibana.logsDirectory}}/{{ item.split('/').pop() }} > /tmp/emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Create all kibana config summary emails",
+        "with_items": "{{ kibanaConfigDir.files }}",
+        "shell": "tail -n 100 {{kibana.configDirectory}}/{{ item.split('/').pop() }} > /tmp/emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Email all elasticsearch config files",
+        "with_items": "{{ elasticSearchConfigDir.files }}",
+        "shell": "/bin/mail -s \"ElasticSearch config e-mail {{ ansible_hostname }} - {{ item.split('/').pop() }}\" -a /tmp/{{ item.split('/').pop() }}.gz -r noreply@{{ ansible_hostname }} {{ elk.EmailLog }} < emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Email all elasticsearch log files",
+        "with_items": "{{ elasticSearchLogDir.files }}",
+        "shell": "/bin/mail -s \"ElasticSearch log e-mail {{ ansible_hostname }} - {{ item.split('/').pop() }}\" -a /tmp/{{ item.split('/').pop() }}.gz -r noreply@{{ ansible_hostname }} {{ elk.EmailLog }} < emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Email all logstash config files",
+        "with_items": "{{ logstashConfigDir.files }}",
+        "shell": "/bin/mail -s \"Logstash config e-mail {{ ansible_hostname }} - {{ item.split('/').pop() }}\" -a /tmp/{{ item.split('/').pop() }}.gz -r noreply@{{ ansible_hostname }} {{ elk.EmailLog }} < emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Email all logstash log files",
+        "with_items": "{{ logstashLogDir.files }}",
+        "shell": "/bin/mail -s \"Logstash log e-mail {{ ansible_hostname }} - {{ item.split('/').pop() }}\" -a /tmp/{{ item.split('/').pop() }}.gz -r noreply@{{ ansible_hostname }} {{ elk.EmailLog }} < emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Email all kibana log files",
+        "with_items": "{{ kibanaLogDir.files }}",
+        "shell": "/bin/mail -s \"Kibana log e-mail {{ ansible_hostname }} - {{ item.split('/').pop() }}\" -a /tmp/{{ item.split('/').pop() }}.gz -r noreply@{{ ansible_hostname }} {{ elk.EmailLog }} < emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Email all kibana config files",
+        "with_items": "{{ kibanaConfigDir.files }}",
+        "shell": "/bin/mail -s \"Kibana config e-mail {{ ansible_hostname }} - {{ item.split('/').pop() }}\" -a /tmp/{{ item.split('/').pop() }}.gz -r noreply@{{ ansible_hostname }} {{ elk.EmailLog }} < emailBody_{{item.split('/').pop()}}"
+      },
+      {
+        "name": "Delete all elasticsearch log archives",
+        "tags": [
+          "delete",
+          "elasticsearch",
+          "logs"
+        ],
+        "with_items": "{{ elasticSearchLogDir.files }}",
+        "file": {
+          "path": "/tmp/{{ item.split('/').pop() }}.gz",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete all logstash config archives",
+        "tags": [
+          "delete",
+          "logstash",
+          "configs"
+        ],
+        "with_items": "{{ logstashConfigDir.files }}",
+        "file": {
+          "path": "/tmp/{{ item.split('/').pop() }}.gz",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete all kibana log archives",
+        "with_items": "{{ kibanaLogDir.files }}",
+        "file": {
+          "path": "/tmp/{{ item.split('/').pop() }}.gz",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete all elasticsearch config archives",
+        "tags": [
+          "delete",
+          "elasticsearch",
+          "configs"
+        ],
+        "with_items": "{{ elasticSearchConfigDir.files }}",
+        "file": {
+          "path": "/tmp/{{ item.split('/').pop() }}.gz",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete all logstash log archives",
+        "tags": [
+          "delete",
+          "logstash",
+          "logs"
+        ],
+        "with_items": "{{ logstashLogDir.files }}",
+        "file": {
+          "path": "/tmp/{{ item.split('/').pop() }}.gz",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Delete all kibana config archives",
+        "tags": [
+          "delete",
+          "kibana",
+          "configs"
+        ],
+        "with_items": "{{ kibanaConfigDir.files }}",
+        "file": {
+          "path": "/tmp/{{ item.split('/').pop() }}.gz",
+          "state": "absent"
+        }
+      },
+      {
+        "name": "Copy mwelkCreds directory to logstash config",
+        "become": "yes",
+        "copy": {
+          "src": "elk.mwelkCreds",
+          "dest": "logstash.configDirectory",
+          "directory_mode": "yes"
+        }
+      },
+      {
+        "name": "Copy mwelkCreds directory to elasticsearch xpack config",
+        "become": "yes",
+        "copy": {
+          "src": "elk.mwelkCreds",
+          "dest": "elasticSearch.xpackConfigDirectory",
+          "directory_mode": "yes"
+        }
+      },
+      {
+        "name": "Copy BnsfPem to logstash",
+        "become": "yes",
+        "copy": {
+          "src": "elk.BnsfPem",
+          "dest": "logstash.BnsfPem"
+        }
+      },
+      {
+        "name": "Copy ElasticCrt to logstash",
+        "become": "yes",
+        "copy": {
+          "src": "elk.ElasticCrt",
+          "dest": "logstash.ElasticCrt"
+        }
+      },
+      {
+        "name": "Copy ElasticCrt to kibana",
+        "become": "yes",
+        "copy": {
+          "src": "elk.ElasticCrt",
+          "dest": "kibana.ElasticCrt"
+        }
+      },
+      {
+        "name": "Copy ElasticKey to logstash",
+        "become": "yes",
+        "copy": {
+          "src": "elk.ElasticKey",
+          "dest": "logstash.ElasticKey"
+        }
+      },
+      {
+        "name": "Copy KeystoreFull to logstash",
+        "become": "yes",
+        "copy": {
+          "src": "elk.KeystoreFull",
+          "dest": "logstash.KeystoreFull"
+        }
+      },
+      {
+        "name": "Copy ElasticKey to kibana",
+        "become": "yes",
+        "copy": {
+          "src": "elk.ElasticKey",
+          "dest": "kibana.ElasticKey"
+        }
+      },
+      {
+        "name": "Copy BnsfPem to kibana",
+        "become": "yes",
+        "copy": {
+          "src": "elk.BnsfPem",
+          "dest": "kibana.BnsfPem"
+        }
+      }
+    ]
+  }
+]

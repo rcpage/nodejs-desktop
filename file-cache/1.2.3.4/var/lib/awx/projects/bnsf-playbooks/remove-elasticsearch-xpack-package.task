@@ -1,0 +1,5 @@
+{
+  "name": "Remove-ElasticSearch-XPack-package",
+  "become": "yes",
+  "shell": "{{elasticSearch.binDirectory}}/elasticsearch-plugin remove x-pack "
+}

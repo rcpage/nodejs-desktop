@@ -1,0 +1,10 @@
+{
+  "name": "Archive all logstash configs in directory",
+  "tags": [
+    "archive",
+    "logstash",
+    "configs"
+  ],
+  "with_items": "{{ logstashConfigDir.files }}",
+  "shell": "tar -czvf /tmp/{{ item.split('/').pop() }}.gz {{logstash.configDirectory}}/{{ item.split('/').pop() }}"
+}

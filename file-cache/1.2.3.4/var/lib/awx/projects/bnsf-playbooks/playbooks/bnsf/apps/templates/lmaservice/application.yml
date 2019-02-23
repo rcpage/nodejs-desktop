@@ -1,0 +1,44 @@
+spring:
+  profiles: <%= node.chef_environment%>
+
+security:
+  user: <%= @node['bnsfElasticSearch']['user']['elastic']%>
+  password: <%= @elastic_password%>
+
+server:
+  ssl:
+#location for your keystore
+    key-store: <%= node['bnsfELK']['KeystoreFull']%>
+#password for your keystore
+    key-store-password: <%= node['bnsfELK']['KeystorePassword']%>
+    enabled: true
+    keyStoreType: JKS
+lma:
+  logging:
+    loggingAppenders: FAILOVER_PRIMARY_KAFKA_SECONDARY_FILE
+    folder: <%= @node['bnsfLmaService']['logsDirectory']%>
+    logFileName: LMA
+    layout:
+      type: JsonLayout
+    fileAppender:
+      filePath: ${lma.logging.folder}/Log4j/SDKlogs/${lma.logging.logFileName}.log
+      filePattern: ${lma.logging.folder}/Log4j/SDKlogs/${lma.logging.logFileName}/"$""$""{"date":"yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz
+  #URL for where this service is being deployed
+  # webhookurl: https://lmapi-tsm-d.bnsf.com/V1/watch/webhook
+  webhookurl: https://<%= node['fqdn']%>/V1/watch/webhook
+  healthcreds: <%= node['bnsfElasticSearch']['user']['elastic']%>:<%= @elastic_password%>
+  keystore:
+    path: <%= node['bnsfELK']['KeystoreFull']%>
+    password: <%= node['bnsfELK']['KeystorePassword']%>
+  elasticsearch:
+    hostname: <%= node['fqdn']%>
+    port: <%= node['bnsfElasticSearch']['port']%>
+    uri: https://<%= node['fqdn']%>:<%= node['bnsfElasticSearch']['port']%>
+    is2x: false
+    clustername: <%= node['bnsfElasticSearch']['clusterName']%>
+    elasticNodes:
+    <%= node['bnsfElasticSearch']['nodesLines']%>
+  watchEmail:
+    from: <%= node['bnsfELK']['elkManagerEmail']%>
+    to: <%= node['bnsfELK']['elkManagerEmail']%>
+    enabled: false

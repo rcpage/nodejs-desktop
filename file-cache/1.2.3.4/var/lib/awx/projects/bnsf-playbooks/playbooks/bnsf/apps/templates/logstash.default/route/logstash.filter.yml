@@ -1,0 +1,320 @@
+filter {
+    # truncate {
+    #     length_bytes => 32760
+    #     fields => "message"
+    #     add_tag => ["logstash_truncated"]
+    # }
+
+    # do not uncomment tihs unless you are doing diagnostic, size will double per record
+    # mutate {
+    #    add_field => {"rawMessage" => "%{message}"}
+    # }
+
+    # this is how you lower case
+    # mutate {
+    #   lowercase => [ "applicationId" ]
+    # }
+
+    if [type] == "bnsfELKBeats" {
+        mutate {
+            id => "6_filter_mutate"
+            # remove_field => [ "beat.hostname" ]
+            # remove_field => [ "beat.name" ]
+            # remove_field => ["applicationId"]
+            rename => { "fields.host" => "host" }
+            rename => { "fields.environment" => "environment" }
+            rename => { "fields.type" => "type" }
+            # rename => { "fields.applicationId" => "applicationId" }
+            add_tag => ["bnsfELKBeats_mutate_applied"]
+        }
+    }
+    else if [type] == "ent_kafka_logstandard"
+    {
+        mutate {
+            id => "1_rename_to_raw"
+            rename => { "message" => "rawdata" }
+        }
+
+       # new pattern goes here do data time first and version
+       grok {
+                id => "1_datetime_version"
+                # this can be done by message, we don't need a logMessage field
+                # match => { "message" => '\[%{GREEDYDATA:logLevel}\] \[%{GREEDYDATA:threadName}\] \[%{GREEDYDATA:locationInfo}\] : {%{GREEDYDATA:contextInfo}} : %{GREEDYDATA:logMessage}' }
+                match => { "rawdata" => '%{GREEDYDATA:timestamp} %{GREEDYDATA:logversion} ' }
+                tag_on_failure => ["_grokparsefailure"]
+        }
+
+        # then switch on version.
+        if( logversion = 'V000001' )
+        {
+            # put code to use rest of the entry
+        }
+       
+    }
+    else
+    {
+        if [type] == "lma_syslog" {
+            mutate {
+                id => "1_filter_mutate"
+                add_tag => ["filter_lma_syslog"]
+            }
+            grok {
+                id => "1_filter_grok"
+                #match => { "message" => "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}" }
+                match => { "message" => "%{GREEDYDATA:syslog_message}" }
+                add_field => { "received_at" => "%{@timestamp}" }
+                add_field => { "received_from" => "%{host}" }
+                #remove_tag => [ "_grokparsefailure_sysloginput", "_grokparsefailure" ]
+            }
+            date {
+                id => "1_filter_date"
+                match => [ "syslog_timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+            }
+        }
+
+        if [source_id] {
+            mutate {
+                id => "2_filter_mutate"
+                add_tag => ["filter_source_id_field_found"]
+            }
+            grok {
+                id => "2_filter_grok"
+                match => {"app_name" => "%{DATA:applicationId}-%{GREEDYDATA:applicationName}" }
+                tag_on_failure => ["_grokparsefailure"]
+            }
+        }
+
+        # If message is JSON layout 
+        if [message] =~ /"endOfBatch":/  {
+            mutate {
+                id => "3_filter_mutate_!"
+                # add_field => { "rawMessage" => "%{message}" }
+                add_tag => ["filterEndOfBatch"]
+            }
+            json {
+                id => "3_filter_json"
+                source => "message"
+                tag_on_failure => ["_filterEndOfBatch_JsonParseFailure"]
+                skip_on_invalid_json => false
+            }
+            # mutate {
+                # this can be done by message, we don't need a logMessage field
+                # rename => { "message" => "logMessage" }
+            # }
+            ruby {
+                id => "3_filter_ruby"
+                code => "
+                    if (event.get('contextMap'))
+                        event.get('contextMap').to_hash.each { |k,v|event.set(k, v)}
+                        event.remove('contextMap')
+                    end
+                    if (event.get('source'))
+                        event.get('source').to_hash.each { |k,v|event.set(k, v)}
+                        event.remove('source')
+                    end
+                    if (event.get('thrown'))
+                        event.get('thrown').to_hash.each { |k,v|event.set(k, v)}
+                        event.remove('thrown')
+                    end"
+            }
+            mutate {
+                id => "3_filter_mutate_2"
+                add_field => { "exceptionMessage" => "%{message}" }
+                rename => { "line" => "lineNumber" }
+                rename => { "class" => "className" }
+                rename => { "file" => "fileName" }
+                rename => { "method" => "methodName" }
+                # will try to enable this again.
+                rename => { "thread" => "threadName" }
+                rename => { "level" => "logLevel" }
+                rename => { "name" => "exceptionName" }
+                remove_tag => [ "_rubyexception" ]
+            }
+        } else if [type] == "ent_kafka" or [message] =~ /"source_id": "App"/ or [message] =~ /"source_id": "APP"/  {
+            grok {
+                id => "4_filter_grok"
+                # this can be done by message, we don't need a logMessage field
+                # match => { "message" => '\[%{GREEDYDATA:logLevel}\] \[%{GREEDYDATA:threadName}\] \[%{GREEDYDATA:locationInfo}\] : {%{GREEDYDATA:contextInfo}} : %{GREEDYDATA:logMessage}' }
+                match => { "message" => '\[%{GREEDYDATA:logLevel}\] \[%{GREEDYDATA:threadName}\] \[%{GREEDYDATA:locationInfo}\] : {%{GREEDYDATA:contextInfo}} : %{GREEDYDATA:message}' }
+                tag_on_failure => ["_grokparsefailure"]
+            }
+            mutate {
+                id => "4_filter_mutate_1"
+                gsub => [ "contextInfo", ", ", "," ]
+                add_tag => ["filter_ent_kafka_message_source_id"]
+            }
+            kv {
+                id => "4_filter_kv"
+                source => "contextInfo"
+                field_split => ","
+                remove_tag => [ "_jsonparsefailure" ]
+            }
+            mutate {
+                id => "4_filter_mutate_2"
+                split => { "locationInfo" => ":" }
+            }
+            mutate {
+                id => "4_filter_mutate_3"
+                replace => { "className" => "%{[locationInfo][0]}" }
+                replace => { "methodName" => "%{[locationInfo][1]}" }
+                replace => { "fileName" => "%{[locationInfo][2]}" }
+                replace => { "lineNumber" => "%{[locationInfo][3]}" }
+                strip => ["className", "methodName", "fileName", "lineNumber" ]
+                remove_field => [ "locationInfo" ]
+                # we are not replacing message since message has never been deleted.
+                # rename => { "message" => "rawMessage" }
+            }
+            if "_grokparsefailure" in [tags] {
+                mutate {
+                    id => "4_filter_mutate_4"
+                    add_field => { "message" => "%{rawMessage}" }
+                }
+            }
+        } else if [type] == "bluemix" or [type] == "lmatcp_9802" {
+            mutate {
+                id => "5_filter_mutate"
+                add_tag => [ "unmatched_layout" ]
+                # this can be done by message, we don't need a logMessage field
+                # rename => { \"message\" => \"logMessage\" }
+            }
+        }
+
+        mutate { 
+            id => "7_filter_mutate"
+            remove_field => ["port"]
+            add_field => { "logstash_input" => "%{type}_<%= node["hostname"]%>"}
+            add_field => { "logstash_type" => "%{type}"}
+            rename => { "timeStamp" => "timestamp" }
+        }
+
+        # if app_name exist we will rename it
+        if [app_name] and ![applicationName] {
+            mutate {
+                id => "8_filter_mutate"
+                add_field => { "applicationName" => "%{app_name}" }
+            }
+        }
+
+        # if the field logMessage exist, but message does not rename it.
+        if [logMessage] and ![message]{
+            mutate {
+                id => "9_filter_mutate"
+                rename => { "logMessage" => "message" }
+            }
+        }
+
+        # auto rename of hostName in case we don't have host field
+        if ![host] and [hostName] {
+            mutate {
+                id => "10_filter_mutate"
+                rename => { "hostName" => "host" }
+                add_tag => ["filter_nohost"]
+            }
+        }
+
+        if( [env] and ![environment]){
+            mutate {
+                id => "11_filter_mutate_1"
+                add_tag => ["filter_env_not_environment"]
+            }
+            mutate {
+                id => "11_filter_mutate_2"
+                rename => { "env" => "environment" }
+            }
+        }
+        
+        # auto environment creation based on host
+        if [host] and ![environment] and ![env] {
+            mutate {
+                id => "12_filter_mutate_1"
+                add_tag => ["filter_host_notenvironment"]
+            }
+            grok {
+                id => "12_filter_grok"
+                match => { 'host' => '(?<environment>[P|T|R|D|p|t|r|d]+)[0-9]+$' }
+                tag_on_failure => ["_INVALID_HOST"]
+            }
+            if ![environment] {
+                mutate {
+                    id => "12_filter_mutate_environment"
+                    add_tag => ["filter_noenvironment"]
+                }
+                if [environment] == 'P' or [environment] == 'p' {
+                    mutate { 
+                        id => "12_filter_mutate_environment_p" 
+                        update => { "environment" => "PRODUCTION" }
+                    }
+                } else if [environment] == 'D' or [environment] == 'd' {
+                    mutate { 
+                        id => "12_filter_mutate_environment_d" 
+                        update => { "environment" => "DEVELOPMENT" }
+                    }
+                } else if [environment] == 'T' or [environment] == 'R' or [environment] == 't' or [environment] == 'r' {
+                    mutate { 
+                        id => "12_filter_mutate_environment_t" 
+                        update => { "environment" => "TRIAL" }
+                    }
+                } else {
+                    mutate { 
+                        id => "12_filter_mutate_environment_u" 
+                        update => { "environment" => "UNKNOWN" }
+                    }
+                }
+            }
+        }
+
+        if ![environment] {
+            mutate {
+                id => "13_filter_mutate_no_tags"
+                add_tag => ["no_environment_use_tags"]
+            }
+            if "DEVELOPMENT" in [tags] {
+                mutate {
+                    id => "13_filter_mutate_dev"
+                    add_field => { "environment" => "DEVELOPMENT"}
+                }
+            }
+            if "TRIAL" in [tags] {
+                mutate {
+                    id => "13_filter_mutate_trial"
+                    add_field => { "environment" => "TRIAL"}
+                }
+            }
+            if "PRODUCTION" in [tags] {
+                mutate {
+                    id => "13_filter_mutate_prod"
+                    add_field => { "environment" => "PRODUCTION"}
+                }
+            }
+        }
+
+        if [applicationId] == "chef" {
+            grok { 
+                id => "14_filter_grok_chef" 
+                match => { "message" => ["%{TIMESTAMP_ISO8601:timestamp}] %{USERNAME:logLevel}: %{GREEDYDATA:message}"]}
+            }
+        }
+
+        if [type] == "winbeatsinput" {
+            mutate {
+                id => "15_filter_mutate_winbeatsinput" 
+                rename => { "computer_name" => "host" }
+                rename => { "log_name" => "applicationname" }
+                rename => { "level" => "loglevel" }
+                rename => { "username" => "userid" }
+                rename => { "beat.hostname" => "host" }
+                add_field => { "applicationId" => "Windows" }
+                add_tag => ["filter_winbeatsinput"]    
+            }
+        }
+
+        # if blue mix and no applicationId drop it
+        if [type] == "bluemix" {
+            if ![applicationId] {
+                drop { 
+                    id => "16_filter_drop" 
+                }
+            }
+        }
+    }
+}

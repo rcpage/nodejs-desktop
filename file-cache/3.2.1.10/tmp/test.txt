@@ -1,0 +1,52 @@
+default['bnsfElasticSearch']['templateDirectory'] = "#{node['bnsfElasticSearch']['directory']}/template"
+"template": "bnsf_logapp_v1_*",
+"template": "bnsf_logappbluemix*",
+"template": "bnsf_logappsdk*",
+"template": "bnsf_*",
+template "/home/b021386/.bash_profile" do
+template "#{node['bnsfLmaService']['directory']}/application.yml" do
+template "#{node['bnsfLmaRestLogIngestion']['directory']}/application.yml" do
+template "#{node['bnsfCurator']['directory']}/#{node['bnsfCurator']['configFile']}" do
+template "#{node['bnsfCurator']['actionDirectory']}/#{file_name}" do
+template configFileJvm do
+template configLogFile do
+template configFile do
+template configFile do
+template "#{node['bnsfElasticSearch']['binDirectory']}/elasticsearch.sh" do
+subscribes :create, "template[#{node['bnsfElasticSearch']['binDirectory']}/elasticsearch.sh]", :immediately
+#  subscribes :run, "template[#{node['bnsfElasticSearch']['binDirectory']}/elasticsearch.sh]", :immediately
+subscribes :run, "template[#{node['bnsfElasticSearch']['binDirectory']}/elasticsearch.sh]", :immediately
+subscribes :install, "template[#{node['bnsfElasticSearch']['binDirectory']}/elasticsearch.sh]", :delayed
+template "#{node['bnsfElasticSearch']['rootCertificate']}" do
+subscribes :stop, "template[#{node['bnsfElasticSearch']['binDirectory']}/elasticsearch.sh]", :delayed
+subscribes :run, "template[#{node['bnsfElasticSearch']['binDirectory']}/elasticsearch.sh]", :delayed
+bnsfELK_elasticsearch_template_restful "Get #{template_name_clean} template" do
+bnsfELK_elasticsearch_template_restful 'Delete bnsf* template' do
+bnsfELK_elasticsearch_template_restful "Apply #{template_name_clean} template" do
+bnsfELK_elasticsearch_template_restful "Delete #{template_name_clean} template" do
+bnsfELK_curl 'GET ElasticSearch template' do
+bnsfELK_curl 'GET ElasticSearch template' do
+# check if the directory for the template exists
+bnsfELK_curl 'POST ElasticSearch template' do
+bnsfELK_curl 'POST ElasticSearch template' do
+bnsfELK_curl 'Delete ElasticSearch template' do
+bnsfELK_curl 'Delete ElasticSearch template' do
+template "#{node['bnsfElasticSearch']['xpackConfigDirectory']}/role_mapping_pki.yml" do
+template configFile do
+template configFile do
+template "#{node['bnsfKibana']['binDirectory']}/kibana.sh" do
+subscribes :create, "template[#{node['bnsfKibana']['binDirectory']}/kibana.sh]", :immediately
+#  subscribes :run, "template[#{node['bnsfKibana']['binDirectory']}/kibana.sh]", :immediately
+subscribes :install, "template[#{node['bnsfKibana']['binDirectory']}/kibana.sh]", :delayed
+template "#{node['bnsfLogstash']['configDirectory']}/logstash.#{config_type}/#{file_name}" do
+template file_full_path do
+template file_full_path do
+template "#{node['bnsfLogstash']['binDirectory']}/logstash.#{config_type}.sh" do
+subscribes :create, "template[#{node['bnsfLogstash']['binDirectory']}/logstash.#{config_type}.sh]", :immediately
+template "#{node['bnsfWinlogBeat']['configDirectory']}/#{node['bnsfWinlogBeat']['configFile']}" do
+template "#{node['winlogBeat']['directory']}/winlogbeat.yml" do
+template "#{node['bnsfWinlogBeat']['binDirectory']}/winlogbeat.sh" do
+subscribes :create, "template[#{node['bnsfWinlogBeat']['binDirectory']}/winlogbeat.sh]", :immediately
+subscribes :stop, "template[#{node['bnsfWinlogBeat']['binDirectory']}/winlogbeat.sh]", :delayed
+subscribes :create, "template[#{node['bnsfWinlogBeat']['binDirectory']}/winlogbeat.sh]", :delayed
+subscribes :start, "template[#{node['bnsfWinlogBeat']['binDirectory']}/winlogbeat.sh]", :delayed

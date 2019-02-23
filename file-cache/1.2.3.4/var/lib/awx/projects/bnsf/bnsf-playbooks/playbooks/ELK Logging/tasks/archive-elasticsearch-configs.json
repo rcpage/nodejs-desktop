@@ -1,0 +1,14 @@
+{
+  "filename": "archive-elasticsearch-configs.json",
+  "task": {
+    "name": "Archive all elasticsearch configs in directory",
+    "tags": [
+      "archive",
+      "elasticsearch",
+      "configs"
+    ],
+    "with_items": "{{ elasticSearchConfigDir.files }}",
+    "shell": "tar -czvf /tmp/{{ item.split('/').pop() }}.gz {{elasticSearch.configDirectory}}/{{ item.split('/').pop() }}"
+  },
+  "path": "./tasks/archive-elasticsearch-configs.json"
+}

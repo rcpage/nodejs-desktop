@@ -1,0 +1,18 @@
+{
+  "filename": "delete-elasticsearch-dirs.json",
+  "task": {
+    "name": "Delete elastic search directories",
+    "become": "yes",
+    "tags": [
+      "delete",
+      "elasticsearch",
+      "dirs"
+    ],
+    "with_items": "{{ ELASTIC_SEARCH_DIRS }}",
+    "file": {
+      "path": "{{item}}",
+      "state": "absent"
+    }
+  },
+  "path": "./tasks/delete-elasticsearch-dirs.json"
+}

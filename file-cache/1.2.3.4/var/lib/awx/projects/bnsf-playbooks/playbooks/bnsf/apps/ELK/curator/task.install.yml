@@ -1,0 +1,69 @@
+---
+    - include_tasks: task.dir.delete.yml
+
+    - include_tasks: task.dir.create.yml
+      vars:
+         elk: "{{ config.default.bnsfELK }}"
+         curator: "{{ config.default.bnsfCurator }}"
+
+    - name: "Delete cached file: {{playbook_dir}}/{{curator.packageName}}"
+      file:
+        path: "./{{curator.packageName}}"
+        state: absent
+
+    - name: "Download: {{curator.payloadName}}" 
+      get_url:
+        url:  "{{curator.payloadName}}"
+        dest: "./{{curator.packageName}}"
+        mode: 0770
+
+
+    - include_tasks: task.uninstall.yml
+
+
+    - name: "Install RHEL package: {{playbook_dir}}/{{curator.packageName}}"
+      become: yes
+      yum:
+        name: "./{{curator.packageName}}"
+        state: present
+      when: ansible_distribution == "Red Hat Enterprise Linux"
+
+    - name: "Install Fedora package: {{playbook_dir}}/{{curator.packageName}}"
+      become: yes
+      yum:
+        name: "./{{curator.packageName}}"
+        state: present
+      when: ansible_distribution == "Fedora"
+    
+    - name: "Link /opt/elasticsearch-curator with {{elk.baseDirectory}}/elasticsearch-curator"
+      file:
+        src: "/opt/elasticsearch-curator"
+        path: "{{elk.baseDirectory}}/elasticsearch-curator"
+        owner: "{{elk.userName}}" 
+        group: "{{elk.groupName}}" 
+        mode: 0775
+        state: link
+
+    - name: "Get curator version info from shell"
+      shell: "curator --version"
+      register: curatorVersion
+
+    - debug:
+        var: curatorVersion
+       
+#    - name: "Move from the RPM install from /opt/elasticsearch-curator to {{elk.baseDirectory}}"
+#      become: yes
+#      shell: "mv /opt/elasticsearch-curator {{elk.baseDirectory}}" 
+
+    - name: "chown -r {{elk.userName}}:{{elk.groupName}} /opt/elasticsearch-curator"
+      become: yes
+      file: 
+       path: "/opt/elasticsearch-curator" 
+       owner: "{{elk.userName}}" 
+       group: "{{elk.groupName}}" 
+       mode: 0775 
+       state: directory 
+       recurse: yes
+
+
+

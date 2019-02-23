@@ -1,0 +1,8 @@
+filter {
+  mutate {
+    add_field => { "deadletterqueue_plugin_type" => "%{[@metadata][dead_letter_queue]plugin_type}" }
+    add_field => { "deadletterqueue_plugin_id" => "%{[@metadata][dead_letter_queue]plugin_id}" }
+    add_field => { "deadletterqueue_reason" => "%{[@metadata][dead_letter_queue]reason}" }
+    add_field => { "deadletterqueue_entry_time" => "%{[@metadata][dead_letter_queue]entry_time}" }
+  }
+}

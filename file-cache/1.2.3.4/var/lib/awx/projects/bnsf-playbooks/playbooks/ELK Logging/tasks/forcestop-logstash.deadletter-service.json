@@ -1,0 +1,9 @@
+{
+  "name": "Forcestop logstash.deadletter service",
+  "tags": [
+    "forcestop",
+    "logstash.deadletter",
+    "service"
+  ],
+  "shell": "{{logstash.binDirectory}}/logstash.deadletter.sh forcestop"
+}

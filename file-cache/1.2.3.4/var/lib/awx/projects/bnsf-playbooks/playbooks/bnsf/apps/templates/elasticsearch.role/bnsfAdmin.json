@@ -1,0 +1,10 @@
+{
+ "cluster": [ "monitor" ],
+ "indices":
+  [
+    {
+      "names" : [ ".kibana*" ],
+      "privileges":["read","manage", "view_index_metadata", "index", "create", "delete", "write"]
+    }
+  ]
+}

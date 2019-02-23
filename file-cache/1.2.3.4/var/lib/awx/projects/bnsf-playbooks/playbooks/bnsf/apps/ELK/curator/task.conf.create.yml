@@ -1,0 +1,89 @@
+---  
+    - name: "Update source file '{{source_file}}' when config type provided"
+      set_fact:
+        source_file: "{{ curator.configFilePreamble ~ '.' ~ config_type ~ curator.configFileSufix }}"
+      when:  config_type|length>0
+  
+    - debug: 
+        msg: "source_file changed to {{source_file}}"
+      when: config_type|length>0
+    
+    - name: "Check if exists: {{ curator.directory }}"
+      stat:
+        path: "{{ curator.directory }}"
+      register: dir_info
+
+    - debug:
+        msg: "directory exist={{dir_info.stat.exists}}"
+
+    - name: "Create directory: {{ curator.directory }}"          
+      become: yes
+      file:
+       owner: "{{ elk.userName }}"
+       group: "{{ elk.groupName }}"
+       path: "{{curator.directory}}" 
+       state: directory
+       mode: 0755
+      when: not dir_info.stat.exists
+         
+    - name: "Assign template source/destination parameters"
+      set_fact:
+       template_src: "{{ templates ~ '/curator/' ~ source_file }}"
+       template_dest: "{{curator.directory ~ '/' ~ curator.configFile}}"
+ 
+    - name: "Build template: {{ template_dest  }} <= {{template_src}}"
+      template:
+        dest: "{{ template_dest }}"
+        src:  "{{ template_src  }}"
+        owner: "{{ elk.userName }}"
+        group: "{{ elk.groupName }}"
+        mode: 0755
+
+    - name: "Check if exists: {{ curator.actionDirectory }}"
+      stat:
+        path: "{{ curator.actionDirectory }}"
+      register: dir_info
+
+    - debug:
+        msg: "directory exist={{dir_info.stat.exists}}"
+
+    - name: "Create directory: {{ curator.actionDirectory }}"
+      become: yes
+      file:
+       owner: "{{ elk.userName }}"
+       group: "{{ elk.groupName }}"
+       path: "{{curator.actionDirectory}}"
+       state: directory
+       mode: 0755
+      when: not dir_info.stat.exists
+
+
+    - name: "Assign default configuration directory"
+      set_fact:
+        config_directory: "{{ templates ~ '/curator/action' }}"
+
+    - name: "Update configuration directory when config type provided"
+      set_fact:
+        config_directory: "{{ templates ~ '/curator/action.' ~ config_type }}"
+      when:  config_type|length > 0
+
+
+    - name: "Find template files in {{ config_directory }}"
+      find:
+        paths: "{{config_directory}}"
+      register: template_files
+          
+    - name: "Build template from files in {{ config_directory }}"
+      become: yes
+      template:
+        dest: "{{ curator.actionDirectory ~ '/' ~ item.path.split('/').pop() }}"
+        src:  "{{ item.path  }}"
+        owner: "{{ elk.userName }}"
+        group: "{{ elk.groupName }}"
+        mode: 0660
+      with_items: "{{ template_files.files }}"
+
+
+
+
+

@@ -1,0 +1,5 @@
+cp {{file_path}} /etc/init.d/{{file_name}}
+cd /etc/init.d
+chkconfig --add {{file_name}}
+chkconfig --level 016 {{file_name}} off
+chkconfig --level 2345 {{file_name}} on

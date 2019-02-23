@@ -1,0 +1,9 @@
+{
+  "container": "records",
+  "document": {
+    ".id": "168fd77d98e-0-0-0",
+    "what": "wtf",
+    "tags": []
+  },
+  "dest": "./"
+}

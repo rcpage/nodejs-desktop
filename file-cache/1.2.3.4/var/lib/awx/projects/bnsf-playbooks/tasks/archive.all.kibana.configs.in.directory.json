@@ -1,0 +1,10 @@
+{
+  "name": "Archive all kibana configs in directory",
+  "tags": [
+    "archive",
+    "kibana",
+    "configs"
+  ],
+  "with_items": "{{ kibanaConfigDir.files }}",
+  "shell": "tar -czvf /tmp/{{ item.split('/').pop() }}.gz {{kibana.configDirectory}}/{{ item.split('/').pop() }}"
+}

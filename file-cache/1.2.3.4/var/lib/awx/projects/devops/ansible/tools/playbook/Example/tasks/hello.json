@@ -1,0 +1,10 @@
+{
+  "filename": "hello.json",
+  "task": {
+    "name": "hello",
+    "tags": [
+      "hello"
+    ]
+  },
+  "dest": "./tasks/"
+}

@@ -1,0 +1,18 @@
+---
+
+- set_fact:
+    paths_to_create:
+          - "{{ curator.logsDirectory }}"
+
+
+- name: "Create directories"          
+  become: yes
+#  become_user: "{{ elk.userName }}"
+  file:
+   owner: "{{ elk.userName }}"
+   group: "{{ elk.groupName }}"
+   path: "{{item}}"
+   state: directory
+   mode: 0770
+   recurse: yes
+  with_items: "{{paths_to_create}}"
