@@ -1,8 +1,0 @@
-#!/bin/sh
-PLAYBOOK_DIR="~/.playbook";
-PLAYBOOK_VERSION="$PLAYBOOK_DIR/v0.1"
-mkdir -p $PLAYBOOK_VERSION
-cp playbook.sh "$DIR/playbook.sh"
-cp playbook.help.txt "$DIR/playbook.help.txt"
-ln -s "$DIR/playbook.sh" /usr/bin/playbook
-ln -s "$DIR/playbook.help.txt" /usr/bin/playbook.help

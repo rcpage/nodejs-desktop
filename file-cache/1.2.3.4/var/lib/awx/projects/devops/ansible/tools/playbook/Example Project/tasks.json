@@ -1,4 +1,0 @@
-[
-  "./tasks/set-playbook-variable-hello-world.json",
-  "./tasks/debug-examplevar.json"
-]

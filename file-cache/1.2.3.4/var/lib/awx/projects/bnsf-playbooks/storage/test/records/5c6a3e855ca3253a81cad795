@@ -1,9 +1,0 @@
-{
-  ".id": "5c6a3e855ca3253a81cad795",
-  "document": {
-    "name": "hello world",
-    "vars": {
-      "abc": 123
-    }
-  }
-}

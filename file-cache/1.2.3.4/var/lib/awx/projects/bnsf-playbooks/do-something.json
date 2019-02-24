@@ -1,8 +1,0 @@
-{
-  "name": "My task does something important",
-  "register": "pathInfo",
-  "stat": {
-    "a": "one hundred",
-    "b": 1
-  }
-}

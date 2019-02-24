@@ -1,7 +1,0 @@
-{
-  "name": "ELK Playbook",
-  "hosts": "all",
-  "vars": "vars.json",
-  "gather_facts": "yes",
-  "tasks": "tasks.json"
-}

@@ -1,9 +1,0 @@
-{
-  "name": "Forcestop elasticsearch service",
-  "tags": [
-    "forcestop",
-    "elasticsearch",
-    "service"
-  ],
-  "shell": "{{elasticSearch.binDirectory}}/elasticsearch.sh forcestop"
-}

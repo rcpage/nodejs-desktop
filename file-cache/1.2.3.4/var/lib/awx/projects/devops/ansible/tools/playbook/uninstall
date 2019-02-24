@@ -1,6 +1,0 @@
-#!/bin/sh
-PLAYBOOK_DIR="~/.playbook";
-PLAYBOOK_VERSION="$PLAYBOOK_DIR/v0.1"
-rm -rf $PLAYBOOK_VERSION
-rm -rf /usr/bin/playbook
-rm -f /usr/bin/playbook.help

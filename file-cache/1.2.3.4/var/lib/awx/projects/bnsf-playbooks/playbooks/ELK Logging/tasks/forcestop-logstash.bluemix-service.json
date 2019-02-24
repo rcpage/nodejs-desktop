@@ -1,9 +1,0 @@
-{
-  "name": "Forcestop logstash.bluemix service",
-  "tags": [
-    "forcestop",
-    "logstash.bluemix",
-    "service"
-  ],
-  "shell": "{{kibana.binDirectory}}/logstash.bluemix.sh forcestop"
-}
