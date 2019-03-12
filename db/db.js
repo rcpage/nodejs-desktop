@@ -1,8 +1,11 @@
+require('./main.js');
+
+global.System = require('../System.js');
+
 const readline = require('readline'),
       PROGRAM = require('commander'),
       stringArgv = require('string-argv');
-      
-global.System = require('./System.js');
+
 using('System.Database.Storage');
 
 //

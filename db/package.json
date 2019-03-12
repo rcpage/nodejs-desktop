@@ -1,0 +1,16 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "description": "NoSQL database",
+  "main": "main.js",
+  "bin": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "pkg": {
+    "scripts": "../System/**/*.js",
+    "assets": "../node_modules/**/*"
+  },
+  "author": "Russell Page",
+  "license": "ISC"
+}

@@ -1,0 +1,53 @@
+{
+  "name": "desktop",
+  "version": "1.0.0",
+  "description": "",
+  "bin": "HttpServerTest.js",
+  "pkg": {
+    "scripts": "./System/**/*.js",
+    "assets": [
+      "./node_modules/**/*",
+      "./api/**/*",
+      "./models/**/*",
+      "./www/**/*"
+    ]
+  },
+  "dependencies": {
+    "bson-objectid": "^1.2.4",
+    "btree-js": "^0.1.6",
+    "buffer-split": "^1.0.0",
+    "commander": "^2.19.0",
+    "dot-object": "^1.7.1",
+    "js-yaml": "^3.12.1",
+    "mime": "^2.3.1",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.22.2",
+    "mongodb": "^3.1.10",
+    "multiparty": "^4.2.1",
+    "mysql": "^2.16.0",
+    "node-readfiles": "^0.2.0",
+    "node-session": "^1.2.1",
+    "optimist": "^0.6.1",
+    "paypal-rest-sdk": "^1.8.1",
+    "shelljs": "^0.8.3",
+    "socket.io": "^2.2.0",
+    "ssh2": "^0.6.1",
+    "string-argv": "^0.1.1",
+    "underscore": "^1.9.1",
+    "websocket": "^1.0.28"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcpage/desktop.git"
+  },
+  "author": "Russell Page",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rcpage/desktop/issues"
+  },
+  "homepage": "https://github.com/rcpage/desktop#readme"
+}
