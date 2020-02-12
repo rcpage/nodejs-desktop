@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html ng-app="FileSystemApplication">
+  <head>
+    <title>Payment Application</title>
+    <link href="/js/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet">
+    <link href="/lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/lib/jstree/dist/themes/default/style.min.css">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap-contextmenu/bootstrap-contextmenu.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <style>
+      pre{
+        margin: 1px 0;
+        padding: 2px;
+        color: white;
+        background-color: #333;
+        border-radius: 0;
+        border:none;
+        border-bottom: solid 1px #ccc;
+      }
+
+      .cmd-container {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+      }
+
+      .cmd-history{
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 27px;
+        bottom: 22px;
+        overflow: none;
+        overflow-y: scroll;
+      }
+
+      .terminal {
+        position: absolute;
+        right: 0px;
+        bottom: 29px;
+        background: #333;
+        border: solid 1px #ccc;
+        color: white;
+        padding: 3px;
+        width: 60%;
+        height: 40%;
+      }
+
+      .terminal .title {
+        font-weight: bold;
+        text-align:left;
+        color: black;
+        background-color: #ccc;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height:27px;
+        line-height: 27px;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
+        background: #ffffff; /* Old browsers */
+        background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+
+      }
+      .cmd:focus {
+        outline:0;
+      }
+
+      .win-controls {
+        position: absolute;
+        right: 1px;
+        top: 1px;
+      }
+
+    </style>
+  </head>
+  <body class="noselect">
+    <div style="height:100%; border:solid 1px #ccc;" class="app panel panel-primary" ng-controller="FileSystemController">
+      <div class="panel-sub-heading">
+        <button type="button" class="btn btn-xs btn-default win-btn-search" role="button" title="Search">
+          <span class="glyphicon glyphicon glyphicon-search"></span>
+        </button>
+        <span style="float: right; margin-left: 5px;">
+          <input class="search" type="text">
+        </span>
+        <button type="button" class="btn btn-xs btn-default win-btn-refresh" role="button" title="Refresh">
+          <span class="glyphicon glyphicon glyphicon-refresh"></span>
+        </button>
+
+        <select class="host" style="width: 250px; float: left; margin: 0 3px 0 0;" ng-model="host" ng-change="hostChanged();">
+          <option ng-repeat="host in inventory" value="{{host.id}}">{{host.credential}}</option>
+        </select>
+
+        <!--button type="button" class="btn btn-xs btn-default win-btn-back" role="button" title="Back">
+<span class="glyphicon glyphicon-chevron-left"></span>
+</button>
+<button type="button" class="btn btn-xs btn-default win-btn-fwd" role="button" title="Forward">
+<span class="glyphicon glyphicon-chevron-right"></span>
+</button-->
+
+        <button type="button" class="btn btn-xs btn-default win-btn-up" role="button" title="Navigate up one directory.">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        </button>
+
+
+
+        <span class="textbox">
+          <input class="path" type="text" list="pathlist" ng-model="path">
+          <datalist id="pathlist" class="path-list">
+            <option ng-repeat="location in filesUnderPath" value="{{location.fullname}}">{{location.fullname}}</option>
+          </datalist>
+        </span>
+      </div>
+      <div class="panel-body win-body">
+        <div class="win-body-toolbar">
+          <!-- Right Aligned Buttons -->
+          <button type="button" class="btn btn-xs btn-default win-btn-help" role="button" title="Help">
+            <span class="glyphicon glyphicon-info-sign"></span>&nbsp; Help
+          </button>
+          <button type="button" class="btn btn-xs btn-default win-btn-preview" role="button" title="Preview">
+            <span class="glyphicon glyphicon-eye-open"></span>&nbsp; Preview
+          </button>
+          <button type="button" class="btn btn-xs btn-default win-btn-layout" role="button" title="Layout">
+            <span class="glyphicon glyphicon-object-align-top"></span>&nbsp; Layout
+          </button>
+          <button type="button" class="btn btn-xs btn-default win-btn-upload" role="button" title="Upload">
+            <span class="glyphicon glyphicon-cloud-upload"></span>&nbsp; Upload
+          </button>
+          <!-- End Right Aligned Buttons -->
+
+          <!-- Left Aligned Buttons -->
+          <button type="button" class="btn btn-xs btn-default win-btn-newfolder" role="button" title="Close">
+            <span class="glyphicon glyphicon-folder-close"></span>&nbsp; New folder
+          </button>
+          <button type="button" class="btn btn-xs btn-default win-btn-open" role="button" title="Close">
+            <span class="glyphicon glyphicon-open"></span>&nbsp; Open
+          </button>
+          <!-- End Left Aligned Buttons -->
+        </div>
+        <div class="win-body-center-panel" style="padding-left: 199px; right: 0px;">
+          <div class="loading-dialog" align="center" style="position:fixed; display:{{displayLoading}}; width:100%; height:100%;"><img src="/images/ajax-loader.gif"></div>
+
+          <div class="container row">
+            <div class="col-md-4 order-md-2 mb-4" style="float:right;">
+             
+            </div>
+            <div class="col-md-8 order-md-1">
+             
+            </div>
+          </div>
+
+
+        </div>
+        <div class="win-body-left-panel ui-resizable">
+          <div ng-repeat="cmd in commands" style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-apps"><span class="glyphicon glyphicon-blackboard"></span>&nbsp; {{cmd.name}}</div>
+        </div>
+        <div class="win-body-right-panel ui-resizable" style="width: 0px; right: 0px;">&nbsp;<div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+        </div>
+        <div class="win-body-footer">
+          <form name="upload" method="post" action="/upload" enctype="multipart/form-data"><input type="file" name="image" multiple="multiple" style="display: none; width: 0px; height: 0px;"><input type="hidden" name="dir" value="/node/upload/"></form>
+        </div>
+      </div>
+      <div class="terminal" style="display:none;">
+        <div class="title">
+          <div class="win-controls">
+            <button type="button" class="btn btn-xs btn-default win-btn-close" role="button" title="Close">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <button type="button" class="btn btn-xs btn-default win-btn-maximize" role="button" title="Maximize">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <button type="button" class="btn btn-xs btn-default win-btn-minimize" role="button" title="Minimize">
+              <span class="glyphicon glyphicon-minus"></span>			
+            </button>		
+          </div>
+          <span style="padding-left: 3px;">{{hostName}}</span>
+        </div>
+        <div class="cmd-history">
+          <pre ng-repeat="hist in cmd_history">{{hist.command}}{{hist.result}}</pre>
+        </div>
+        <div class="cmd-container">
+          <div style="display:table; width: 100%;">
+            <div class="cwdLabel" style="display: table-cell; width: 1%; white-space: nowrap;">[{{hostName}}]$</div>
+            <input class="cmd" name="cmd" ng-model="cmd" style="display: table-cell; width: 100%; background-color: #333; border: none;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+          </div>
+        </div>
+      </div>
+      <div id="context-menu" class="">
+        <ul class="dropdown-menu" role="menu" style="">
+          <li><a tabindex="-1">Open</a></li>
+          <li><a tabindex="-1">Close</a></li>
+          <li class="divider"></li>
+          <li><a tabindex="-1">Cut</a></li>
+          <li><a tabindex="-1">Copy</a></li>
+          <li><a tabindex="-1">Paste</a></li>
+          <li class="divider"></li>
+          <li><a tabindex="-1">New</a></li>
+          <li><a tabindex="-1">Delete</a></li>
+          <li><a tabindex="-1">Rename</a></li>
+          <li class="divider"></li>
+          <li><a tabindex="-1">Unzip</a></li>
+          <li><a tabindex="-1">Zip</a></li>
+          <li class="divider"></li>
+          <li><a tabindex="-1">Properties</a></li>
+          <li><a tabindex="-1">Download File</a></li>
+        </ul>
+      </div>
+      <form  style="display: none;" action="http://api.rusty.com/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" multiple="">
+        <br>
+        <input type="submit">
+      </form>
+    </div>
+
+
+    <script>
+      function HttpPost(url, params, cb){
+        var http = new XMLHttpRequest();
+        http.open('POST', url, true);
+        //Send the proper header information along with the request
+        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        //Call a function when the state changes.    
+        http.onreadystatechange = function() {
+          if(http.readyState == 4) {
+            if(cb) cb(http.responseText, http.status, http);
+          }
+        }
+        http.send(params);
+        return http;
+      }
+
+      function HttpGet(url, params, cb){
+        var http = new XMLHttpRequest();
+        http.open('GET', url + '?' + params);
+        //Call a function when the state changes.
+        http.onreadystatechange = function() {
+          if(http.readyState == 4) {
+            if(cb) cb(http.responseText, http.status, http);
+          }
+        }
+        http.send();
+        return http;
+      }
+
+
+      var app = angular.module('FileSystemApplication', []);
+
+      app.controller('FileSystemController', function($scope, $http) {
+        $scope.commands = [/*{ name: 'test' }*/];
+        get_payment_methods(json => {
+          for(var i in json){
+            $scope.commands.push({ name: json[i][0] + '(' + json[i][1].join(',') + ')' });
+            $scope.$apply();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

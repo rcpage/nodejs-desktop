@@ -1,0 +1,5134 @@
+[
+  {
+    "ball": "A05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A06",
+    "signal": "DDR3_1_MON2N"
+  },
+  {
+    "ball": "A08",
+    "signal": "DDR3_1_MON2P"
+  },
+  {
+    "ball": "A09",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A12",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A15",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A18",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A21",
+    "signal": "DDR3_1_DQS[2]"
+  },
+  {
+    "ball": "A24",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A27",
+    "signal": "DDR3_1_DQ[10]"
+  },
+  {
+    "ball": "A30",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A33",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A36",
+    "signal": "DDR3_1_DQ[6]"
+  },
+  {
+    "ball": "A39",
+    "signal": "DDR3_1_DQ[4]"
+  },
+  {
+    "ball": "A42",
+    "signal": "GBE_TXN[3]"
+  },
+  {
+    "ball": "A45",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A48",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A51",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A54",
+    "signal": "SATA_TXN[2]"
+  },
+  {
+    "ball": "A57",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A61",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "A66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA03",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA21",
+    "signal": "VCCADDR_1_1P0"
+  },
+  {
+    "ball": "AA23",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA25",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA26",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA28",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA29",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA31",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA32",
+    "signal": "VCCSFRXXXSI0_1P35"
+  },
+  {
+    "ball": "AA34",
+    "signal": "VCCSFRXXXSI0_1P35"
+  },
+  {
+    "ball": "AA36",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA38",
+    "signal": "VCCDIGXXXSUS_1P03"
+  },
+  {
+    "ball": "AA39",
+    "signal": "VCCDIGXXXSUS_1P03"
+  },
+  {
+    "ball": "AA41",
+    "signal": "VCCDIGXXXSUS_1P03"
+  },
+  {
+    "ball": "AA42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA46",
+    "signal": "TRST_B"
+  },
+  {
+    "ball": "AA47",
+    "signal": "AA47_RSVD"
+  },
+  {
+    "ball": "AA62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AA66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AB01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AB02",
+    "signal": "DDR3_1_DQ[42]"
+  },
+  {
+    "ball": "AB04",
+    "signal": "DDR3_1_DQ[43]"
+  },
+  {
+    "ball": "AB05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AB20",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AB62",
+    "signal": "SPI_MOSI"
+  },
+  {
+    "ball": "AB63",
+    "signal": "AB63_RSVD"
+  },
+  {
+    "ball": "AB65",
+    "signal": "SUS_STAT_B"
+  },
+  {
+    "ball": "AC08",
+    "signal": "DDR3_1_DQ[56]"
+  },
+  {
+    "ball": "AC09",
+    "signal": "DDR3_1_DQ[61]"
+  },
+  {
+    "ball": "AC11",
+    "signal": "DDR3_1_DQ[60]"
+  },
+  {
+    "ball": "AC12",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC14",
+    "signal": "DDR3_1_DQ[62]"
+  },
+  {
+    "ball": "AC15",
+    "signal": "DDR3_1_DQ[63]"
+  },
+  {
+    "ball": "AC17",
+    "signal": "DDR3_1_DQ[59]"
+  },
+  {
+    "ball": "AC18",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC20",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC21",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC23",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC25",
+    "signal": "AC25_RSVD"
+  },
+  {
+    "ball": "AC26",
+    "signal": "AC26_RSVD"
+  },
+  {
+    "ball": "AC28",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC29",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC31",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC36",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC38",
+    "signal": "VCCDIGXXXSUS_1P03"
+  },
+  {
+    "ball": "AC39",
+    "signal": "VCCDIGXXXSUS_1P03"
+  },
+  {
+    "ball": "AC41",
+    "signal": "VCCDIGXXXSUS_1P03"
+  },
+  {
+    "ball": "AC42",
+    "signal": "VCCFHVSOCSI0_1P03"
+  },
+  {
+    "ball": "AC44",
+    "signal": "VCCFHVSOCSI0_1P03"
+  },
+  {
+    "ball": "AC46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC47",
+    "signal": "RSMRST_B"
+  },
+  {
+    "ball": "AC49",
+    "signal": "PMU_PWRBTN_B"
+  },
+  {
+    "ball": "AC50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC52",
+    "signal": "PMU_SLP_DDRVTT_B"
+  },
+  {
+    "ball": "AC53",
+    "signal": "TMS"
+  },
+  {
+    "ball": "AC55",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AC56",
+    "signal": "TDI"
+  },
+  {
+    "ball": "AC58",
+    "signal": "SPI_CS1_B"
+  },
+  {
+    "ball": "AC59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD02",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD04",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD08",
+    "signal": "DDR3_1_DQ[57]"
+  },
+  {
+    "ball": "AD09",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD11",
+    "signal": "DDR3_1_DQSB[7]"
+  },
+  {
+    "ball": "AD12",
+    "signal": "DDR3_1_DQS[7]"
+  },
+  {
+    "ball": "AD14",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD15",
+    "signal": "DDR3_1_DQ[58]"
+  },
+  {
+    "ball": "AD17",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD18",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD20",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD21",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AD23",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AD25",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AD26",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AD28",
+    "signal": "VCCFHVCPUSI0_MOD0_1P03"
+  },
+  {
+    "ball": "AD29",
+    "signal": "VCCFHVCPUSI0_MOD2_1P03"
+  },
+  {
+    "ball": "AD31",
+    "signal": "VCCRAMCPUSI1_1P03"
+  },
+  {
+    "ball": "AD32",
+    "signal": "VCCRAMCPUSI1_1P03"
+  },
+  {
+    "ball": "AD34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD36",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AD38",
+    "signal": "VCCDIGXXXSI0_1P03"
+  },
+  {
+    "ball": "AD39",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AD41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD42",
+    "signal": "VCCPADXXXSUS_3P3"
+  },
+  {
+    "ball": "AD44",
+    "signal": "VCCPADXXXSUS_3P3"
+  },
+  {
+    "ball": "AD46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD47",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD49",
+    "signal": "SRTCRST_B"
+  },
+  {
+    "ball": "AD50",
+    "signal": "RTEST_B"
+  },
+  {
+    "ball": "AD52",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD53",
+    "signal": "AD53_RSVD"
+  },
+  {
+    "ball": "AD55",
+    "signal": "BVCCRTC_EXTPAD"
+  },
+  {
+    "ball": "AD56",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD58",
+    "signal": "PMU_SUSCLK"
+  },
+  {
+    "ball": "AD59",
+    "signal": "SPI_MISO"
+  },
+  {
+    "ball": "AD62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AD63",
+    "signal": "USB_OC0_B"
+  },
+  {
+    "ball": "AD65",
+    "signal": "TCK"
+  },
+  {
+    "ball": "AD66",
+    "signal": "PMU_WAKE_B"
+  },
+  {
+    "ball": "AE01",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AE03",
+    "signal": "VCCCPUVIDSI0_1P03_SENSE"
+  },
+  {
+    "ball": "AE05",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AE47",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AE62",
+    "signal": "PMU_PLTRST_B"
+  },
+  {
+    "ball": "AE64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AF02",
+    "signal": "VSSCPUVIDSI0_1P03_SENSE"
+  },
+  {
+    "ball": "AF04",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AF20",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AF21",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AF23",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AF25",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AF26",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AF28",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AF29",
+    "signal": "VCCRAMCPUSI1_1P03"
+  },
+  {
+    "ball": "AF31",
+    "signal": "VCCRAMCPUSI1_1P03"
+  },
+  {
+    "ball": "AF32",
+    "signal": "VCCRAMCPUSI1_1P03_SENSE"
+  },
+  {
+    "ball": "AF34",
+    "signal": "VSSRAMCPUSI1_1P03_SENSE"
+  },
+  {
+    "ball": "AF36",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AF38",
+    "signal": "VCCDIGXXXSI0_1P03"
+  },
+  {
+    "ball": "AF39",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AF41",
+    "signal": "VCCPADXXXSUS_1P8"
+  },
+  {
+    "ball": "AF42",
+    "signal": "VCCPADXXXSUS_1P8"
+  },
+  {
+    "ball": "AF44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AF46",
+    "signal": "SPI_CLK"
+  },
+  {
+    "ball": "AF62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AF63",
+    "signal": "TDO"
+  },
+  {
+    "ball": "AF65",
+    "signal": "PMU_SLP_S3_B"
+  },
+  {
+    "ball": "AG05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG07",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AG08",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AG10",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG11",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AG13",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AG14",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AG16",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG17",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AG19",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AG21",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AG23",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG25",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG26",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG28",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG29",
+    "signal": "VCCRAMCPUSI1_1P03"
+  },
+  {
+    "ball": "AG31",
+    "signal": "VCCRAMCPUSI1_1P03"
+  },
+  {
+    "ball": "AG32",
+    "signal": "VCCRAMCPUSI1_1P03"
+  },
+  {
+    "ball": "AG34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG36",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AG38",
+    "signal": "VCCDIGXXXSI0_1P03"
+  },
+  {
+    "ball": "AG39",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AG41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG42",
+    "signal": "VCCRTC_3P3"
+  },
+  {
+    "ball": "AG44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG46",
+    "signal": "RCOMP_CORE_LVT"
+  },
+  {
+    "ball": "AG48",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG50",
+    "signal": "UART1_RXD"
+  },
+  {
+    "ball": "AG51",
+    "signal": "LPC_CLKOUT0"
+  },
+  {
+    "ball": "AG53",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG54",
+    "signal": "LPC_AD0"
+  },
+  {
+    "ball": "AG56",
+    "signal": "FLEX_CLK_SE1"
+  },
+  {
+    "ball": "AG57",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG59",
+    "signal": "LPC_AD3"
+  },
+  {
+    "ball": "AG60",
+    "signal": "AG60_RSVD"
+  },
+  {
+    "ball": "AG63",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AG66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AH01",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AH03",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AH04",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AH07",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AH08",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AH10",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AH11",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AH13",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AH14",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AH16",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AH17",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AH19",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AH48",
+    "signal": "LPC_CLKRUNB"
+  },
+  {
+    "ball": "AH50",
+    "signal": "UART1_TXD"
+  },
+  {
+    "ball": "AH51",
+    "signal": "SATA3_GP0"
+  },
+  {
+    "ball": "AH53",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AH54",
+    "signal": "SATA3_LEDN"
+  },
+  {
+    "ball": "AH56",
+    "signal": "LPC_FRAMEB"
+  },
+  {
+    "ball": "AH57",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AH59",
+    "signal": "FLEX_CLK_SE0"
+  },
+  {
+    "ball": "AH60",
+    "signal": "COREPWROK"
+  },
+  {
+    "ball": "AH62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AJ02",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AJ04",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AJ05",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AJ21",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AJ23",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AJ25",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AJ26",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AJ28",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AJ29",
+    "signal": "VCCCORE7VIDSI0GT_1P03"
+  },
+  {
+    "ball": "AJ31",
+    "signal": "VCCRAMCPUSI0GT_MOD3_1P03"
+  },
+  {
+    "ball": "AJ32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AJ34",
+    "signal": "AJ34_RSVD"
+  },
+  {
+    "ball": "AJ36",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AJ38",
+    "signal": "VCCDIGXXXSI0_1P03"
+  },
+  {
+    "ball": "AJ39",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AJ41",
+    "signal": "VCCPADXXXSI0_1P8"
+  },
+  {
+    "ball": "AJ42",
+    "signal": "VCCPADXXXSI0_3P3"
+  },
+  {
+    "ball": "AJ44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AJ46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AJ47",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AJ63",
+    "signal": "BRTCX2_PAD"
+  },
+  {
+    "ball": "AJ65",
+    "signal": "BRTCX1_PAD"
+  },
+  {
+    "ball": "AK03",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AK05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AK20",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AK62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AK64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AK66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL02",
+    "signal": "DDR3_0_DQ[28]"
+  },
+  {
+    "ball": "AL04",
+    "signal": "DDR3_0_DQ[29]"
+  },
+  {
+    "ball": "AL05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL08",
+    "signal": "DDR3_0_DQ[2]"
+  },
+  {
+    "ball": "AL09",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL11",
+    "signal": "DDR3_0_DQS[0]"
+  },
+  {
+    "ball": "AL12",
+    "signal": "DDR3_0_DQSB[0]"
+  },
+  {
+    "ball": "AL14",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL15",
+    "signal": "DDR3_0_DQ[5]"
+  },
+  {
+    "ball": "AL17",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL18",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL20",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL21",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AL23",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AL25",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AL26",
+    "signal": "VCCCPUVIDSI0_1P03"
+  },
+  {
+    "ball": "AL28",
+    "signal": "VCCFHVCPUSI0_MOD1_1P03"
+  },
+  {
+    "ball": "AL29",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL31",
+    "signal": "VCCFHVCPUSI0_MOD3_1P03"
+  },
+  {
+    "ball": "AL32",
+    "signal": "VCCCORE6VIDSI0GT_1P03"
+  },
+  {
+    "ball": "AL34",
+    "signal": "AL34_RSVD"
+  },
+  {
+    "ball": "AL36",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AL38",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL39",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AL41",
+    "signal": "VCCPADXXXSI0_1P8"
+  },
+  {
+    "ball": "AL42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL46",
+    "signal": "MEMHOT_B"
+  },
+  {
+    "ball": "AL47",
+    "signal": "CTBTRIGOUT"
+  },
+  {
+    "ball": "AL49",
+    "signal": "SATA_LEDN"
+  },
+  {
+    "ball": "AL50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL52",
+    "signal": "MCERR_B"
+  },
+  {
+    "ball": "AL53",
+    "signal": "LPC_AD2"
+  },
+  {
+    "ball": "AL55",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL56",
+    "signal": "NMI"
+  },
+  {
+    "ball": "AL58",
+    "signal": "SMBALRT_N0"
+  },
+  {
+    "ball": "AL59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AL62",
+    "signal": "ERROR1_B"
+  },
+  {
+    "ball": "AL63",
+    "signal": "ERROR2_B"
+  },
+  {
+    "ball": "AL65",
+    "signal": "ERROR0_B"
+  },
+  {
+    "ball": "AM08",
+    "signal": "DDR3_0_DQ[3]"
+  },
+  {
+    "ball": "AM09",
+    "signal": "DDR3_0_DQ[7]"
+  },
+  {
+    "ball": "AM11",
+    "signal": "DDR3_0_DQ[6]"
+  },
+  {
+    "ball": "AM12",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AM14",
+    "signal": "DDR3_0_DQ[1]"
+  },
+  {
+    "ball": "AM15",
+    "signal": "DDR3_0_DQ[0]"
+  },
+  {
+    "ball": "AM17",
+    "signal": "DDR3_0_DQ[4]"
+  },
+  {
+    "ball": "AM18",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AM20",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AM21",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AM23",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AM25",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM26",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM28",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM29",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM31",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM32",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM34",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM36",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM38",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM39",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM41",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM42",
+    "signal": "VNN"
+  },
+  {
+    "ball": "AM44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AM46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AM47",
+    "signal": "CTBTRIGINOUT"
+  },
+  {
+    "ball": "AM49",
+    "signal": "LPC_CLKOUT1"
+  },
+  {
+    "ball": "AM50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AM52",
+    "signal": "IERR_B"
+  },
+  {
+    "ball": "AM53",
+    "signal": "LPC_AD1"
+  },
+  {
+    "ball": "AM55",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AM56",
+    "signal": "CLK14_IN"
+  },
+  {
+    "ball": "AM58",
+    "signal": "PMU_RESETBUTTON_B"
+  },
+  {
+    "ball": "AM59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AN02",
+    "signal": "DDR3_0_DQ[25]"
+  },
+  {
+    "ball": "AN04",
+    "signal": "DDR3_0_DQ[24]"
+  },
+  {
+    "ball": "AN05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AN47",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AN62",
+    "signal": "SMB_CLK0"
+  },
+  {
+    "ball": "AN63",
+    "signal": "SMB_DATA1"
+  },
+  {
+    "ball": "AN65",
+    "signal": "SMB_DATA2"
+  },
+  {
+    "ball": "AN66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP01",
+    "signal": "DDR3_0_DQSB[3]"
+  },
+  {
+    "ball": "AP03",
+    "signal": "DDR3_0_DQS[3]"
+  },
+  {
+    "ball": "AP05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP20",
+    "signal": "AP20_RSVD"
+  },
+  {
+    "ball": "AP21",
+    "signal": "AP21_RSVD"
+  },
+  {
+    "ball": "AP23",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP25",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP26",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP28",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP29",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP31",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP36",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP38",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP39",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AP62",
+    "signal": "SMB_DATA0"
+  },
+  {
+    "ball": "AP64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AR02",
+    "signal": "DDR3_0_DQ[30]"
+  },
+  {
+    "ball": "AR04",
+    "signal": "DDR3_0_DQ[31]"
+  },
+  {
+    "ball": "AR07",
+    "signal": "DDR3_0_DQSB[1]"
+  },
+  {
+    "ball": "AR08",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AR10",
+    "signal": "DDR3_0_DQ[15]"
+  },
+  {
+    "ball": "AR11",
+    "signal": "DDR3_0_DQ[11]"
+  },
+  {
+    "ball": "AR13",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AR14",
+    "signal": "DDR3_0_DQ[8]"
+  },
+  {
+    "ball": "AR16",
+    "signal": "DDR3_0_DQ[12]"
+  },
+  {
+    "ball": "AR17",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AR19",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AR48",
+    "signal": "USB_OBSP"
+  },
+  {
+    "ball": "AR50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AR51",
+    "signal": "AR51_RSVD"
+  },
+  {
+    "ball": "AR53",
+    "signal": "AR53_RSVD"
+  },
+  {
+    "ball": "AR54",
+    "signal": "AR54_RSVD"
+  },
+  {
+    "ball": "AR56",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AR57",
+    "signal": "DFX_PORT3"
+  },
+  {
+    "ball": "AR59",
+    "signal": "DFX_PORT15"
+  },
+  {
+    "ball": "AR60",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AR62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AR63",
+    "signal": "SMB_CLK1"
+  },
+  {
+    "ball": "AR65",
+    "signal": "SMB_CLK2"
+  },
+  {
+    "ball": "AT05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AT07",
+    "signal": "DDR3_0_DQS[1]"
+  },
+  {
+    "ball": "AT08",
+    "signal": "DDR3_0_DQ[14]"
+  },
+  {
+    "ball": "AT10",
+    "signal": "DDR3_0_DQ[10]"
+  },
+  {
+    "ball": "AT11",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AT13",
+    "signal": "DDR3_0_DQ[9]"
+  },
+  {
+    "ball": "AT14",
+    "signal": "DDR3_0_DQ[13]"
+  },
+  {
+    "ball": "AT16",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AT17",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AT19",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AT21",
+    "signal": "VCCADDR_0_1P0"
+  },
+  {
+    "ball": "AT23",
+    "signal": "VCCADDR_0_1P0"
+  },
+  {
+    "ball": "AT25",
+    "signal": "VCCADDR_0_1P0"
+  },
+  {
+    "ball": "AT26",
+    "signal": "VCCADDR_0_1P0"
+  },
+  {
+    "ball": "AT28",
+    "signal": "VCCADDR_0_1P0"
+  },
+  {
+    "ball": "AT29",
+    "signal": "VCCCLKDDR_0_1P5"
+  },
+  {
+    "ball": "AT31",
+    "signal": "VCCSFRPLLDDR_0_1P5"
+  },
+  {
+    "ball": "AT32",
+    "signal": "VCCACKDDR_0_1P0"
+  },
+  {
+    "ball": "AT34",
+    "signal": "AT34_RSVD"
+  },
+  {
+    "ball": "AT36",
+    "signal": "VCCA_PCIE_1P0"
+  },
+  {
+    "ball": "AT38",
+    "signal": "VCCA_PCIE_1P0"
+  },
+  {
+    "ball": "AT39",
+    "signal": "VCCAREF_PCIE_HVGEN"
+  },
+  {
+    "ball": "AT41",
+    "signal": "VCCDUSBSUS_1P0"
+  },
+  {
+    "ball": "AT42",
+    "signal": "VCCAUSB_1P0"
+  },
+  {
+    "ball": "AT44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AT46",
+    "signal": "USB_RCOMPI"
+  },
+  {
+    "ball": "AT48",
+    "signal": "USB_RCOMPO"
+  },
+  {
+    "ball": "AT50",
+    "signal": "ILB_SERIRQ"
+  },
+  {
+    "ball": "AT51",
+    "signal": "AT51_RSVD"
+  },
+  {
+    "ball": "AT53",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AT54",
+    "signal": "DFX_PORT4"
+  },
+  {
+    "ball": "AT56",
+    "signal": "THERMTRIP_N"
+  },
+  {
+    "ball": "AT57",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AT59",
+    "signal": "DFX_PORT11"
+  },
+  {
+    "ball": "AT60",
+    "signal": "DFX_PORT9"
+  },
+  {
+    "ball": "AT63",
+    "signal": "SATA_GP0"
+  },
+  {
+    "ball": "AT64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AT66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AU01",
+    "signal": "DDR3_0_DQ[26]"
+  },
+  {
+    "ball": "AU03",
+    "signal": "DDR3_0_DQ[27]"
+  },
+  {
+    "ball": "AU04",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AU21",
+    "signal": "VCCADLLDDR_0_1P0"
+  },
+  {
+    "ball": "AU23",
+    "signal": "VCCADLLDDR_0_1P0"
+  },
+  {
+    "ball": "AU25",
+    "signal": "VCCADLLDDR_0_1P0"
+  },
+  {
+    "ball": "AU26",
+    "signal": "VCCADLLDDR_0_1P0"
+  },
+  {
+    "ball": "AU28",
+    "signal": "VCCADLLDDR_0_1P0"
+  },
+  {
+    "ball": "AU29",
+    "signal": "VCCCLKDDR_0_1P5"
+  },
+  {
+    "ball": "AU31",
+    "signal": "VCCPLLDDR_0_1P0"
+  },
+  {
+    "ball": "AU32",
+    "signal": "VCCACKDDR_0_1P0"
+  },
+  {
+    "ball": "AU34",
+    "signal": "AU34_RSVD"
+  },
+  {
+    "ball": "AU36",
+    "signal": "VCCA_PCIE_1P0"
+  },
+  {
+    "ball": "AU38",
+    "signal": "VCCA_PCIE_1P0"
+  },
+  {
+    "ball": "AU39",
+    "signal": "VCCA_PCIE_1P0"
+  },
+  {
+    "ball": "AU41",
+    "signal": "VCCDUSB_1P0"
+  },
+  {
+    "ball": "AU42",
+    "signal": "VCCUSBSUS_3P3"
+  },
+  {
+    "ball": "AU44",
+    "signal": "VSSA_USB"
+  },
+  {
+    "ball": "AU46",
+    "signal": "VCCUSBSUS_1P8"
+  },
+  {
+    "ball": "AU47",
+    "signal": "VCCUSBSUS_1P8"
+  },
+  {
+    "ball": "AU62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AV02",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AV04",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AV05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AV63",
+    "signal": "DFX_PORT_CLK0"
+  },
+  {
+    "ball": "AV65",
+    "signal": "DFX_PORT_CLK1"
+  },
+  {
+    "ball": "AW03",
+    "signal": "DDR3_0_DQECC[4]"
+  },
+  {
+    "ball": "AW05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW08",
+    "signal": "DDR3_0_DQ[20]"
+  },
+  {
+    "ball": "AW09",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW11",
+    "signal": "DDR3_0_DQSB[2]"
+  },
+  {
+    "ball": "AW12",
+    "signal": "DDR3_0_DQS[2]"
+  },
+  {
+    "ball": "AW14",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW15",
+    "signal": "DDR3_0_DQ[23]"
+  },
+  {
+    "ball": "AW17",
+    "signal": "DDR3_0_DQ[19]"
+  },
+  {
+    "ball": "AW19",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW20",
+    "signal": "DDR3_0_ODTPU"
+  },
+  {
+    "ball": "AW21",
+    "signal": "DDR3_0_DQPU"
+  },
+  {
+    "ball": "AW23",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW25",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW26",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW28",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW30",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW31",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW36",
+    "signal": "VCCA_PCIE_1P0"
+  },
+  {
+    "ball": "AW38",
+    "signal": "VCCA_PCIE_1P0"
+  },
+  {
+    "ball": "AW39",
+    "signal": "VCCA_PCIE_1P0"
+  },
+  {
+    "ball": "AW41",
+    "signal": "VCCDUSB_1P0"
+  },
+  {
+    "ball": "AW42",
+    "signal": "VCCUSBSUS_3P3"
+  },
+  {
+    "ball": "AW44",
+    "signal": "VSSA_USB"
+  },
+  {
+    "ball": "AW46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW47",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW49",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW52",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW53",
+    "signal": "SVID_DATA"
+  },
+  {
+    "ball": "AW55",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW56",
+    "signal": "CX_PRDY_B"
+  },
+  {
+    "ball": "AW58",
+    "signal": "DFX_PORT2"
+  },
+  {
+    "ball": "AW59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AW62",
+    "signal": "DFX_PORT7"
+  },
+  {
+    "ball": "AW64",
+    "signal": "DFX_PORT12"
+  },
+  {
+    "ball": "AW66",
+    "signal": "DFX_PORT13"
+  },
+  {
+    "ball": "AY01",
+    "signal": "DDR3_0_DQECC[5]"
+  },
+  {
+    "ball": "AY02",
+    "signal": "DDR3_0_DQECC[1]"
+  },
+  {
+    "ball": "AY04",
+    "signal": "DDR3_0_DQECC[0]"
+  },
+  {
+    "ball": "AY05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AY08",
+    "signal": "DDR3_0_DQ[21]"
+  },
+  {
+    "ball": "AY09",
+    "signal": "DDR3_0_DQ[16]"
+  },
+  {
+    "ball": "AY11",
+    "signal": "DDR3_0_DQ[17]"
+  },
+  {
+    "ball": "AY12",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AY14",
+    "signal": "DDR3_0_DQ[22]"
+  },
+  {
+    "ball": "AY15",
+    "signal": "DDR3_0_DQ[18]"
+  },
+  {
+    "ball": "AY19",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "AY21",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "AY23",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "AY29",
+    "signal": "DDR3_0_VREF"
+  },
+  {
+    "ball": "AY30",
+    "signal": "DDR3_0_DQ[37]"
+  },
+  {
+    "ball": "AY37",
+    "signal": "VCCAPLL_PCIE_1P0"
+  },
+  {
+    "ball": "AY38",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AY45",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AY46",
+    "signal": "USB_DP[0]"
+  },
+  {
+    "ball": "AY52",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AY53",
+    "signal": "CX_PREQ_B"
+  },
+  {
+    "ball": "AY55",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AY56",
+    "signal": "DFX_PORT5"
+  },
+  {
+    "ball": "AY58",
+    "signal": "DFX_PORT1"
+  },
+  {
+    "ball": "AY59",
+    "signal": "DFX_PORT8"
+  },
+  {
+    "ball": "AY62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "AY63",
+    "signal": "DFX_PORT6"
+  },
+  {
+    "ball": "AY65",
+    "signal": "DFX_PORT14"
+  },
+  {
+    "ball": "B10",
+    "signal": "VSS"
+  },
+  {
+    "ball": "B12",
+    "signal": "DDR3_1_DQECC[7]"
+  },
+  {
+    "ball": "B14",
+    "signal": "DDR3_1_DQSECC[0]"
+  },
+  {
+    "ball": "B17",
+    "signal": "DDR3_1_DQECC[5]"
+  },
+  {
+    "ball": "B19",
+    "signal": "DDR3_1_DQ[19]"
+  },
+  {
+    "ball": "B21",
+    "signal": "DDR3_1_DQ[22]"
+  },
+  {
+    "ball": "B23",
+    "signal": "DDR3_1_DQ[17]"
+  },
+  {
+    "ball": "B26",
+    "signal": "VSS"
+  },
+  {
+    "ball": "B28",
+    "signal": "DDR3_1_DQ[15]"
+  },
+  {
+    "ball": "B30",
+    "signal": "DDR3_1_DQSB[1]"
+  },
+  {
+    "ball": "B32",
+    "signal": "DDR3_1_DQ[8]"
+  },
+  {
+    "ball": "B35",
+    "signal": "DDR3_1_DQ[2]"
+  },
+  {
+    "ball": "B37",
+    "signal": "DDR3_1_DQSB[0]"
+  },
+  {
+    "ball": "B39",
+    "signal": "DDR3_1_DQ[0]"
+  },
+  {
+    "ball": "B41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "B44",
+    "signal": "GBE_TXN[2]"
+  },
+  {
+    "ball": "B46",
+    "signal": "GBE_TXN[1]"
+  },
+  {
+    "ball": "B48",
+    "signal": "GBE_TXN[0]"
+  },
+  {
+    "ball": "B50",
+    "signal": "GBE_REFCLKP"
+  },
+  {
+    "ball": "B53",
+    "signal": "SATA_TXN[3]"
+  },
+  {
+    "ball": "B55",
+    "signal": "VSS"
+  },
+  {
+    "ball": "B57",
+    "signal": "SATA_TXP[0]"
+  },
+  {
+    "ball": "BA17",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BA21",
+    "signal": "DDR3_0_CK[0]"
+  },
+  {
+    "ball": "BA23",
+    "signal": "DDR3_0_MA[13]"
+  },
+  {
+    "ball": "BA25",
+    "signal": "DDR3_0_DRAMRSTB"
+  },
+  {
+    "ball": "BA26",
+    "signal": "DDR3_0_CMDPU"
+  },
+  {
+    "ball": "BA29",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BA30",
+    "signal": "DDR3_0_DQ[33]"
+  },
+  {
+    "ball": "BA32",
+    "signal": "DDR3_0_DQ[32]"
+  },
+  {
+    "ball": "BA34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BA37",
+    "signal": "VCCAPLL_PCIE_1P0"
+  },
+  {
+    "ball": "BA38",
+    "signal": "PCIE_OBSN"
+  },
+  {
+    "ball": "BA41",
+    "signal": "USB_DN[3]"
+  },
+  {
+    "ball": "BA42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BA45",
+    "signal": "USB_DP[1]"
+  },
+  {
+    "ball": "BA46",
+    "signal": "USB_DN[0]"
+  },
+  {
+    "ball": "BA49",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BA50",
+    "signal": "USB_REFCLKN"
+  },
+  {
+    "ball": "BB02",
+    "signal": "DDR3_0_DQSECC[0]"
+  },
+  {
+    "ball": "BB04",
+    "signal": "DDR3_0_DQSBECC[0]"
+  },
+  {
+    "ball": "BB05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BB17",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BB19",
+    "signal": "DDR3_0_CK[3]"
+  },
+  {
+    "ball": "BB25",
+    "signal": "DDR3_0_CSB[1]"
+  },
+  {
+    "ball": "BB26",
+    "signal": "DDR3_0_ODT[1]"
+  },
+  {
+    "ball": "BB32",
+    "signal": "DDR3_0_DQ[36]"
+  },
+  {
+    "ball": "BB34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BB41",
+    "signal": "USB_DP[3]"
+  },
+  {
+    "ball": "BB42",
+    "signal": "USB_DN[2]"
+  },
+  {
+    "ball": "BB49",
+    "signal": "PCIE_REFCLKP"
+  },
+  {
+    "ball": "BB50",
+    "signal": "USB_REFCLKP"
+  },
+  {
+    "ball": "BB53",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BB54",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BB56",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BB57",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BB59",
+    "signal": "PROCHOT_B"
+  },
+  {
+    "ball": "BB60",
+    "signal": "SVID_CLK"
+  },
+  {
+    "ball": "BB62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BB63",
+    "signal": "DFX_PORT10"
+  },
+  {
+    "ball": "BB65",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BB66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BC01",
+    "signal": "DDR3_0_DQECC[6]"
+  },
+  {
+    "ball": "BC03",
+    "signal": "DDR3_0_DQECC[7]"
+  },
+  {
+    "ball": "BC05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BC07",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BC08",
+    "signal": "DDR3_0_BS[2]"
+  },
+  {
+    "ball": "BC10",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BC11",
+    "signal": "DDR3_0_MA[14]"
+  },
+  {
+    "ball": "BC13",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BC15",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BC21",
+    "signal": "DDR3_0_CKB[0]"
+  },
+  {
+    "ball": "BC23",
+    "signal": "DDR3_0_WEB"
+  },
+  {
+    "ball": "BC29",
+    "signal": "DDR3_0_DQSB[4]"
+  },
+  {
+    "ball": "BC30",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BC37",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BC38",
+    "signal": "PCIE_OBSP"
+  },
+  {
+    "ball": "BC45",
+    "signal": "USB_DN[1]"
+  },
+  {
+    "ball": "BC46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BC62",
+    "signal": "SVID_ALERT_B"
+  },
+  {
+    "ball": "BC64",
+    "signal": "DFX_PORT0"
+  },
+  {
+    "ball": "BD02",
+    "signal": "DDR3_0_DQECC[2]"
+  },
+  {
+    "ball": "BD04",
+    "signal": "DDR3_0_DQECC[3]"
+  },
+  {
+    "ball": "BD07",
+    "signal": "DDR3_0_MA[12]"
+  },
+  {
+    "ball": "BD08",
+    "signal": "DDR3_0_MA[8]"
+  },
+  {
+    "ball": "BD10",
+    "signal": "DDR3_0_MA[6]"
+  },
+  {
+    "ball": "BD13",
+    "signal": "DDR3_0_MA[4]"
+  },
+  {
+    "ball": "BD15",
+    "signal": "DDR3_0_MA[9]"
+  },
+  {
+    "ball": "BD17",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BD19",
+    "signal": "DDR3_0_CKB[3]"
+  },
+  {
+    "ball": "BD21",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BD23",
+    "signal": "DDR3_0_CSB[2]"
+  },
+  {
+    "ball": "BD25",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BD26",
+    "signal": "DDR3_0_ODT[0]"
+  },
+  {
+    "ball": "BD29",
+    "signal": "DDR3_0_DQS[4]"
+  },
+  {
+    "ball": "BD30",
+    "signal": "DDR3_0_DQ[35]"
+  },
+  {
+    "ball": "BD32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD37",
+    "signal": "PCIE_RXP[14]"
+  },
+  {
+    "ball": "BD38",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD42",
+    "signal": "USB_DP[2]"
+  },
+  {
+    "ball": "BD45",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD46",
+    "signal": "PCIE_RXP[9]"
+  },
+  {
+    "ball": "BD49",
+    "signal": "PCIE_REFCLKN"
+  },
+  {
+    "ball": "BD50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD53",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD54",
+    "signal": "PCIE_RXP[5]"
+  },
+  {
+    "ball": "BD59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD60",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD63",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BD65",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BE05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BE17",
+    "signal": "DDR3_0_VCCA_PWROK"
+  },
+  {
+    "ball": "BE19",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BE25",
+    "signal": "DDR3_0_CSB[0]"
+  },
+  {
+    "ball": "BE26",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BE32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BE34",
+    "signal": "PCIE_RXP[15]"
+  },
+  {
+    "ball": "BE41",
+    "signal": "PCIE_RXP[12]"
+  },
+  {
+    "ball": "BE42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BE49",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BE50",
+    "signal": "PCIE_RXP[7]"
+  },
+  {
+    "ball": "BE57",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BE63",
+    "signal": "PCIE_RXP[0]"
+  },
+  {
+    "ball": "BE64",
+    "signal": "PCIE_RXN[0]"
+  },
+  {
+    "ball": "BE66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BF01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BF03",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BF04",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BF13",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BF15",
+    "signal": "DDR3_0_MA[15]"
+  },
+  {
+    "ball": "BF21",
+    "signal": "DDR3_0_CK[1]"
+  },
+  {
+    "ball": "BF23",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BF29",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BF30",
+    "signal": "DDR3_0_DQ[34]"
+  },
+  {
+    "ball": "BF37",
+    "signal": "PCIE_RXN[14]"
+  },
+  {
+    "ball": "BF38",
+    "signal": "PCIE_RXP[13]"
+  },
+  {
+    "ball": "BF45",
+    "signal": "PCIE_RXP[10]"
+  },
+  {
+    "ball": "BF46",
+    "signal": "PCIE_RXN[9]"
+  },
+  {
+    "ball": "BF53",
+    "signal": "PCIE_RXP[6]"
+  },
+  {
+    "ball": "BF54",
+    "signal": "PCIE_RXN[5]"
+  },
+  {
+    "ball": "BF62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BG01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BG04",
+    "signal": "DDR3_0_CKE[0]"
+  },
+  {
+    "ball": "BG05",
+    "signal": "DDR3_0_CKE[2]"
+  },
+  {
+    "ball": "BG08",
+    "signal": "DDR3_0_MA[11]"
+  },
+  {
+    "ball": "BG09",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BG11",
+    "signal": "DDR3_0_MA[3]"
+  },
+  {
+    "ball": "BG13",
+    "signal": "DDR3_0_MA[2]"
+  },
+  {
+    "ball": "BG15",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BG17",
+    "signal": "DDR3_0_DRAM_PWROK"
+  },
+  {
+    "ball": "BG19",
+    "signal": "DDR3_0_CK[2]"
+  },
+  {
+    "ball": "BG21",
+    "signal": "DDR3_0_CKB[1]"
+  },
+  {
+    "ball": "BG23",
+    "signal": "DDR3_0_RASB"
+  },
+  {
+    "ball": "BG25",
+    "signal": "DDR3_0_ODT[3]"
+  },
+  {
+    "ball": "BG26",
+    "signal": "DDR3_0_CSB[3]"
+  },
+  {
+    "ball": "BG29",
+    "signal": "DDR3_0_DQ[38]"
+  },
+  {
+    "ball": "BG30",
+    "signal": "DDR3_0_DQ[39]"
+  },
+  {
+    "ball": "BG32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BG34",
+    "signal": "PCIE_RXN[15]"
+  },
+  {
+    "ball": "BG37",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BG38",
+    "signal": "PCIE_RXN[13]"
+  },
+  {
+    "ball": "BG41",
+    "signal": "PCIE_RXN[12]"
+  },
+  {
+    "ball": "BG42",
+    "signal": "PCIE_RXP[11]"
+  },
+  {
+    "ball": "BG45",
+    "signal": "PCIE_RXN[10]"
+  },
+  {
+    "ball": "BG46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BG49",
+    "signal": "PCIE_RXP[8]"
+  },
+  {
+    "ball": "BG50",
+    "signal": "PCIE_RXN[7]"
+  },
+  {
+    "ball": "BG53",
+    "signal": "PCIE_RXN[6]"
+  },
+  {
+    "ball": "BG54",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BG57",
+    "signal": "PCIE_RXP[4]"
+  },
+  {
+    "ball": "BG58",
+    "signal": "PCIE_RXP[3]"
+  },
+  {
+    "ball": "BG63",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BG66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BH03",
+    "signal": "DDR3_0_CKE[3]"
+  },
+  {
+    "ball": "BH05",
+    "signal": "DDR3_0_CKE[1]"
+  },
+  {
+    "ball": "BH08",
+    "signal": "DDR3_0_MA[7]"
+  },
+  {
+    "ball": "BH11",
+    "signal": "DDR3_0_MA[0]"
+  },
+  {
+    "ball": "BH17",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BH19",
+    "signal": "DDR3_0_CKB[2]"
+  },
+  {
+    "ball": "BH25",
+    "signal": "DDR3_0_ODT[2]"
+  },
+  {
+    "ball": "BH26",
+    "signal": "DDR3_0_CASB"
+  },
+  {
+    "ball": "BH32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BH34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BH41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BH42",
+    "signal": "PCIE_RXN[11]"
+  },
+  {
+    "ball": "BH49",
+    "signal": "PCIE_RXN[8]"
+  },
+  {
+    "ball": "BH50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BH57",
+    "signal": "PCIE_RXN[4]"
+  },
+  {
+    "ball": "BH58",
+    "signal": "PCIE_RXN[3]"
+  },
+  {
+    "ball": "BH60",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BH62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BH64",
+    "signal": "PCIE_RXN[1]"
+  },
+  {
+    "ball": "BJ01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BJ04",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BJ62",
+    "signal": "PCIE_RXP[2]"
+  },
+  {
+    "ball": "BJ63",
+    "signal": "PCIE_RXP[1]"
+  },
+  {
+    "ball": "BJ66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK03",
+    "signal": "DDR3_0_MON2N"
+  },
+  {
+    "ball": "BK05",
+    "signal": "DDR3_0_MON2P"
+  },
+  {
+    "ball": "BK06",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BK08",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK09",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BK10",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK12",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BK13",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BK15",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK17",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK18",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK19",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK21",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK22",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK24",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK26",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK27",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK28",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK30",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK31",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK32",
+    "signal": "DDR3_0_DQ[57]"
+  },
+  {
+    "ball": "BK35",
+    "signal": "DDR3_0_DQ[62]"
+  },
+  {
+    "ball": "BK36",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK37",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK39",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK40",
+    "signal": "PCIE_TXN[14]"
+  },
+  {
+    "ball": "BK42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK45",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK48",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK49",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK51",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK53",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK54",
+    "signal": "PCIE_TXN[4]"
+  },
+  {
+    "ball": "BK56",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK57",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK58",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK60",
+    "signal": "PCIE_TXP[0]"
+  },
+  {
+    "ball": "BK62",
+    "signal": "PCIE_RXN[2]"
+  },
+  {
+    "ball": "BK64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BK66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BL07",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BL08",
+    "signal": "DDR3_0_MA[1]"
+  },
+  {
+    "ball": "BL10",
+    "signal": "DDR3_0_BS[1]"
+  },
+  {
+    "ball": "BL12",
+    "signal": "DDR3_0_BS[0]"
+  },
+  {
+    "ball": "BL14",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BL16",
+    "signal": "DDR3_0_DQ[40]"
+  },
+  {
+    "ball": "BL17",
+    "signal": "DDR3_0_DQ[41]"
+  },
+  {
+    "ball": "BL19",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BL21",
+    "signal": "DDR3_0_DQ[42]"
+  },
+  {
+    "ball": "BL23",
+    "signal": "DDR3_0_DQ[52]"
+  },
+  {
+    "ball": "BL25",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BL26",
+    "signal": "DDR3_0_DQSB[6]"
+  },
+  {
+    "ball": "BL28",
+    "signal": "DDR3_0_DQ[50]"
+  },
+  {
+    "ball": "BL30",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BL32",
+    "signal": "DDR3_0_DQ[61]"
+  },
+  {
+    "ball": "BL34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BL35",
+    "signal": "DDR3_0_DQ[63]"
+  },
+  {
+    "ball": "BL37",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BL39",
+    "signal": "PCIE_TXN[15]"
+  },
+  {
+    "ball": "BL41",
+    "signal": "PCIE_TXP[13]"
+  },
+  {
+    "ball": "BL43",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BL44",
+    "signal": "PCIE_TXN[11]"
+  },
+  {
+    "ball": "BL46",
+    "signal": "PCIE_TXN[10]"
+  },
+  {
+    "ball": "BL48",
+    "signal": "PCIE_TXN[9]"
+  },
+  {
+    "ball": "BL50",
+    "signal": "PCIE_TXN[7]"
+  },
+  {
+    "ball": "BL52",
+    "signal": "PCIE_TXP[6]"
+  },
+  {
+    "ball": "BL53",
+    "signal": "PCIE_TXN[5]"
+  },
+  {
+    "ball": "BL55",
+    "signal": "PCIE_TXP[3]"
+  },
+  {
+    "ball": "BL57",
+    "signal": "PCIE_TXP[2]"
+  },
+  {
+    "ball": "BL59",
+    "signal": "PCIE_TXP[1]"
+  },
+  {
+    "ball": "BL61",
+    "signal": "PCIE_TXN[0]"
+  },
+  {
+    "ball": "BM01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BM03",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BM05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BM07",
+    "signal": "DDR3_0_MA[5]"
+  },
+  {
+    "ball": "BM09",
+    "signal": "VCCDDR_0_1P5"
+  },
+  {
+    "ball": "BM13",
+    "signal": "DDR3_0_REFN"
+  },
+  {
+    "ball": "BM16",
+    "signal": "DDR3_0_DQ[44]"
+  },
+  {
+    "ball": "BM18",
+    "signal": "DDR3_0_DQS[5]"
+  },
+  {
+    "ball": "BM22",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BM25",
+    "signal": "DDR3_0_DQ[48]"
+  },
+  {
+    "ball": "BM27",
+    "signal": "DDR3_0_DQ[54]"
+  },
+  {
+    "ball": "BM31",
+    "signal": "DDR3_0_DQ[60]"
+  },
+  {
+    "ball": "BM34",
+    "signal": "DDR3_0_DQSB[7]"
+  },
+  {
+    "ball": "BM36",
+    "signal": "DDR3_0_DQ[59]"
+  },
+  {
+    "ball": "BM40",
+    "signal": "PCIE_TXP[14]"
+  },
+  {
+    "ball": "BM43",
+    "signal": "PCIE_TXN[12]"
+  },
+  {
+    "ball": "BM45",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BM49",
+    "signal": "PCIE_TXN[8]"
+  },
+  {
+    "ball": "BM52",
+    "signal": "PCIE_TXN[6]"
+  },
+  {
+    "ball": "BM54",
+    "signal": "PCIE_TXP[4]"
+  },
+  {
+    "ball": "BM58",
+    "signal": "PCIE_TXN[1]"
+  },
+  {
+    "ball": "BM61",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BM62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BM64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BM66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BN10",
+    "signal": "DDR3_0_MA[10]"
+  },
+  {
+    "ball": "BN12",
+    "signal": "DDR3_0_REFP"
+  },
+  {
+    "ball": "BN14",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BN17",
+    "signal": "DDR3_0_DQSB[5]"
+  },
+  {
+    "ball": "BN19",
+    "signal": "DDR3_0_DQ[47]"
+  },
+  {
+    "ball": "BN21",
+    "signal": "DDR3_0_DQ[43]"
+  },
+  {
+    "ball": "BN23",
+    "signal": "DDR3_0_DQ[53]"
+  },
+  {
+    "ball": "BN26",
+    "signal": "DDR3_0_DQS[6]"
+  },
+  {
+    "ball": "BN28",
+    "signal": "DDR3_0_DQ[51]"
+  },
+  {
+    "ball": "BN30",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BN32",
+    "signal": "DDR3_0_DQ[56]"
+  },
+  {
+    "ball": "BN35",
+    "signal": "DDR3_0_DQ[58]"
+  },
+  {
+    "ball": "BN37",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BN39",
+    "signal": "PCIE_TXP[15]"
+  },
+  {
+    "ball": "BN41",
+    "signal": "PCIE_TXN[13]"
+  },
+  {
+    "ball": "BN44",
+    "signal": "PCIE_TXP[11]"
+  },
+  {
+    "ball": "BN46",
+    "signal": "PCIE_TXP[10]"
+  },
+  {
+    "ball": "BN48",
+    "signal": "PCIE_TXP[9]"
+  },
+  {
+    "ball": "BN50",
+    "signal": "PCIE_TXP[7]"
+  },
+  {
+    "ball": "BN53",
+    "signal": "PCIE_TXP[5]"
+  },
+  {
+    "ball": "BN55",
+    "signal": "PCIE_TXN[3]"
+  },
+  {
+    "ball": "BN57",
+    "signal": "PCIE_TXN[2]"
+  },
+  {
+    "ball": "BP01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP03",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP06",
+    "signal": "DDR3_0_MON1N"
+  },
+  {
+    "ball": "BP08",
+    "signal": "DDR3_0_MON1P"
+  },
+  {
+    "ball": "BP10",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP13",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP16",
+    "signal": "DDR3_0_DQ[45]"
+  },
+  {
+    "ball": "BP19",
+    "signal": "DDR3_0_DQ[46]"
+  },
+  {
+    "ball": "BP22",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP25",
+    "signal": "DDR3_0_DQ[49]"
+  },
+  {
+    "ball": "BP28",
+    "signal": "DDR3_0_DQ[55]"
+  },
+  {
+    "ball": "BP31",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP34",
+    "signal": "DDR3_0_DQS[7]"
+  },
+  {
+    "ball": "BP37",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP40",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP43",
+    "signal": "PCIE_TXP[12]"
+  },
+  {
+    "ball": "BP46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP49",
+    "signal": "PCIE_TXP[8]"
+  },
+  {
+    "ball": "BP52",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP55",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP58",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP61",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "BP66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "C03",
+    "signal": "VSS"
+  },
+  {
+    "ball": "C05",
+    "signal": "DDR3_1_MON1N"
+  },
+  {
+    "ball": "C06",
+    "signal": "VSS"
+  },
+  {
+    "ball": "C09",
+    "signal": "DDR3_1_CK[0]"
+  },
+  {
+    "ball": "C13",
+    "signal": "DDR3_1_DQECC[6]"
+  },
+  {
+    "ball": "C15",
+    "signal": "DDR3_1_DQECC[1]"
+  },
+  {
+    "ball": "C18",
+    "signal": "VSS"
+  },
+  {
+    "ball": "C22",
+    "signal": "DDR3_1_DQSB[2]"
+  },
+  {
+    "ball": "C24",
+    "signal": "DDR3_1_DQ[20]"
+  },
+  {
+    "ball": "C27",
+    "signal": "DDR3_1_DQ[11]"
+  },
+  {
+    "ball": "C31",
+    "signal": "DDR3_1_DQ[9]"
+  },
+  {
+    "ball": "C33",
+    "signal": "VSS"
+  },
+  {
+    "ball": "C36",
+    "signal": "DDR3_1_DQ[7]"
+  },
+  {
+    "ball": "C40",
+    "signal": "DDR3_1_DQ[5]"
+  },
+  {
+    "ball": "C42",
+    "signal": "GBE_TXP[3]"
+  },
+  {
+    "ball": "C45",
+    "signal": "VSS"
+  },
+  {
+    "ball": "C49",
+    "signal": "VSS"
+  },
+  {
+    "ball": "C51",
+    "signal": "VSS"
+  },
+  {
+    "ball": "C54",
+    "signal": "SATA_TXP[2]"
+  },
+  {
+    "ball": "C58",
+    "signal": "VSS"
+  },
+  {
+    "ball": "C60",
+    "signal": "SATA_RXN[3]"
+  },
+  {
+    "ball": "C62",
+    "signal": "SATA_RXN[2]"
+  },
+  {
+    "ball": "C64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "C66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "D06",
+    "signal": "VSS"
+  },
+  {
+    "ball": "D08",
+    "signal": "DDR3_1_CKB[0]"
+  },
+  {
+    "ball": "D10",
+    "signal": "VSS"
+  },
+  {
+    "ball": "D12",
+    "signal": "DDR3_1_DQECC[2]"
+  },
+  {
+    "ball": "D14",
+    "signal": "DDR3_1_DQSBECC[0]"
+  },
+  {
+    "ball": "D15",
+    "signal": "DDR3_1_DQECC[0]"
+  },
+  {
+    "ball": "D17",
+    "signal": "DDR3_1_DQECC[4]"
+  },
+  {
+    "ball": "D19",
+    "signal": "DDR3_1_DQ[18]"
+  },
+  {
+    "ball": "D21",
+    "signal": "DDR3_1_DQ[23]"
+  },
+  {
+    "ball": "D23",
+    "signal": "DDR3_1_DQ[16]"
+  },
+  {
+    "ball": "D24",
+    "signal": "DDR3_1_DQ[21]"
+  },
+  {
+    "ball": "D26",
+    "signal": "VSS"
+  },
+  {
+    "ball": "D28",
+    "signal": "DDR3_1_DQ[14]"
+  },
+  {
+    "ball": "D30",
+    "signal": "DDR3_1_DQS[1]"
+  },
+  {
+    "ball": "D32",
+    "signal": "DDR3_1_DQ[13]"
+  },
+  {
+    "ball": "D33",
+    "signal": "VSS"
+  },
+  {
+    "ball": "D35",
+    "signal": "DDR3_1_DQ[3]"
+  },
+  {
+    "ball": "D37",
+    "signal": "DDR3_1_DQS[0]"
+  },
+  {
+    "ball": "D39",
+    "signal": "DDR3_1_DQ[1]"
+  },
+  {
+    "ball": "D41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "D42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "D44",
+    "signal": "GBE_TXP[2]"
+  },
+  {
+    "ball": "D46",
+    "signal": "GBE_TXP[1]"
+  },
+  {
+    "ball": "D48",
+    "signal": "GBE_TXP[0]"
+  },
+  {
+    "ball": "D50",
+    "signal": "GBE_REFCLKN"
+  },
+  {
+    "ball": "D51",
+    "signal": "VSS"
+  },
+  {
+    "ball": "D53",
+    "signal": "SATA_TXP[3]"
+  },
+  {
+    "ball": "D55",
+    "signal": "VSS"
+  },
+  {
+    "ball": "D57",
+    "signal": "SATA_TXN[0]"
+  },
+  {
+    "ball": "D59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "D60",
+    "signal": "SATA_RXP[3]"
+  },
+  {
+    "ball": "E01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E03",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E05",
+    "signal": "DDR3_1_MON1P"
+  },
+  {
+    "ball": "E07",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "E09",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "E10",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E12",
+    "signal": "DDR3_1_DQECC[3]"
+  },
+  {
+    "ball": "E13",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E14",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E16",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E18",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E19",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E21",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E22",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E23",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E25",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E27",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E28",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E30",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E31",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E32",
+    "signal": "DDR3_1_DQ[12]"
+  },
+  {
+    "ball": "E34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E36",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E37",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E39",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E40",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E43",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E45",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E48",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E49",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E52",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E54",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E55",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E57",
+    "signal": "SATA_TXN[1]"
+  },
+  {
+    "ball": "E58",
+    "signal": "SATA_TXP[1]"
+  },
+  {
+    "ball": "E59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E61",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E62",
+    "signal": "SATA_RXP[2]"
+  },
+  {
+    "ball": "E64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "E66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "F01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "F04",
+    "signal": "VSS"
+  },
+  {
+    "ball": "F05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "F63",
+    "signal": "VSS"
+  },
+  {
+    "ball": "F66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "G03",
+    "signal": "DDR3_1_MA[13]"
+  },
+  {
+    "ball": "G05",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "G07",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "G09",
+    "signal": "DDR3_1_CK[1]"
+  },
+  {
+    "ball": "G10",
+    "signal": "DDR3_1_CKB[2]"
+  },
+  {
+    "ball": "G17",
+    "signal": "DDR3_1_MA[1]"
+  },
+  {
+    "ball": "G18",
+    "signal": "DDR3_1_MA[2]"
+  },
+  {
+    "ball": "G25",
+    "signal": "DDR3_1_MA[12]"
+  },
+  {
+    "ball": "G26",
+    "signal": "DDR3_1_MA[14]"
+  },
+  {
+    "ball": "G32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "G34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "G41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "G42",
+    "signal": "GBE_RXP[3]"
+  },
+  {
+    "ball": "G48",
+    "signal": "VSS"
+  },
+  {
+    "ball": "G50",
+    "signal": "GBE_OBSP"
+  },
+  {
+    "ball": "G56",
+    "signal": "VSS"
+  },
+  {
+    "ball": "G59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "G62",
+    "signal": "SATA_RXP[1]"
+  },
+  {
+    "ball": "G64",
+    "signal": "SATA_RXN[1]"
+  },
+  {
+    "ball": "H01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H04",
+    "signal": "DDR3_1_CASB"
+  },
+  {
+    "ball": "H09",
+    "signal": "DDR3_1_CKB[1]"
+  },
+  {
+    "ball": "H10",
+    "signal": "DDR3_1_CK[2]"
+  },
+  {
+    "ball": "H13",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "H14",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "H17",
+    "signal": "DDR3_1_MA[0]"
+  },
+  {
+    "ball": "H18",
+    "signal": "DDR3_1_BS[1]"
+  },
+  {
+    "ball": "H21",
+    "signal": "DDR3_1_MA[8]"
+  },
+  {
+    "ball": "H22",
+    "signal": "DDR3_1_MA[5]"
+  },
+  {
+    "ball": "H25",
+    "signal": "DDR3_1_BS[2]"
+  },
+  {
+    "ball": "H26",
+    "signal": "DDR3_1_MA[15]"
+  },
+  {
+    "ball": "H29",
+    "signal": "DDR3_1_DQ[25]"
+  },
+  {
+    "ball": "H30",
+    "signal": "DDR3_1_DQ[24]"
+  },
+  {
+    "ball": "H32",
+    "signal": "DDR3_1_DQ[28]"
+  },
+  {
+    "ball": "H34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H37",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H38",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H42",
+    "signal": "GBE_RXN[3]"
+  },
+  {
+    "ball": "H44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H48",
+    "signal": "GBE_RXP[0]"
+  },
+  {
+    "ball": "H50",
+    "signal": "GBE_OBSN"
+  },
+  {
+    "ball": "H52",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H54",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H56",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H58",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "H62",
+    "signal": "SATA_RXP[0]"
+  },
+  {
+    "ball": "H63",
+    "signal": "SATA_RXN[0]"
+  },
+  {
+    "ball": "H66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "J05",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "J13",
+    "signal": "DDR3_1_CK[3]"
+  },
+  {
+    "ball": "J14",
+    "signal": "DDR3_1_REFP"
+  },
+  {
+    "ball": "J21",
+    "signal": "DDR3_1_MA[6]"
+  },
+  {
+    "ball": "J22",
+    "signal": "DDR3_1_MA[7]"
+  },
+  {
+    "ball": "J29",
+    "signal": "VSS"
+  },
+  {
+    "ball": "J30",
+    "signal": "DDR3_1_DQ[29]"
+  },
+  {
+    "ball": "J37",
+    "signal": "HPLL_REFN"
+  },
+  {
+    "ball": "J38",
+    "signal": "J38_RSVD"
+  },
+  {
+    "ball": "J44",
+    "signal": "GBE_RXP[2]"
+  },
+  {
+    "ball": "J46",
+    "signal": "GBE_RXP[1]"
+  },
+  {
+    "ball": "J52",
+    "signal": "SATA_OBSP"
+  },
+  {
+    "ball": "J54",
+    "signal": "SATA_REFCLKP"
+  },
+  {
+    "ball": "J63",
+    "signal": "VSS"
+  },
+  {
+    "ball": "J64",
+    "signal": "VSS"
+  },
+  {
+    "ball": "J66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "K01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "K03",
+    "signal": "DDR3_1_CSB[0]"
+  },
+  {
+    "ball": "K04",
+    "signal": "DDR3_1_CSB[3]"
+  },
+  {
+    "ball": "K10",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "K17",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "K18",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "K25",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "K26",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "K32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "K34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "K41",
+    "signal": "VCCA_SATA_1P0"
+  },
+  {
+    "ball": "K42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "K48",
+    "signal": "GBE_RXN[0]"
+  },
+  {
+    "ball": "K50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "K62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "L02",
+    "signal": "DDR3_1_ODT[0]"
+  },
+  {
+    "ball": "L04",
+    "signal": "DDR3_1_ODT[3]"
+  },
+  {
+    "ball": "L05",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "L07",
+    "signal": "DDR3_1_CSB[2]"
+  },
+  {
+    "ball": "L08",
+    "signal": "DDR3_1_RASB"
+  },
+  {
+    "ball": "L13",
+    "signal": "DDR3_1_CKB[3]"
+  },
+  {
+    "ball": "L14",
+    "signal": "DDR3_1_REFN"
+  },
+  {
+    "ball": "L17",
+    "signal": "DDR3_1_DRAM_PWROK"
+  },
+  {
+    "ball": "L18",
+    "signal": "DDR3_1_MA[10]"
+  },
+  {
+    "ball": "L21",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "L22",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "L25",
+    "signal": "DDR3_1_CKE[2]"
+  },
+  {
+    "ball": "L26",
+    "signal": "DDR3_1_CKE[3]"
+  },
+  {
+    "ball": "L29",
+    "signal": "DDR3_1_DQSB[3]"
+  },
+  {
+    "ball": "L30",
+    "signal": "VSS"
+  },
+  {
+    "ball": "L32",
+    "signal": "DDR3_1_DQ[27]"
+  },
+  {
+    "ball": "L34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "L37",
+    "signal": "HPLL_REFP"
+  },
+  {
+    "ball": "L38",
+    "signal": "L38_RSVD"
+  },
+  {
+    "ball": "L41",
+    "signal": "VCCA_SATA_1P0"
+  },
+  {
+    "ball": "L42",
+    "signal": "VCCA_SATA3_1P0"
+  },
+  {
+    "ball": "L44",
+    "signal": "GBE_RXN[2]"
+  },
+  {
+    "ball": "L46",
+    "signal": "GBE_RXN[1]"
+  },
+  {
+    "ball": "L48",
+    "signal": "VSS"
+  },
+  {
+    "ball": "L50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "L52",
+    "signal": "SATA_OBSN"
+  },
+  {
+    "ball": "L54",
+    "signal": "SATA_REFCLKN"
+  },
+  {
+    "ball": "L57",
+    "signal": "SATA3_REFCLKP"
+  },
+  {
+    "ball": "L59",
+    "signal": "SATA3_REFCLKN"
+  },
+  {
+    "ball": "L60",
+    "signal": "VSS"
+  },
+  {
+    "ball": "L63",
+    "signal": "SATA3_RXP[1]"
+  },
+  {
+    "ball": "L65",
+    "signal": "SATA3_RXN[1]"
+  },
+  {
+    "ball": "M03",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "M05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M21",
+    "signal": "DDR3_1_MA[4]"
+  },
+  {
+    "ball": "M22",
+    "signal": "DDR3_1_MA[9]"
+  },
+  {
+    "ball": "M29",
+    "signal": "DDR3_1_DQS[3]"
+  },
+  {
+    "ball": "M30",
+    "signal": "DDR3_1_DQ[30]"
+  },
+  {
+    "ball": "M37",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M38",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M46",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M52",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M54",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M56",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M57",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M59",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M60",
+    "signal": "VSS"
+  },
+  {
+    "ball": "M62",
+    "signal": "SATA3_RXP[0]"
+  },
+  {
+    "ball": "M64",
+    "signal": "SATA3_RXN[0]"
+  },
+  {
+    "ball": "M66",
+    "signal": "VSS"
+  },
+  {
+    "ball": "N01",
+    "signal": "VSS"
+  },
+  {
+    "ball": "N02",
+    "signal": "DDR3_1_ODT[1]"
+  },
+  {
+    "ball": "N04",
+    "signal": "DDR3_1_CSB[1]"
+  },
+  {
+    "ball": "N05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "N07",
+    "signal": "DDR3_1_WEB"
+  },
+  {
+    "ball": "N08",
+    "signal": "DDR3_1_ODT[2]"
+  },
+  {
+    "ball": "N10",
+    "signal": "VSS"
+  },
+  {
+    "ball": "N11",
+    "signal": "DDR3_1_DRAMRSTB"
+  },
+  {
+    "ball": "N13",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "N14",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "N17",
+    "signal": "DDR3_1_VCCA_PWROK"
+  },
+  {
+    "ball": "N18",
+    "signal": "DDR3_1_BS[0]"
+  },
+  {
+    "ball": "N25",
+    "signal": "DDR3_1_CKE[1]"
+  },
+  {
+    "ball": "N26",
+    "signal": "DDR3_1_CKE[0]"
+  },
+  {
+    "ball": "N32",
+    "signal": "DDR3_1_DQ[26]"
+  },
+  {
+    "ball": "N34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "N41",
+    "signal": "VCCA_SATA_1P0"
+  },
+  {
+    "ball": "N42",
+    "signal": "VCCA_SATA3_1P0"
+  },
+  {
+    "ball": "N48",
+    "signal": "VSS"
+  },
+  {
+    "ball": "N50",
+    "signal": "VSS"
+  },
+  {
+    "ball": "N62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "N63",
+    "signal": "VSS"
+  },
+  {
+    "ball": "N65",
+    "signal": "VSS"
+  },
+  {
+    "ball": "P17",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "P18",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "P21",
+    "signal": "DDR3_1_MA[3]"
+  },
+  {
+    "ball": "P22",
+    "signal": "DDR3_1_MA[11]"
+  },
+  {
+    "ball": "P25",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "P26",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "P29",
+    "signal": "VSS"
+  },
+  {
+    "ball": "P30",
+    "signal": "DDR3_1_DQ[31]"
+  },
+  {
+    "ball": "P32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "P34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "P37",
+    "signal": "VSS"
+  },
+  {
+    "ball": "P38",
+    "signal": "P38_RSVD"
+  },
+  {
+    "ball": "P41",
+    "signal": "VCCA_SATA_1P0"
+  },
+  {
+    "ball": "P42",
+    "signal": "VCCA_SATA3_1P0"
+  },
+  {
+    "ball": "P44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "P46",
+    "signal": "GBE_LED0"
+  },
+  {
+    "ball": "P48",
+    "signal": "GBE_LED2"
+  },
+  {
+    "ball": "P50",
+    "signal": "GBE_SMBCLK"
+  },
+  {
+    "ball": "R02",
+    "signal": "VSS"
+  },
+  {
+    "ball": "R04",
+    "signal": "VSS"
+  },
+  {
+    "ball": "R05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "R08",
+    "signal": "DDR3_1_DQ[38]"
+  },
+  {
+    "ball": "R09",
+    "signal": "DDR3_1_DQ[34]"
+  },
+  {
+    "ball": "R11",
+    "signal": "DDR3_1_DQ[35]"
+  },
+  {
+    "ball": "R12",
+    "signal": "VSS"
+  },
+  {
+    "ball": "R14",
+    "signal": "DDR3_1_DQ[33]"
+  },
+  {
+    "ball": "R15",
+    "signal": "DDR3_1_DQ[32]"
+  },
+  {
+    "ball": "R21",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "R22",
+    "signal": "VCCDDR_1_1P5"
+  },
+  {
+    "ball": "R29",
+    "signal": "DDR3_1_VREF"
+  },
+  {
+    "ball": "R30",
+    "signal": "VSS"
+  },
+  {
+    "ball": "R37",
+    "signal": "R37_RSVD"
+  },
+  {
+    "ball": "R38",
+    "signal": "VSS"
+  },
+  {
+    "ball": "R44",
+    "signal": "VCCAPLL_SATA3_1P0"
+  },
+  {
+    "ball": "R46",
+    "signal": "VCCAPLL_SATA_1P0"
+  },
+  {
+    "ball": "R52",
+    "signal": "VSS"
+  },
+  {
+    "ball": "R53",
+    "signal": "SATA3_OBSN"
+  },
+  {
+    "ball": "R55",
+    "signal": "SATA3_OBSP"
+  },
+  {
+    "ball": "R56",
+    "signal": "VSS"
+  },
+  {
+    "ball": "R58",
+    "signal": "GBE_LED3"
+  },
+  {
+    "ball": "R59",
+    "signal": "GBE_EE_CS_N"
+  },
+  {
+    "ball": "R62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "R63",
+    "signal": "SATA3_TXP[1]"
+  },
+  {
+    "ball": "R65",
+    "signal": "SATA3_TXN[1]"
+  },
+  {
+    "ball": "R66",
+    "signal": "SATA3_TXP[0]"
+  },
+  {
+    "ball": "T01",
+    "signal": "DDR3_1_DQ[45]"
+  },
+  {
+    "ball": "T03",
+    "signal": "DDR3_1_DQ[44]"
+  },
+  {
+    "ball": "T05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T17",
+    "signal": "DDR3_1_DQ[36]"
+  },
+  {
+    "ball": "T18",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T20",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T21",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T23",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T25",
+    "signal": "DDR3_1_CMDPU"
+  },
+  {
+    "ball": "T26",
+    "signal": "DDR3_1_DQPU"
+  },
+  {
+    "ball": "T28",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T29",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T31",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T32",
+    "signal": "DDR3_1_ODTPU"
+  },
+  {
+    "ball": "T34",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T36",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T37",
+    "signal": "VCCA_GBE_1P0"
+  },
+  {
+    "ball": "T39",
+    "signal": "VCCAREF_GBE_HVGEN"
+  },
+  {
+    "ball": "T41",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T44",
+    "signal": "VCCAPLL_SATA3_1P0"
+  },
+  {
+    "ball": "T45",
+    "signal": "VCCAPLL_SATA_1P0"
+  },
+  {
+    "ball": "T47",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T48",
+    "signal": "GBE_SDP0_1"
+  },
+  {
+    "ball": "T50",
+    "signal": "GBE_EE_SK"
+  },
+  {
+    "ball": "T52",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T53",
+    "signal": "GPIO_SUS2"
+  },
+  {
+    "ball": "T55",
+    "signal": "GBE_SMBALRT_N"
+  },
+  {
+    "ball": "T56",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T58",
+    "signal": "GBE_SDP0_0"
+  },
+  {
+    "ball": "T59",
+    "signal": "GBE_SMBD"
+  },
+  {
+    "ball": "T62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "T64",
+    "signal": "SATA3_TXN[0]"
+  },
+  {
+    "ball": "U02",
+    "signal": "DDR3_1_DQ[41]"
+  },
+  {
+    "ball": "U04",
+    "signal": "DDR3_1_DQ[40]"
+  },
+  {
+    "ball": "U08",
+    "signal": "DDR3_1_DQ[39]"
+  },
+  {
+    "ball": "U09",
+    "signal": "VSS"
+  },
+  {
+    "ball": "U11",
+    "signal": "DDR3_1_DQS[4]"
+  },
+  {
+    "ball": "U12",
+    "signal": "DDR3_1_DQSB[4]"
+  },
+  {
+    "ball": "U14",
+    "signal": "VSS"
+  },
+  {
+    "ball": "U15",
+    "signal": "DDR3_1_DQ[37]"
+  },
+  {
+    "ball": "U62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "U63",
+    "signal": "VSS"
+  },
+  {
+    "ball": "U65",
+    "signal": "VSS"
+  },
+  {
+    "ball": "V05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "V20",
+    "signal": "VCCADLLDDR_1_1P0"
+  },
+  {
+    "ball": "V21",
+    "signal": "VCCADLLDDR_1_1P0"
+  },
+  {
+    "ball": "V23",
+    "signal": "VCCADLLDDR_1_1P0"
+  },
+  {
+    "ball": "V25",
+    "signal": "VCCADLLDDR_1_1P0"
+  },
+  {
+    "ball": "V26",
+    "signal": "VCCADLLDDR_1_1P0"
+  },
+  {
+    "ball": "V28",
+    "signal": "VCCACKDDR_1_1P0"
+  },
+  {
+    "ball": "V29",
+    "signal": "VCCCLKDDR_1_1P5"
+  },
+  {
+    "ball": "V31",
+    "signal": "VCCSFRPLLDDR_1_1P5"
+  },
+  {
+    "ball": "V32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "V34",
+    "signal": "VCCSFRXXXSI0_1P35"
+  },
+  {
+    "ball": "V36",
+    "signal": "VSS"
+  },
+  {
+    "ball": "V38",
+    "signal": "VCCA_GBE_1P0"
+  },
+  {
+    "ball": "V39",
+    "signal": "VCCAREF_GBE_HVGEN"
+  },
+  {
+    "ball": "V41",
+    "signal": "VCCAPLL_GBE_1P0"
+  },
+  {
+    "ball": "V42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "V44",
+    "signal": "VSS"
+  },
+  {
+    "ball": "V46",
+    "signal": "VCCAREF_SATA_HVGEN"
+  },
+  {
+    "ball": "V63",
+    "signal": "NCSI_RXD1"
+  },
+  {
+    "ball": "V64",
+    "signal": "PMU_SLP_S45_B"
+  },
+  {
+    "ball": "V66",
+    "signal": "GPIO_SUS0"
+  },
+  {
+    "ball": "W01",
+    "signal": "DDR3_1_DQS[5]"
+  },
+  {
+    "ball": "W03",
+    "signal": "DDR3_1_DQSB[5]"
+  },
+  {
+    "ball": "W04",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W07",
+    "signal": "DDR3_1_DQSB[6]"
+  },
+  {
+    "ball": "W08",
+    "signal": "DDR3_1_DQ[54]"
+  },
+  {
+    "ball": "W10",
+    "signal": "DDR3_1_DQ[50]"
+  },
+  {
+    "ball": "W11",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W13",
+    "signal": "DDR3_1_DQ[49]"
+  },
+  {
+    "ball": "W14",
+    "signal": "DDR3_1_DQ[48]"
+  },
+  {
+    "ball": "W16",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W17",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W19",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W21",
+    "signal": "VCCADDR_1_1P0"
+  },
+  {
+    "ball": "W23",
+    "signal": "VCCADDR_1_1P0"
+  },
+  {
+    "ball": "W25",
+    "signal": "VCCADDR_1_1P0"
+  },
+  {
+    "ball": "W26",
+    "signal": "VCCADDR_1_1P0"
+  },
+  {
+    "ball": "W28",
+    "signal": "VCCACKDDR_1_1P0"
+  },
+  {
+    "ball": "W29",
+    "signal": "VCCCLKDDR_1_1P5"
+  },
+  {
+    "ball": "W31",
+    "signal": "VCCPLLDDR_1_1P0"
+  },
+  {
+    "ball": "W32",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W34",
+    "signal": "VCCSFRXXXSI0_1P35"
+  },
+  {
+    "ball": "W36",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W38",
+    "signal": "VCCA_GBE_1P0"
+  },
+  {
+    "ball": "W39",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W41",
+    "signal": "VCCAPLL_GBE_1P0"
+  },
+  {
+    "ball": "W42",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W44",
+    "signal": "VCCAREF_SATA_HVGEN"
+  },
+  {
+    "ball": "W46",
+    "signal": "VCCAREF_SATA_HVGEN"
+  },
+  {
+    "ball": "W48",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W50",
+    "signal": "GBE_LED1"
+  },
+  {
+    "ball": "W51",
+    "signal": "GBE_EE_DI"
+  },
+  {
+    "ball": "W53",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W54",
+    "signal": "GPIO_SUS1"
+  },
+  {
+    "ball": "W56",
+    "signal": "GBE_MDIO0_I2C_CLK"
+  },
+  {
+    "ball": "W57",
+    "signal": "VSS"
+  },
+  {
+    "ball": "W59",
+    "signal": "GBE_MDIO0_I2C_DATA"
+  },
+  {
+    "ball": "W60",
+    "signal": "GBE_EE_DO"
+  },
+  {
+    "ball": "W62",
+    "signal": "VSS"
+  },
+  {
+    "ball": "Y02",
+    "signal": "DDR3_1_DQ[47]"
+  },
+  {
+    "ball": "Y04",
+    "signal": "DDR3_1_DQ[46]"
+  },
+  {
+    "ball": "Y05",
+    "signal": "VSS"
+  },
+  {
+    "ball": "Y07",
+    "signal": "DDR3_1_DQS[6]"
+  },
+  {
+    "ball": "Y08",
+    "signal": "VSS"
+  },
+  {
+    "ball": "Y10",
+    "signal": "DDR3_1_DQ[55]"
+  },
+  {
+    "ball": "Y11",
+    "signal": "DDR3_1_DQ[51]"
+  },
+  {
+    "ball": "Y13",
+    "signal": "VSS"
+  },
+  {
+    "ball": "Y14",
+    "signal": "DDR3_1_DQ[53]"
+  },
+  {
+    "ball": "Y16",
+    "signal": "DDR3_1_DQ[52]"
+  },
+  {
+    "ball": "Y17",
+    "signal": "VSS"
+  },
+  {
+    "ball": "Y19",
+    "signal": "VSS"
+  },
+  {
+    "ball": "Y48",
+    "signal": "VSS"
+  },
+  {
+    "ball": "Y50",
+    "signal": "PMU_SLP_LAN_B"
+  },
+  {
+    "ball": "Y51",
+    "signal": "VSS"
+  },
+  {
+    "ball": "Y53",
+    "signal": "GBE_MDIO1_I2C_DATA"
+  },
+  {
+    "ball": "Y54",
+    "signal": "GBE_MDIO1_I2C_CLK"
+  },
+  {
+    "ball": "Y56",
+    "signal": "VSS"
+  },
+  {
+    "ball": "Y57",
+    "signal": "SUSPWRDNACK"
+  },
+  {
+    "ball": "Y59",
+    "signal": "NCSI_ARB_OUT"
+  },
+  {
+    "ball": "Y60",
+    "signal": "VSS"
+  },
+  {
+    "ball": "Y63",
+    "signal": "CPU_RESET_B"
+  },
+  {
+    "ball": "Y65",
+    "signal": "SPI_CS0_B"
+  }
+]

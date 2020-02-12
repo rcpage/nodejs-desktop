@@ -32,7 +32,7 @@ class WebApi extends PublicServer {
   }
 
   handleHttpRequest(req, res){
-    //console.log('WebApi.handleHttpRequest', req.URL.pathanem);
+    //console.log('WebApi.handleHttpRequest', req.url);
     let HTTPHandleObject = this.getHTTPHandle(req);
     if(HTTPHandleObject){
       req.handle = HTTPHandleObject;

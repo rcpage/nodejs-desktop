@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <form target="_blank" method="POST" action="http://api.rusty.com/v1/inventory/add">
+      <fieldset>
+        <legend> Store Inventory </legend>
+        Host:<br>
+        <input type="text" name="host" value="">
+        <br>
+        Username:<br>
+        <input type="text" name="username" value="">
+        <br>
+        Password:<br>
+        <input type="password" name="password" value="">
+        <br><br>
+        <input type="submit" value="Store Inventory">
+      </fieldset>
+    </form>
+
+    <form target="_blank" method="POST" action="http://api.rusty.com/v1/inventory/search">
+      <fieldset>
+        <legend> Search Keys </legend>
+        Username:<br>
+        <input type="text" name="name" value="">
+        <br>
+        <input type="submit" value="Search">
+      </fieldset>
+    </form>
+    
+    <form target="_blank" method="GET" action="http://api.rusty.com/v1/inventory/view">
+      <fieldset>
+        <legend> Decrypt Key </legend>
+        ID:<br>
+        <input type="text" name="id" value="">
+        <br>
+        <input type="submit" value="Search">
+      </fieldset>
+    </form>
+
+  </body>
+</html>
+
+
+

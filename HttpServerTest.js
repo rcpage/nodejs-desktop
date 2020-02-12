@@ -22,9 +22,19 @@ using('api.v1.payment');
 using('api.v1.ansible_task_manager');
 using('api.v1.ansible_playbook_manager');
 class test extends Endpoint {
-	static get path(){
-		return ["/test"]
-    }
+  static get path(){
+    return ["/test"]
+  }
+
+  GET(){
+    console.log("GET", this.req.query);
+    this.res.json(this.req.query);
+  }
+  
+  POST(){
+    console.log("POST", this.req.post);
+    this.res.json(this.req.post);
+  }
 }
 
 var webAPI = new WebApi([ssh2, test, inventory, Upload, payment, ansible_task_manager, ansible_playbook_manager]);
