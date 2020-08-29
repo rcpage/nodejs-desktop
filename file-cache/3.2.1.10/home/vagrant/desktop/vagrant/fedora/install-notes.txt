@@ -1,0 +1,46 @@
+#update user info for commits
+git config --global user.email "russell.c.page@gmail.com"
+git config --global user.name "Rusty"
+
+#clone repository
+git clone https://github.com/rcpage/desktop.git
+#Enter credentials...
+
+cd desktop
+
+#install nodejs
+sudo dnf install nodejs -y
+
+#open http port 80/tcp
+sudo firewall-cmd --add-port 80/tcp --permanent
+sudo firewall-cmd --reload
+
+#start desktop service
+sudo node HttpServerTest.js
+
+#
+#create file: sudo vi /etc/yum.repos.d/mongodb.repo
+#
+[Mongodb]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/4.0/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
+
+sudo dnf install mongodb-org
+
+# Change bindIp value: bindIp: 0.0.0.0
+sudo vi /etc/mongo.conf
+
+#open http port 80/tcp
+sudo firewall-cmd --add-port 27017/tcp --permanent
+sudo firewall-cmd --reload
+
+#start mongodb service
+sudo systemctl enable mongod.service
+sudo systemctl start mongod.service
+sudo systemctl status mongod.service
+mongod --version
+
+

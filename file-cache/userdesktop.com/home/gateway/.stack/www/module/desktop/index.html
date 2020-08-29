@@ -1,0 +1,430 @@
+<!doctype html>
+<html ng-app="DesktopApp">
+  <head>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link href="/lib/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/desktop.css">
+  </head>
+  <body ng-controller="DesktopController as desktop">
+    <div id="taskbar">
+      <div id="tasks">
+      </div>
+    </div>
+    <div id="workspace">
+
+    </div>
+    <div id="right-drawer">
+
+    </div>
+    <div class="overlay"></div>
+    <div id="wrapper">
+      <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+        <span class="hamb-top"></span>
+        <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+      </button>
+
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        <ul class="nav sidebar-nav">
+          <li class="sidebar-brand">
+            <a href="#" onclick="return false;">
+              <span class="fa fa-desktop"></span> Applications
+            </a>
+          </li>
+          
+           <li>
+            <a href="#" onclick="return StartImageViewer();">Image Viewer</a>
+          </li>
+
+          <li>
+            <a href="#" onclick="return StartNavigator();">Navigator</a>
+          </li>
+
+          <li>
+            <a href="#" onclick="return StartDatabase();">Database</a>
+          </li>
+
+          <li>
+            <a href="#" onclick="return StartStudio();">Studio</a>
+          </li>
+          <li>
+            <a href="#" onclick="return StartLocalhost();">Localhost</a>
+          </li>
+          <li>
+            <a href="#" onclick="return StartSSH();">Command</a>
+          </li>
+          <li>
+            <a href="#" onclick="return desktop.Logoff();">Log off</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /#sidebar-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <div id="template">
+      <div name="window">
+        <div class="panel panel-default window">
+          <div class="panel-heading">
+            <div class="control right">
+              <button type="button" class="exit" title="Close" data-effect="hide"><span class="glyphicon glyphicon-remove"></span></button>
+              <button type="button" class="minimize" title="Minimize"  data-effect="hide"><span class="glyphicon glyphicon-minus"></span></button>
+            </div>
+            <div class="control left">
+
+            </div>
+            <div class="title center"></div>
+          </div>
+          <div class="panel-body"></div>
+        </div>
+      </div>
+      <div name="navigator-toolbar">
+        <div class="panel-sub-heading">			
+          <button type="button" class="btn btn-xs btn-default win-btn-search" role="button" title="Search" style="display:none;">				
+            <span class="glyphicon glyphicon glyphicon-search"></span>			
+          </button>			
+          <span style="float: right; margin-left: 5px; display:none;">				
+            <input class="search" type="text">			
+          </span>			
+          <button type="button" class="btn btn-xs btn-default win-btn-refresh" role="button" title="Refresh">				
+            <span class="glyphicon glyphicon glyphicon-refresh"></span>			
+          </button>			
+          <button type="button" class="btn btn-xs btn-default win-btn-back" role="button" title="Back" style="display:none;">				
+            <span class="glyphicon glyphicon-chevron-left"></span>			
+          </button>			
+          <button type="button" class="btn btn-xs btn-default win-btn-fwd" role="button" title="Forward" style="display:none;">				
+            <span class="glyphicon glyphicon-chevron-right"></span>			
+          </button>			
+          <button type="button" class="btn btn-xs btn-default win-btn-up" role="button" title="Parent Directory">				
+            <span class="glyphicon glyphicon-arrow-up"></span>			
+          </button>		
+          
+          <span class="textbox">				
+            <input class="path" type="text" />						
+          </span>	
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div id="save-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">X</button>
+            <h4 class="modal-title">Save File</h4>
+          </div>
+          <div class="modal-body">
+            
+            <span>				
+              <input class="path" type="text" />						
+            </span>	
+          </div>
+          <div class="modal-footer">
+            <button name="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+            <button name="cancel" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div id="context-menu">
+      <ul class="dropdown-menu" role="menu">
+        <li><a tabindex="-1">Open</a></li>
+        <li><a tabindex="-1">Close</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1">Cut</a></li>
+        <li><a tabindex="-1">Copy</a></li>
+        <li><a tabindex="-1">Paste</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1">New Folder</a></li>
+        <li><a tabindex="-1">New File</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1">Delete</a></li>
+        <li><a tabindex="-1">Rename</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1">Unzip</a></li>
+        <li><a tabindex="-1">Zip</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1">Properties</a></li>
+        <li><a tabindex="-1">Download File</a></li>
+      </ul>
+    </div>
+  </body>
+  <script src="/js/deepmerge.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/lib/bootstrap-contextmenu/bootstrap-contextmenu.js" type="text/javascript"></script> 
+  <script src="/js/desktop.js"></script>
+  <script src="/js/moment-with-locales.js"></script>
+  <script src="/stack/class/Application.js"></script>
+  <script type="text/javascript">
+
+    Object.describe = function(obj){
+      let curr = obj, objectChain = [];
+      do{
+        let props = Object.getOwnPropertyNames(curr);
+        objectChain.push(curr);
+      } while(curr = Object.getPrototypeOf(curr));
+      return objectChain; 
+    }
+
+    //strap Application.include to global scope
+    function include() {
+      return Application.include.apply(Application, arguments);
+    }
+
+    function JsRuntime(src){
+      //console.log("JsRuntime:", src);
+      let handle = undefined;
+      try {
+        handle = eval('(function(){return ' + src + ';})()');
+      }
+      catch(e){
+        console.error(e);
+      }
+      return handle;
+    }
+
+    function StartNavigator(){
+      include('/stack/class/NavigatorApplication.js');
+      var start = Date.now();
+      Application.Run(() => {
+        NavigatorApplication.Start();
+        console.log('took', Date.now() - start, 'ms');
+      });
+      CloseWrapper();
+      return false;
+    }
+
+    function StartDatabase(){
+      include('/stack/class/DatabaseApplication.js');
+      var start = Date.now();
+      Application.Run(() => {
+        window.db = DatabaseApplication.Start();
+        window.location.hash = "DatabaseApplication";
+        console.log('took', Date.now() - start, 'ms');
+      });
+      CloseWrapper();
+      return false;
+    }
+
+    function StartLocalhost(){
+      include('/stack/class/LocalhostApplication.js');
+      var start = Date.now();
+      Application.Run(() => {
+        LocalhostApplication.Start();
+        console.log('took', Date.now() - start, 'ms');
+      });
+      CloseWrapper();
+      return false;
+    }
+
+    function StartStudio(){
+      include('/stack/class/StudioApplication.js');
+      var start = Date.now();
+      Application.Run(() => {
+        StudioApplication.Start();
+        console.log('took', Date.now() - start, 'ms');
+      });
+      CloseWrapper();
+      return false;
+    }
+
+    function StartSSH(){
+      include('/stack/class/CommandApplication.js');
+      var start = Date.now();
+      Application.Run(() => {
+        CommandApplication.Start();
+        console.log('took', Date.now() - start, 'ms');
+      });
+      CloseWrapper();
+      return false;
+    }
+    
+    function StartImageViewer(){
+      include('/stack/class/ImageViewerApplication.js');
+      var start = Date.now();
+      Application.Run(() => {
+        ImageViewerApplication.Start();
+        console.log('took', Date.now() - start, 'ms');
+      });
+      CloseWrapper();
+      return false;
+    }
+
+    window.desktop = {};
+
+
+    // "prepend event" functionality as a jQuery plugin
+    $.fn.extend({
+      prependEvent: function (event, handler) {
+        return this.each(function () {
+          var events = $(this).data("events"), 
+              currentHandler;
+
+          if (events && events[event].length > 0) {
+            currentHandler = events[event][0].handler;
+            events[event][0].handler = function () {
+              handler.apply(this, arguments);
+              currentHandler.apply(this, arguments);
+            }      
+          }
+        });
+      }
+    });
+
+    window.desktop.Logoff = function(){
+      let sure = confirm('Are you sure you want to logoff?');
+      if(sure){
+        let xhr = $.get('/?logoff=true').fail(() => {
+          window.location.reload();
+        });
+      }
+      return false;
+    }
+
+
+
+
+
+    var trigger = $('.hamburger'),
+        overlay = $('.overlay'),
+        isClosed = false;
+
+    function closeHambugerCross(){
+      overlay.hide();
+      trigger.removeClass('is-open');
+      trigger.addClass('is-closed');
+      isClosed = false;
+    }
+
+    function openHambugerCross(){
+      overlay.show();
+      trigger.removeClass('is-closed');
+      trigger.addClass('is-open');
+      isClosed = true;
+    }
+
+    function hamburger_cross() {
+      if (isClosed == true) {
+        closeHambugerCross();
+      } else {
+        openHambugerCross();
+      }
+    }
+
+    function CloseWrapper(){
+      closeHambugerCross();
+      $('#wrapper').removeClass('toggled');
+    }
+
+    function OpenWrapper(){
+      openHambugerCross();
+      $('#wrapper').addClass('toggled');
+    }
+
+    function get(url, callback){
+      var xmlHttpRequest = new XMLHttpRequest();
+      xmlHttpRequest.addEventListener("load", function load(){ 
+        if(callback) callback(this.responseText, this);
+      });
+      xmlHttpRequest.open("GET", url);
+      xmlHttpRequest.withCredentials = true;
+      //xmlHttpRequest.setRequestHeader('Access-Control-Allow-Origin', window.location.href);
+      xmlHttpRequest.send();
+    }
+
+    $(document).ready(function() {
+
+
+      //include('/stack/class/Type.js');
+      Application.Run((stack) => {
+        function searchObject(obj){
+          let keys = Object.keys(obj);
+          for(let i in keys){
+            let o = obj[keys[i]];
+            if(o.namespace != undefined){
+              console.log(o.namespace);
+              o.getType = function() { return Type.create(o)(); }
+            }
+            else searchObject(obj[keys[i]]);
+          }
+        }
+        searchObject(stack)
+        Type.stack = stack;
+        window.stack = stack;
+      });
+
+
+      trigger.click(function() {
+        hamburger_cross();
+      });
+      $('[data-toggle="offcanvas"]').click(function() {
+        $('#wrapper').toggleClass('toggled');
+      });
+
+      $.ajaxSetup({
+        crossDomain: true,
+        xhrFields: {
+          withCredentials: true
+        }
+      });
+
+      $('#save-modal button[name=save]').on('click', function save(e) { 
+        var filename = $('#save-modal .path').val(), 
+            hostname =$('#save-modal .hostname').val(); 
+
+        if(!filename) {
+          $('#save-modal .path').css('border','solid 2px #bf0000');
+          return false;
+        }
+        $('#save-modal').attr('cancel', false);
+        $('#save-modal').attr('filename', filename);
+        $('#save-modal').attr('hostname', hostname);
+      });
+
+      $('#save-modal button[name=cancel]').on('click', function cancel(e) { 
+        $('#save-modal').attr('filename', '');
+        $('#save-modal').attr('hostname', '');
+        $('#save-modal .path').css('border','');
+        $('#save-modal .path').val('');
+        $('#save-modal').attr('cancel', true);
+      });
+
+    });
+  </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
