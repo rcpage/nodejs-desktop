@@ -9,7 +9,39 @@ The application implements a desktop-like environment for remote hosts.  Credent
 ```
 git clone https://github.com/rcpage/nodejs-desktop.git
 cd nodejs-desktop
-node HttpTestServer.js
+node HttpServerTest.js 
+System.Server
+System.Network.HTTP.HTTPStatusCode
+System.Network.Authenticate
+System.Network.HTTP.SessionManager
+System.Network.HTTP.ServerResponse
+System.Network.HTTP.IncomingMessage
+System.Network.HTTP.ContentType
+System.Network.PublicServer
+System.Network.DomainManager
+System.Network.PublicFileService
+System.Network.HTTP.Session.MongoDBSession
+System.Network.HTTP.Handle
+System.Network.HTTP.Microservice
+System.Network.WebApi
+api.v1.ssh2
+api.v1.inventory
+System.Text
+api.v1.upload
+api.v1.payment
+HTTP Handle ssh2 localhost:8090/v1/ssh2
+HTTP Handle ssh2 localhost:8090/v1/ssh2/{action}
+HTTP Handle test /test
+HTTP Handle inventory localhost:8090/v1/inventory
+HTTP Handle inventory localhost:8090/v1/inventory/{action}
+HTTP Handle Upload /upload
+HTTP Handle payment localhost:8090/v1/payment
+HTTP Handle payment localhost:8090/v1/payment/{context}
+HTTP Handle payment localhost:8090/v1/payment/{context}/{action}
+PublicFileService server listening on port 8091.
+PublicFileService started Fri Jan 28 2022 12:33:22 GMT-0600 (Central Standard Time)
+WebApi server listening on port 8090.
+WebApi started Fri Jan 28 2022 12:33:22 GMT-0600 (Central Standard Time)
 ```
 
 ### Browser Preview (AngularJS Application)
