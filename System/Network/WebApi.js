@@ -57,7 +57,7 @@ class WebApi extends PublicServer {
         let handle = new HTTPHandleObject(req, res, undefined, onCompleteEventHandle);
         //TODO: do i need to dispose handle after period of time....?
       }
-      else if (HTTPHandleObject.prototype instanceof Endpoint) {
+      else if (HTTPHandleObject.prototype instanceof Microservice) {
         var done = () => {
           this.onServiceComplete(req, res);
         };
