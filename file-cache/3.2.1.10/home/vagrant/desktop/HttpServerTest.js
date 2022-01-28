@@ -22,16 +22,16 @@ using('api.v1.payment');
 using('api.v1.ansible_task_manager');
 using('api.v1.ansible_playbook_manager');
 class test extends Endpoint {
-  static get path(){
+  static get path() {
     return ["/test"]
   }
 
-  GET(){
+  GET() {
     console.log("GET", this.req.query);
     this.res.json(this.req.query);
   }
-  
-  POST(){
+
+  POST() {
     console.log("POST", this.req.post);
     this.res.json(this.req.post);
   }
@@ -46,8 +46,8 @@ webAPI.start(8090);
 
 
 var domainManager = new DomainManager();
-domainManager.add('api.rusty.com','http://localhost:8090');
-domainManager.add('rusty.com','http://localhost:8091');
+domainManager.add('api.localhost', 'http://localhost:8090');
+domainManager.add('localhost', 'http://localhost:8091');
 domainManager.start(80);
 
 

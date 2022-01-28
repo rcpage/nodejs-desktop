@@ -2,31 +2,31 @@ using('System.Network.PublicFileService');
 using('System.Network.HTTP.HTTPStatusCode');
 class ssh extends Endpoint {
 
-  static get path(){
+  static get path() {
     return "/v1/ssh";
   }
 
-  static getHostCredentials(id, cb){
+  static getHostCredentials(id, cb) {
     let request = System.getModule('request');
     request.get({
-      url : 'http://api.rusty.com/v1/inventory/view?id='+id
+      url: '/v1/inventory/view?id=' + id
     }, (err, response, body) => {
-      if(cb) {
+      if (cb) {
         cb(err, JSON.parse(body));
       }
     })
   }
 
-  static GET(){
+  static GET() {
     this.executeAction();
   }
 
 
-  static POST(){
+  static POST() {
     this.executeAction();
   }
 
-  static executeAction(){
+  static executeAction() {
     //
     // TODO: Secure this action
     //
@@ -66,7 +66,7 @@ class ssh extends Endpoint {
       let destDir = downloadDirectory + '/' + host + sourcePaths.join('/');
       let cacheDest = destDir + '/' + filename;
 
-      switch(action){
+      switch (action) {
         case "rename":
           this.rename(host, port, user, password, path, newPath);
           break;
@@ -77,8 +77,8 @@ class ssh extends Endpoint {
           this.delete(host, port, user, password, path, isDirectory);
           break;
         case "list":
-          this.readDirectory(host,port, user, password, path);
-          break;	
+          this.readDirectory(host, port, user, password, path);
+          break;
         case "upload":
           dest = source;
           System.writeFile(cacheDest, this.req.post.body);
@@ -92,40 +92,40 @@ class ssh extends Endpoint {
           this.exec(host, port, user, password, command);
           break;
         default:
-          this.res.json({ message:"Action not defined." });
+          this.res.json({ message: "Action not defined." });
           break;
       }
     });
   }
 
-  static rename(host, port, user, password, path, newPath){
-    var http = this;   
+  static rename(host, port, user, password, path, newPath) {
+    var http = this;
     var Client = System.getModule('ssh2').Client;
     var conn = new Client();
     var msg = [{ message: `'${path}' has been renamed to '${newPath}'.` }];
-    conn.on('ready', function() {
-      conn.sftp(function(err, sftp) {
+    conn.on('ready', function () {
+      conn.sftp(function (err, sftp) {
         if (err) {
           http.res.status(HTTPStatusCode.InternalServerError)
             .json({
-            error: err.stack 
-          });
-          return; 
+              error: err.stack
+            });
+          return;
         }
         //rename directory
-        sftp.rename(path, newPath, function(err) {
+        sftp.rename(path, newPath, function (err) {
           if (err) {
             http.res.status(HTTPStatusCode.InternalServerError)
               .json({
-              error: err.stack 
-            });
-            return; 
+                error: err.stack
+              });
+            return;
           }
           http.res.json(msg);
           conn.end();
         });
       });
-    }).on('error', function(err) {
+    }).on('error', function (err) {
       http.res.json({ error: err });
     }).connect({
       host: host,
@@ -135,34 +135,34 @@ class ssh extends Endpoint {
     });
   }
 
-  static mkdir(host, port, user, password, path){
-    var http = this;   
+  static mkdir(host, port, user, password, path) {
+    var http = this;
     var Client = System.getModule('ssh2').Client;
     var conn = new Client();
     var msg = [{ message: `'${path}' has been created.` }];
-    conn.on('ready', function() {
-      conn.sftp(function(err, sftp) {
+    conn.on('ready', function () {
+      conn.sftp(function (err, sftp) {
         if (err) {
           http.res.status(HTTPStatusCode.InternalServerError)
             .json({
-            error: err.stack 
-          });
-          return; 
+              error: err.stack
+            });
+          return;
         }
         //create directory
-        sftp.mkdir(path, function(err) {
+        sftp.mkdir(path, function (err) {
           if (err) {
             http.res.status(HTTPStatusCode.InternalServerError)
               .json({
-              error: err.stack 
-            });
-            return; 
+                error: err.stack
+              });
+            return;
           }
           http.res.json(msg);
           conn.end();
         });
       });
-    }).on('error', function(err) {
+    }).on('error', function (err) {
       http.res.json({ error: err });
     }).connect({
       host: host,
@@ -173,29 +173,29 @@ class ssh extends Endpoint {
   }
 
 
-  static delete(host, port, user, password, path, isDirectory){
-    var http = this;   
+  static delete(host, port, user, password, path, isDirectory) {
+    var http = this;
     var Client = System.getModule('ssh2').Client;
     var conn = new Client();
     var msg = [{ message: `'${path}' has been deleted.` }];
-    conn.on('ready', function() {
-      conn.sftp(function(err, sftp) {
+    conn.on('ready', function () {
+      conn.sftp(function (err, sftp) {
         if (err) {
           http.res.status(HTTPStatusCode.InternalServerError)
             .json({
-            error: err.stack 
-          });
-          return; 
+              error: err.stack
+            });
+          return;
         }
-        if(isDirectory){
+        if (isDirectory) {
           //delete directory
-          sftp.rmdir(path, function(err) {
+          sftp.rmdir(path, function (err) {
             if (err) {
               http.res.status(HTTPStatusCode.InternalServerError)
                 .json({
-                error: err.stack 
-              });
-              return; 
+                  error: err.stack
+                });
+              return;
             }
             http.res.json(msg);
             conn.end();
@@ -203,20 +203,20 @@ class ssh extends Endpoint {
         }
         else {
           //delete file
-          sftp.unlink(path, function(err) {
+          sftp.unlink(path, function (err) {
             if (err) {
               http.res.status(HTTPStatusCode.InternalServerError)
                 .json({
-                error: err.stack 
-              });
-              return; 
+                  error: err.stack
+                });
+              return;
             }
             http.res.json(msg);
             conn.end();
           });
         }
       });
-    }).on('error', function(err) {
+    }).on('error', function (err) {
       http.res.json({ error: err });
     }).connect({
       host: host,
@@ -227,33 +227,33 @@ class ssh extends Endpoint {
   }
 
 
-  static readDirectory(host, port, user, password, path){
-    var http = this;   
+  static readDirectory(host, port, user, password, path) {
+    var http = this;
     var Client = System.getModule('ssh2').Client;
     var conn = new Client();
 
-    conn.on('ready', function() {
-      conn.sftp(function(err, sftp) {
+    conn.on('ready', function () {
+      conn.sftp(function (err, sftp) {
         if (err) {
           http.res.status(HTTPStatusCode.InternalServerError)
             .json({
-            error: err.stack 
-          });
-          return; 
+              error: err.stack
+            });
+          return;
         }
-        sftp.readdir(path, function(err, list) {
+        sftp.readdir(path, function (err, list) {
           if (err) {
             http.res.status(HTTPStatusCode.InternalServerError)
               .json({
-              error: err.stack 
-            });
-            return; 
+                error: err.stack
+              });
+            return;
           }
           http.res.json(list);
           conn.end();
         });
       });
-    }).on('error', function(err) {
+    }).on('error', function (err) {
       http.res.json({ error: err });
     }).connect({
       host: host,
@@ -263,38 +263,38 @@ class ssh extends Endpoint {
     });
   }
 
-  static fastGet(host, port, user, password, remotePath, localPath, download){
+  static fastGet(host, port, user, password, remotePath, localPath, download) {
     var Client = System.getModule('ssh2').Client;
     var conn = new Client();
     var http = this;
     var filename = localPath.split('/').pop();
-    conn.on('ready', function() {
-      conn.sftp(function(err, sftp) {
+    conn.on('ready', function () {
+      conn.sftp(function (err, sftp) {
         if (err) {
           http.res.status(HTTPStatusCode.InternalServerError)
             .json({
-            error: err.stack 
-          });
-          return; 
+              error: err.stack
+            });
+          return;
         }
-        sftp.fastGet(remotePath, localPath, function(err) {
+        sftp.fastGet(remotePath, localPath, function (err) {
           if (err) {
             http.res.status(HTTPStatusCode.InternalServerError)
               .json({
-              error: err.stack 
-            });
-            return; 
+                error: err.stack
+              });
+            return;
           }
           //http.res.json({ error:err, message:"File has beend downloaded." });
-          if(download){
-            http.res.setHeader('Content-Disposition', "attachment; filename=\"" + filename +"\"");
+          if (download) {
+            http.res.setHeader('Content-Disposition', "attachment; filename=\"" + filename + "\"");
           }
           http.res.setHeader('file-cache', localPath);
-          PublicFileService.streamFile(localPath, http.req, http.res, null, ()=>console.log(`File has been downloaded to ${localPath}.`)); 
+          PublicFileService.streamFile(localPath, http.req, http.res, null, () => console.log(`File has been downloaded to ${localPath}.`));
           conn.end();
         });
       });
-    }).on('error', function(err) {
+    }).on('error', function (err) {
       http.res.json({ error: err });
     }).connect({
       host: host,
@@ -304,32 +304,32 @@ class ssh extends Endpoint {
     });
   }
 
-  static fastPut(host, port, user, password, localPath, remotePath){
+  static fastPut(host, port, user, password, localPath, remotePath) {
     var Client = System.getModule('ssh2').Client;
     var conn = new Client();
     var http = this;
-    conn.on('ready', function() {
-      conn.sftp(function(err, sftp) {
+    conn.on('ready', function () {
+      conn.sftp(function (err, sftp) {
         if (err) {
           http.res.status(HTTPStatusCode.InternalServerError)
             .json({
-            error: err.stack 
-          });
-          return; 
+              error: err.stack
+            });
+          return;
         }
-        sftp.fastPut(localPath, remotePath, function(err) {
+        sftp.fastPut(localPath, remotePath, function (err) {
           if (err) {
             http.res.status(HTTPStatusCode.InternalServerError)
               .json({
-              error: err.stack 
-            });
-            return; 
+                error: err.stack
+              });
+            return;
           }
-          http.res.json({ error:err, message:"File has beend uploaded." });
+          http.res.json({ error: err, message: "File has beend uploaded." });
           conn.end();
         });
       });
-    }).on('error', function(err) {
+    }).on('error', function (err) {
       http.res.json({ error: err });
     }).connect({
       host: host,
@@ -339,32 +339,32 @@ class ssh extends Endpoint {
     });
   }
 
-  static exec(host, port, user, password, command){
+  static exec(host, port, user, password, command) {
     var Client = System.getModule('ssh2').Client;
     var conn = new Client();
     var http = this;
-    conn.on('ready', function() {
-      conn.exec(command, function(err, stream) {
+    conn.on('ready', function () {
+      conn.exec(command, function (err, stream) {
         var responseData = '';
         var responseError = '';
         if (err) {
           http.res.status(HTTPStatusCode.InternalServerError)
             .json({
-            error: err.stack 
-          });
-          return; 
+              error: err.stack
+            });
+          return;
         }
-        stream.on('close', function(code, signal) {
+        stream.on('close', function (code, signal) {
           var msg = 'Stream :: close :: code: ' + code + ', signal: ' + signal;
           http.res.json({ error: responseError, data: responseData, message: msg });
           conn.end();
-        }).on('data', function(data) {
+        }).on('data', function (data) {
           responseData += data + '\n';
-        }).stderr.on('data', function(data) {
+        }).stderr.on('data', function (data) {
           responseError += data + '\n';
         });
       });
-    }).on('error', function(err) {
+    }).on('error', function (err) {
       http.res.json({ error: err });
     }).connect({
       host: host,

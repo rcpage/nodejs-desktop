@@ -1,398 +1,429 @@
 <!DOCTYPE html>
 <html ng-app="FileSystemApplication">
-  <head>
-    <title>Playbook Studio</title>
-    <link href="/js/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet">
-    <link href="/lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/lib/jstree/dist/themes/default/style.min.css">
-    <link href="/css/font-awesome.css" rel="stylesheet">
-    <script src="/js/jquery-2.1.4.min.js"></script>
-    <script src="/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
-    <script type="text/javascript" src="/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/lib/bootstrap-contextmenu/bootstrap-contextmenu.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="/js/js-yaml.js"></script>
-    <style>
-      pre{
-        margin: 1px 0;
-        padding: 2px;
-        color: white;
-        background-color: #333;
-        border-radius: 0;
-        border:none;
-        border-bottom: solid 1px #ccc;
-      }
 
-      .cmd-container {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        left: 0;
-      }
+<head>
+  <title>Playbook Studio</title>
+  <link href="/js/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet">
+  <link href="/lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="/css/app.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/lib/jstree/dist/themes/default/style.min.css">
+  <link href="/css/font-awesome.css" rel="stylesheet">
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+  <script type="text/javascript" src="/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/lib/bootstrap-contextmenu/bootstrap-contextmenu.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="/js/js-yaml.js"></script>
+  <style>
+    pre {
+      margin: 1px 0;
+      padding: 2px;
+      color: white;
+      background-color: #333;
+      border-radius: 0;
+      border: none;
+      border-bottom: solid 1px #ccc;
+    }
 
-      .cmd-history{
-        position: absolute;
-        right: 0;
-        left: 0;
-        top: 27px;
-        bottom: 22px;
-        overflow: none;
-        overflow-y: scroll;
-      }
+    .cmd-container {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
 
-      .terminal {
-        position: absolute;
-        right: 0px;
-        bottom: 29px;
-        background: #333;
-        border: solid 1px #ccc;
-        color: white;
-        padding: 3px;
-        width: 60%;
-        height: 40%;
-      }
+    .cmd-history {
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 27px;
+      bottom: 22px;
+      overflow: none;
+      overflow-y: scroll;
+    }
 
-      .terminal .title {
-        font-weight: bold;
-        text-align:left;
-        color: black;
-        background-color: #ccc;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        height:27px;
-        line-height: 27px;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
-        background: #ffffff; /* Old browsers */
-        background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
-        background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+    .terminal {
+      position: absolute;
+      right: 0px;
+      bottom: 29px;
+      background: #333;
+      border: solid 1px #ccc;
+      color: white;
+      padding: 3px;
+      width: 60%;
+      height: 40%;
+    }
 
-      }
-      .cmd:focus {
-        outline:0;
-      }
+    .terminal .title {
+      font-weight: bold;
+      text-align: left;
+      color: black;
+      background-color: #ccc;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 27px;
+      line-height: 27px;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
+      background: #ffffff;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+      /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(50%, #f1f1f1), color-stop(51%, #e1e1e1), color-stop(100%, #f6f6f6));
+      /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+      /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+      /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+      /* IE10+ */
+      background: linear-gradient(to bottom, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+      /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0);
+      /* IE6-9 */
 
-      .win-controls {
-        position: absolute;
-        right: 1px;
-        top: 1px;
-      }
+    }
 
-    </style>
+    .cmd:focus {
+      outline: 0;
+    }
 
-    <style>
+    .win-controls {
+      position: absolute;
+      right: 1px;
+      top: 1px;
+    }
+  </style>
 
-      #global-tasklist{
-        min-height: 20px;
-      }
+  <style>
+    #global-tasklist {
+      min-height: 20px;
+    }
 
-      #sortable-tasklist{
-        min-height: 20px;
-      }
+    #sortable-tasklist {
+      min-height: 20px;
+    }
 
-      #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-      #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; }
-      #sortable li span { position: absolute; margin-left: -1.3em; }
+    #sortable {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 60%;
+    }
 
-      .invalid-feedback {
-        display:none;
-      }
+    #sortable li {
+      margin: 0 3px 3px 3px;
+      padding: 0.4em;
+      padding-left: 1.5em;
+      font-size: 1.4em;
+    }
 
-    </style>
-  </head>
-  <body>
-    <div style="height:100%; border:solid 1px #ccc;" class="app panel panel-primary" ng-controller="FileSystemController">
-      <div class="panel-body win-body" style="margin-top:0;">
-        <div class="win-body-toolbar">
-          <!-- Right Aligned Buttons -->
+    #sortable li span {
+      position: absolute;
+      margin-left: -1.3em;
+    }
 
-          <!-- End Right Aligned Buttons -->
+    .invalid-feedback {
+      display: none;
+    }
+  </style>
+</head>
 
-          <!-- Left Aligned Buttons -->
-          <button id="new-playbook" type="button" class="btn btn-xs btn-default" role="button" title="New Playbook">
-            <span class="glyphicon glyphicon-folder-close"></span>&nbsp; New Playbook
-          </button>
-          <button id="new-task" type="button" class="btn btn-xs btn-default" role="button" title="New Task">
-            <span class="glyphicon glyphicon-folder-close"></span>&nbsp; New Task
-          </button>
+<body>
+  <div style="height:100%; border:solid 1px #ccc;" class="app panel panel-primary" ng-controller="FileSystemController">
+    <div class="panel-body win-body" style="margin-top:0;">
+      <div class="win-body-toolbar">
+        <!-- Right Aligned Buttons -->
 
-          <button id="copy-task" type="button" class="btn btn-xs btn-default" role="button" title="Copy Task">
-            <span class="glyphicon glyphicon-folder-close"></span>&nbsp; Copy Task
-          </button>
+        <!-- End Right Aligned Buttons -->
 
-          <button id="delete-task" type="button" class="btn btn-xs btn-default" role="button" title="Delete Task">
-            <span class="glyphicon glyphicon-folder-close"></span>&nbsp; Delete Task
-          </button>
+        <!-- Left Aligned Buttons -->
+        <button id="new-playbook" type="button" class="btn btn-xs btn-default" role="button" title="New Playbook">
+          <span class="glyphicon glyphicon-folder-close"></span>&nbsp; New Playbook
+        </button>
+        <button id="new-task" type="button" class="btn btn-xs btn-default" role="button" title="New Task">
+          <span class="glyphicon glyphicon-folder-close"></span>&nbsp; New Task
+        </button>
 
-          <!-- End Left Aligned Buttons -->
-        </div>
-        <div class="win-body-center-panel" style="padding-left: 299px; right: 0px;">
-          <div class="loading-dialog" align="center" style="position:fixed; display:{{displayLoading}}; width:100%; height:100%;"><img src="/images/ajax-loader.gif"></div>
+        <button id="copy-task" type="button" class="btn btn-xs btn-default" role="button" title="Copy Task">
+          <span class="glyphicon glyphicon-folder-close"></span>&nbsp; Copy Task
+        </button>
 
-          <div class="container row">
-            <div class="col-md-4 order-md-2 mb-4" style="float:left;">
-              <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Playbook</span>
-                <span class="badge badge-secondary badge-pill">{{playbookTasks.length}} tasks</span>
-              </h4>
-              <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                  <form id="playbook" class="needs-validation" novalidate>
+        <button id="delete-task" type="button" class="btn btn-xs btn-default" role="button" title="Delete Task">
+          <span class="glyphicon glyphicon-folder-close"></span>&nbsp; Delete Task
+        </button>
 
-                    <div class="mb-3">
-                      <label for="hosts">playbook</label>
-                      <select id="playbook" class="form-control" ng-change="playbookChanged()" ng-model="playbookID">
-                        <option></option>
-                        <option ng-repeat="item in playbookList" value="{{item._id}}">{{item.playbook.name}}</option>
-                      </select>
-                      <div class="invalid-feedback">
+        <!-- End Left Aligned Buttons -->
+      </div>
+      <div class="win-body-center-panel" style="padding-left: 299px; right: 0px;">
+        <div class="loading-dialog" align="center"
+          style="position:fixed; display:{{displayLoading}}; width:100%; height:100%;"><img
+            src="/images/ajax-loader.gif"></div>
 
-                      </div>
-                    </div>
+        <div class="container row">
+          <div class="col-md-4 order-md-2 mb-4" style="float:left;">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-muted">Playbook</span>
+              <span class="badge badge-secondary badge-pill">{{playbookTasks.length}} tasks</span>
+            </h4>
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <form id="playbook" class="needs-validation" novalidate>
 
-                    <div class="mb-3">
-                      <label for="name">name</label>
-                      <input type="text" class="form-control" name="name" placeholder="" value="">
-                      <div class="invalid-feedback">
-
-                      </div>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="hosts">hosts</label>
-                      <input type="text" class="form-control" name="hosts" placeholder="" value="">
-                      <div class="invalid-feedback">
-
-                      </div>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="hosts">vars</label>
-                      <textarea type="text" class="form-control" name="vars" placeholder="" rows="3"></textarea>
-                      <div class="invalid-feedback">
-
-                      </div>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="hosts">gather_facts</label>
-                      <input type="text" class="form-control" name="gather_facts" placeholder="" value="">
-                      <div class="invalid-feedback">
-
-                      </div>
+                  <div class="mb-3">
+                    <label for="hosts">playbook</label>
+                    <select id="playbook" class="form-control" ng-change="playbookChanged()" ng-model="playbookID">
+                      <option></option>
+                      <option ng-repeat="item in playbookList" value="{{item._id}}">{{item.playbook.name}}</option>
+                    </select>
+                    <div class="invalid-feedback">
 
                     </div>
+                  </div>
 
-                    <div class="mb-3">
-                      <label for="remote_user">remote_user</label>
-                      <input type="text" class="form-control" name="remote_user" placeholder="" value="">
-                      <div class="invalid-feedback">
-
-                      </div>
+                  <div class="mb-3">
+                    <label for="name">name</label>
+                    <input type="text" class="form-control" name="name" placeholder="" value="">
+                    <div class="invalid-feedback">
 
                     </div>
-                    <hr class="mb-4">
-                    <button id="save-playbook" class="btn btn-primary btn-lg btn-block" type="submit">Save Playbook</button>
-                  </form>
-
-                </li>
-
-                <li class="list-group-item d-flex justify-content-between lh-condensed" >
-                  <div id="sortable-tasklist" class="connectedSortable" style="max-height: 500px; overflow: scroll;">
-                    <div ng-repeat="item in playbookTasks" id="{{item._id}}" style="text-align: left;" class="btn btn-xs btn-default btn-block user-task"><span class="glyphicon glyphicon-blackboard"></span>&nbsp; {{item.task.name}}</div>
                   </div>
-                </li>
 
+                  <div class="mb-3">
+                    <label for="hosts">hosts</label>
+                    <input type="text" class="form-control" name="hosts" placeholder="" value="">
+                    <div class="invalid-feedback">
 
-                <li class="list-group-item d-flex justify-content-between lh-condensed"  >
-                </li>
-
-
-              </ul>
-            </div>
-            <div class="col-md-8 order-md-1">
-              <form id="task">
-
-
-
-                <h4 class="mb-3">Task ID: {{activeTaskId}}</h4>
-
-                <div class="mb-3">
-                  <label for="firstName">name</label>
-                  <input type="text" class="form-control" name="name" placeholder="" value="" required>
-                  <div class="invalid-feedback">
-                    Valid name is required.
+                    </div>
                   </div>
+
+                  <div class="mb-3">
+                    <label for="hosts">vars</label>
+                    <textarea type="text" class="form-control" name="vars" placeholder="" rows="3"></textarea>
+                    <div class="invalid-feedback">
+
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="hosts">gather_facts</label>
+                    <input type="text" class="form-control" name="gather_facts" placeholder="" value="">
+                    <div class="invalid-feedback">
+
+                    </div>
+
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="remote_user">remote_user</label>
+                    <input type="text" class="form-control" name="remote_user" placeholder="" value="">
+                    <div class="invalid-feedback">
+
+                    </div>
+
+                  </div>
+                  <hr class="mb-4">
+                  <button id="save-playbook" class="btn btn-primary btn-lg btn-block" type="submit">Save
+                    Playbook</button>
+                </form>
+
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div id="sortable-tasklist" class="connectedSortable" style="max-height: 500px; overflow: scroll;">
+                  <div ng-repeat="item in playbookTasks" id="{{item._id}}" style="text-align: left;"
+                    class="btn btn-xs btn-default btn-block user-task"><span
+                      class="glyphicon glyphicon-blackboard"></span>&nbsp; {{item.task.name}}</div>
                 </div>
+              </li>
 
 
-                <div class="mb-3">
-                  <label for="when">when</label>
-                  <input type="text" class="form-control" name="when" placeholder="" value="" >
-                  <div class="invalid-feedback">
-
-                  </div>
-                </div>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+              </li>
 
 
-
-
-                <div class="mb-3">
-                  <label for="become">become</label>
-                  <input type="text" class="form-control" name="become" placeholder="" value="" >
-                  <div class="invalid-feedback">
-
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <label for="become_user">become_user</label>
-                  <input type="text" class="form-control" name="become_user" placeholder="" value="" >
-                  <div class="invalid-feedback">
-
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <label for="module">module</label>
-                  <select name="module" class="form-control">
-                    <option></option>
-                    <option value="dnf">dnf</option>
-                    <option value="yum">yum</option>
-                    <option value="debug">debug</option>
-                    <option value="template">template</option>
-                    <option value="file">file</option>
-                    <option value="get_url">get_url</option>
-                    <option value="set_fact">set_fact</option>
-                    <option value="import_tasks">import_tasks</option>
-                    <option value="unarchive">unarchive</option>
-                    <option value="stat">stat</option>
-                    <option value="shell">shell</option>
-                    <option value="service">service</option>
-                    <option value="copy">copy</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Valid module is required.
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="parameters">module parameters</label>
-                  <textarea type="text" class="form-control" name="module_params" placeholder="" rows="5" required></textarea>
-                  <div class="invalid-feedback">
-
-                  </div>
-                </div>
-
-
-
-
-
-
-                <div class="mb-3">
-                  <label for="vars">vars</label>
-                  <textarea type="text" class="form-control" name="vars" placeholder=""  rows="5" ></textarea>
-                  <div class="invalid-feedback">
-
-                  </div>
-                </div>
-
-
-
-
-
-
-
-
-                <div class="mb-3">
-                  <label for="tags">tags</label>
-                  <textarea type="email" class="form-control" name="tags" placeholder=""  rows="5" ></textarea>
-                  <div class="invalid-feedback">
-
-                  </div>
-                </div>
-
-
-
-
-
-
-                <div class="mb-3">
-                  <label for="with_items">with_items</label>
-                  <textarea type="text" class="form-control" name="with_items" placeholder=""  rows="5" ></textarea>
-                  <!--select class="form-control" multiple size="6"></select-->
-                  <div class="invalid-feedback">
-
-                  </div>
-                </div>
-
-
-                <div class="mb-3">
-                  <label for="register">register</label>
-                  <input type="text" class="form-control" name="register" placeholder="" value="" >
-                  <div class="invalid-feedback">
-
-                  </div>
-                </div>
-
-
-
-                <div class="mb-3">
-                  <label for="notify">notify</label>
-                  <input type="text" class="form-control" name="notify" placeholder="" value="" >
-                  <div class="invalid-feedback">
-
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <label for="ignore_errors">ignore_errors</label>
-                  <input type="text" class="form-control" name="ignore_errors" placeholder="" value="" >
-                  <div class="invalid-feedback">
-
-                  </div>
-                </div>
-
-                <hr class="mb-4">
-
-                <button id="save-task" class="btn btn-primary btn-lg btn-block" type="submit">Save Task</button>
-
-              </form>
-
-
-
-
-            </div>
+            </ul>
           </div>
+          <div class="col-md-8 order-md-1">
+            <form id="task">
 
 
-        </div>
-        <div class="win-body-left-panel ui-resizable" style="width: 300px;">
-          <div id="global-tasklist" class="connectedSortable">
-            <div ng-repeat="item in tasks" id="{{item._id}}" style="text-align: left;" class="btn btn-xs btn-default btn-block user-task">
-              <input type="checkbox" id="{{item._id}}" />
-              <span class="glyphicon glyphicon-blackboard"></span>&nbsp;
-              {{item.task.name}}
-            </div>
+
+              <h4 class="mb-3">Task ID: {{activeTaskId}}</h4>
+
+              <div class="mb-3">
+                <label for="firstName">name</label>
+                <input type="text" class="form-control" name="name" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid name is required.
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="when">when</label>
+                <input type="text" class="form-control" name="when" placeholder="" value="">
+                <div class="invalid-feedback">
+
+                </div>
+              </div>
+
+
+
+
+              <div class="mb-3">
+                <label for="become">become</label>
+                <input type="text" class="form-control" name="become" placeholder="" value="">
+                <div class="invalid-feedback">
+
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="become_user">become_user</label>
+                <input type="text" class="form-control" name="become_user" placeholder="" value="">
+                <div class="invalid-feedback">
+
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="module">module</label>
+                <select name="module" class="form-control">
+                  <option></option>
+                  <option value="dnf">dnf</option>
+                  <option value="yum">yum</option>
+                  <option value="debug">debug</option>
+                  <option value="template">template</option>
+                  <option value="file">file</option>
+                  <option value="get_url">get_url</option>
+                  <option value="set_fact">set_fact</option>
+                  <option value="import_tasks">import_tasks</option>
+                  <option value="unarchive">unarchive</option>
+                  <option value="stat">stat</option>
+                  <option value="shell">shell</option>
+                  <option value="service">service</option>
+                  <option value="copy">copy</option>
+                </select>
+                <div class="invalid-feedback">
+                  Valid module is required.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="parameters">module parameters</label>
+                <textarea type="text" class="form-control" name="module_params" placeholder="" rows="5"
+                  required></textarea>
+                <div class="invalid-feedback">
+
+                </div>
+              </div>
+
+
+
+
+
+
+              <div class="mb-3">
+                <label for="vars">vars</label>
+                <textarea type="text" class="form-control" name="vars" placeholder="" rows="5"></textarea>
+                <div class="invalid-feedback">
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+              <div class="mb-3">
+                <label for="tags">tags</label>
+                <textarea type="email" class="form-control" name="tags" placeholder="" rows="5"></textarea>
+                <div class="invalid-feedback">
+
+                </div>
+              </div>
+
+
+
+
+
+
+              <div class="mb-3">
+                <label for="with_items">with_items</label>
+                <textarea type="text" class="form-control" name="with_items" placeholder="" rows="5"></textarea>
+                <!--select class="form-control" multiple size="6"></select-->
+                <div class="invalid-feedback">
+
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="register">register</label>
+                <input type="text" class="form-control" name="register" placeholder="" value="">
+                <div class="invalid-feedback">
+
+                </div>
+              </div>
+
+
+
+              <div class="mb-3">
+                <label for="notify">notify</label>
+                <input type="text" class="form-control" name="notify" placeholder="" value="">
+                <div class="invalid-feedback">
+
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="ignore_errors">ignore_errors</label>
+                <input type="text" class="form-control" name="ignore_errors" placeholder="" value="">
+                <div class="invalid-feedback">
+
+                </div>
+              </div>
+
+              <hr class="mb-4">
+
+              <button id="save-task" class="btn btn-primary btn-lg btn-block" type="submit">Save Task</button>
+
+            </form>
+
+
+
+
           </div>
         </div>
-        <div class="win-body-right-panel ui-resizable" style="width: 0px; right: 0px;">&nbsp;<div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
-        </div>
-        <div class="win-body-footer">
+
+
+      </div>
+      <div class="win-body-left-panel ui-resizable" style="width: 300px;">
+        <div id="global-tasklist" class="connectedSortable">
+          <div ng-repeat="item in tasks" id="{{item._id}}" style="text-align: left;"
+            class="btn btn-xs btn-default btn-block user-task">
+            <input type="checkbox" id="{{item._id}}" />
+            <span class="glyphicon glyphicon-blackboard"></span>&nbsp;
+            {{item.task.name}}
+          </div>
         </div>
       </div>
-
+      <div class="win-body-right-panel ui-resizable" style="width: 0px; right: 0px;">&nbsp;<div
+          class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+      </div>
+      <div class="win-body-footer">
+      </div>
     </div>
 
+  </div>
 
-    <script>
+
+  <script>
       function HttpPost(url, params, cb){
         var http = new XMLHttpRequest();
         http.open('POST', url, true);
@@ -504,7 +535,7 @@
       });
 
       function copyTask(id, cb){
-        HttpPost('http://api.rusty.com/v1/ansible_task/copy', "id=" + id, (responseText, status, xhr) => {
+        HttpPost('/v1/ansible_task/copy', "id=" + id, (responseText, status, xhr) => {
           if(cb) cb(responseText);
         });
       }
@@ -512,7 +543,7 @@
       function deleteTask(id, cb){
         var sure = confirm('Are you sure you want to delete task id='+id+'?');
         if(sure){
-          HttpPost('http://api.rusty.com/v1/ansible_task/delete', "id=" + id, (responseText, status, xhr) => {
+          HttpPost('/v1/ansible_task/delete', "id=" + id, (responseText, status, xhr) => {
             if(cb) cb(responseText);
           });
         }
@@ -521,7 +552,7 @@
       function addTask(task, cb){
         var taskJsonString = JSON.stringify(task, null, 2),
             document = encodeURIComponent(taskJsonString);
-        HttpPost('http://api.rusty.com/v1/ansible_task/add', "document=" + document, (responseText, status, xhr) => {
+        HttpPost('/v1/ansible_task/add', "document=" + document, (responseText, status, xhr) => {
           if(cb) cb(responseText);
         });
       }
@@ -529,20 +560,20 @@
       function updateTask(id, task, cb){
         var taskJsonString = JSON.stringify(task, null, 2),
             document = encodeURIComponent(taskJsonString);
-        HttpPost('http://api.rusty.com/v1/ansible_task/update', "id="+id+"&document=" + document, (responseText, status, xhr) => {
+        HttpPost('/v1/ansible_task/update', "id="+id+"&document=" + document, (responseText, status, xhr) => {
           if(cb) cb(responseText, status, xhr);
         });
       }
 
       function getAllTasks(cb){
-        HttpGet('http://api.rusty.com/v1/ansible_task/list', "", (responseText, status, xhr) => {
+        HttpGet('/v1/ansible_task/list', "", (responseText, status, xhr) => {
           var tasks = JSON.parse(responseText);
           if(cb) cb(tasks);
         });
       }
 
       function getAllPlaybooks(cb){
-        HttpGet('http://api.rusty.com/v1/ansible_playbook/list', "", (responseText, status, xhr) => {
+        HttpGet('/v1/ansible_playbook/list', "", (responseText, status, xhr) => {
           var tasks = JSON.parse(responseText);
           if(cb) cb(tasks);
         });
@@ -551,13 +582,13 @@
       function updatePlaybook(id, playbook, cb){
         var taskJsonString = JSON.stringify(playbook, null, 2),
             document = encodeURIComponent(taskJsonString);
-        HttpPost('http://api.rusty.com/v1/ansible_playbook/update', "id="+id+"&document=" + document, (responseText, status, xhr) => {
+        HttpPost('/v1/ansible_playbook/update', "id="+id+"&document=" + document, (responseText, status, xhr) => {
           if(cb) cb(responseText, status, xhr);
         });
       }
 
       function updatePlaybookTask(task_id, playbook_id, cb){
-        HttpPost('http://api.rusty.com/v1/ansible_playbook/updateTask', "task_id="+task_id+"&playbook_id=" + playbook_id, (responseText, status, xhr) => {
+        HttpPost('/v1/ansible_playbook/updateTask', "task_id="+task_id+"&playbook_id=" + playbook_id, (responseText, status, xhr) => {
           if(cb) cb(responseText, status, xhr);
         });
       }
@@ -565,7 +596,7 @@
       function addPlaybook(playbook, cb){
         var taskJsonString = JSON.stringify(playbook, null, 2),
             document = encodeURIComponent(taskJsonString);
-        HttpPost('http://api.rusty.com/v1/ansible_playbook/add', "document=" + document, (responseText, status, xhr) => {
+        HttpPost('/v1/ansible_playbook/add', "document=" + document, (responseText, status, xhr) => {
           if(cb) cb(responseText);
         });
       }
@@ -869,15 +900,7 @@
 
         $scope.reload();
       });
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
-
-
-
-
-
-
-
-
-

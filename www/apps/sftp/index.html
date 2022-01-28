@@ -1,1002 +1,1024 @@
 <!DOCTYPE html>
 <html ng-app="FileSystemApplication">
-  <head>
-    <title>SFTP Browser</title>
-    <link href="/js/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet">
-    <link href="/lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/lib/jstree/dist/themes/default/style.min.css">
-    <link href="/css/font-awesome.css" rel="stylesheet">
-    <script src="/js/jquery-2.1.4.min.js"></script>
-    <script src="/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
-    <script type="text/javascript" src="/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/lib/bootstrap-contextmenu/bootstrap-contextmenu.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <style>
-      pre{
-        margin: 1px 0;
-        padding: 2px;
-        color: white;
-        background-color: #333;
-        border-radius: 0;
-        border:none;
-        border-bottom: solid 1px #ccc;
-      }
 
-      .cmd-container {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        left: 0;
-      }
+<head>
+  <title>SFTP Browser</title>
+  <link href="/js/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet">
+  <link href="/lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="/css/app.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/lib/jstree/dist/themes/default/style.min.css">
+  <link href="/css/font-awesome.css" rel="stylesheet">
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+  <script type="text/javascript" src="/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/lib/bootstrap-contextmenu/bootstrap-contextmenu.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <style>
+    pre {
+      margin: 1px 0;
+      padding: 2px;
+      color: white;
+      background-color: #333;
+      border-radius: 0;
+      border: none;
+      border-bottom: solid 1px #ccc;
+    }
 
-      .cmd-history{
-        position: absolute;
-        right: 0;
-        left: 0;
-        top: 27px;
-        bottom: 22px;
-        overflow: none;
-        overflow-y: scroll;
-      }
+    .cmd-container {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
 
-      .terminal {
-        position: absolute;
-        right: 0px;
-        bottom: 29px;
-        background: #333;
-        border: solid 1px #ccc;
-        color: white;
-        padding: 3px;
-        width: 60%;
-        height: 40%;
-      }
+    .cmd-history {
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 27px;
+      bottom: 22px;
+      overflow: none;
+      overflow-y: scroll;
+    }
 
-      .terminal .title {
-        font-weight: bold;
-        text-align:left;
-        color: black;
-        background-color: #ccc;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        height:27px;
-        line-height: 27px;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
-        background: #ffffff; /* Old browsers */
-        background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
-        background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+    .terminal {
+      position: absolute;
+      right: 0px;
+      bottom: 29px;
+      background: #333;
+      border: solid 1px #ccc;
+      color: white;
+      padding: 3px;
+      width: 60%;
+      height: 40%;
+    }
 
-      }
-      .cmd:focus {
-        outline:0;
-      }
+    .terminal .title {
+      font-weight: bold;
+      text-align: left;
+      color: black;
+      background-color: #ccc;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 27px;
+      line-height: 27px;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
+      background: #ffffff;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+      /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(50%, #f1f1f1), color-stop(51%, #e1e1e1), color-stop(100%, #f6f6f6));
+      /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+      /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+      /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+      /* IE10+ */
+      background: linear-gradient(to bottom, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+      /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0);
+      /* IE6-9 */
 
-      .win-controls {
-        position: absolute;
-        right: 1px;
-        top: 1px;
-      }
+    }
 
-    </style>
-  </head>
-  <body class="noselect">
+    .cmd:focus {
+      outline: 0;
+    }
 
-    <div style="height:100%; border:solid 1px #ccc;" class="app panel panel-primary" ng-controller="FileSystemController">
-      <div class="panel-sub-heading">
-        <button type="button" class="btn btn-xs btn-default win-btn-search" role="button" title="Search">
-          <span class="glyphicon glyphicon glyphicon-search"></span>
-        </button>
-        <span style="float: right; margin-left: 5px;">
-          <input class="search" type="text">
-        </span>
-        <button type="button" class="btn btn-xs btn-default win-btn-refresh" role="button" title="Refresh">
-          <span class="glyphicon glyphicon glyphicon-refresh"></span>
-        </button>
+    .win-controls {
+      position: absolute;
+      right: 1px;
+      top: 1px;
+    }
+  </style>
+</head>
 
-        <select class="host" style="width: 250px; float: left; margin: 0 3px 0 0;" ng-model="host" ng-change="hostChanged();">
-          <option ng-repeat="host in inventory" value="{{host.id}}">{{host.credential}}</option>
-        </select>
+<body class="noselect">
 
-        <!--button type="button" class="btn btn-xs btn-default win-btn-back" role="button" title="Back">
+  <div style="height:100%; border:solid 1px #ccc;" class="app panel panel-primary" ng-controller="FileSystemController">
+    <div class="panel-sub-heading">
+      <button type="button" class="btn btn-xs btn-default win-btn-search" role="button" title="Search">
+        <span class="glyphicon glyphicon glyphicon-search"></span>
+      </button>
+      <span style="float: right; margin-left: 5px;">
+        <input class="search" type="text">
+      </span>
+      <button type="button" class="btn btn-xs btn-default win-btn-refresh" role="button" title="Refresh">
+        <span class="glyphicon glyphicon glyphicon-refresh"></span>
+      </button>
+
+      <select class="host" style="width: 250px; float: left; margin: 0 3px 0 0;" ng-model="host"
+        ng-change="hostChanged();">
+        <option ng-repeat="host in inventory" value="{{host.id}}">{{host.credential}}</option>
+      </select>
+
+      <!--button type="button" class="btn btn-xs btn-default win-btn-back" role="button" title="Back">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </button>
         <button type="button" class="btn btn-xs btn-default win-btn-fwd" role="button" title="Forward">
           <span class="glyphicon glyphicon-chevron-right"></span>
         </button-->
-        
-        <button type="button" class="btn btn-xs btn-default win-btn-up" role="button" title="Navigate up one directory.">
-          <span class="glyphicon glyphicon-arrow-up"></span>
-        </button>
+
+      <button type="button" class="btn btn-xs btn-default win-btn-up" role="button" title="Navigate up one directory.">
+        <span class="glyphicon glyphicon-arrow-up"></span>
+      </button>
 
 
 
-        <span class="textbox">
-          <input class="path" type="text" list="pathlist" ng-model="path">
-          <datalist id="pathlist" class="path-list">
-            <option ng-repeat="location in filesUnderPath" value="{{location.fullname}}">{{location.fullname}}</option>
-          </datalist>
-        </span>
-      </div>
-      <div class="panel-body win-body">
-        <div class="win-body-toolbar">
-          <!-- Right Aligned Buttons -->
-          <button type="button" class="btn btn-xs btn-default win-btn-help" role="button" title="Help">
-            <span class="glyphicon glyphicon-info-sign"></span>&nbsp; Help
-          </button>
-          <button type="button" class="btn btn-xs btn-default win-btn-preview" role="button" title="Preview">
-            <span class="glyphicon glyphicon-eye-open"></span>&nbsp; Preview
-          </button>
-          <button type="button" class="btn btn-xs btn-default win-btn-layout" role="button" title="Layout">
-            <span class="glyphicon glyphicon-object-align-top"></span>&nbsp; Layout
-          </button>
-          <button type="button" class="btn btn-xs btn-default win-btn-upload" role="button" title="Upload">
-            <span class="glyphicon glyphicon-cloud-upload"></span>&nbsp; Upload
-          </button>
-          <!-- End Right Aligned Buttons -->
-
-          <!-- Left Aligned Buttons -->
-          <button type="button" class="btn btn-xs btn-default win-btn-newfolder" role="button" title="Close">
-            <span class="glyphicon glyphicon-folder-close"></span>&nbsp; New folder
-          </button>
-          <button type="button" class="btn btn-xs btn-default win-btn-open" role="button" title="Close">
-            <span class="glyphicon glyphicon-open"></span>&nbsp; Open
-          </button>
-          <!-- End Left Aligned Buttons -->
-        </div>
-        <div class="win-body-center-panel" style="padding-left: 199px; right: 0px;">
-          <div class="loading-dialog" align="center" style="position:fixed; display:{{displayLoading}}; width:100%; height:100%;"><img src="/images/ajax-loader.gif"></div>
-          <table class="table file-explorer">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th align="right">Last Modified</th>
-                <th>User</th>
-                <th>Group</th>
-                <th>Mode</th>
-                <th style="text-align:center;">Size</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr isDirectory="{{file.isDirectory}}" style="cursor: pointer;" ng-repeat="file in filesUnderPath" onclick="tableRowClick(this);" ng-dblclick="tableRowDoubleClick(this);">
-                <td><span class="{{file.icon}}" style="float: left; margin-right: .3em;"></span><span>{{file.name}}</span></td>
-                <td>{{file.lastModified}}</td>
-                <td>{{file.user}}</td>
-                <td>{{file.group}}</td>
-                <td>{{file.permissions}}</td>
-                <td style="text-align:center;">{{file.size}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="win-body-left-panel ui-resizable">
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-apps"><span class="glyphicon glyphicon-blackboard"></span>&nbsp; Apps</div>
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-recent"><span class="glyphicon glyphicon-check"></span>&nbsp; Recent</div>
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-home"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</div>
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-desktop"><span class="glyphicon glyphicon-paperclip"></span>&nbsp; Desktop</div>
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-documents"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Documents</div>
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-downloads"><span class="glyphicon glyphicon-save"></span>&nbsp; Downloads</div>
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-music"><span class="glyphicon glyphicon-music"></span>&nbsp; Music</div>
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-pictures"><span class="glyphicon glyphicon-picture"></span>&nbsp; Pictures</div>
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-videos"><span class="glyphicon glyphicon-facetime-video"></span>&nbsp; Videos</div>
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-trash"><span class="glyphicon glyphicon-trash"></span>&nbsp; Trash</div>
-          <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-storage"><span class="glyphicon glyphicon-hdd"></span>&nbsp; Storage</div>
-        </div>
-        <div class="win-body-right-panel ui-resizable" style="width: 0px; right: 0px;">&nbsp;<div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
-        </div>
-        <div class="win-body-footer">
-          <form name="upload" method="post" action="/upload" enctype="multipart/form-data"><input type="file" name="image" multiple="multiple" style="display: none; width: 0px; height: 0px;"><input type="hidden" name="dir" value="/node/upload/"></form>
-        </div>
-      </div>
-      <div class="terminal" style="display:none;">
-        <div class="title">
-          <div class="win-controls">
-            <button type="button" class="btn btn-xs btn-default win-btn-close" role="button" title="Close">
-              <span class="glyphicon glyphicon-remove"></span>
-            </button>
-            <button type="button" class="btn btn-xs btn-default win-btn-maximize" role="button" title="Maximize">
-              <span class="glyphicon glyphicon-plus"></span>
-            </button>
-            <button type="button" class="btn btn-xs btn-default win-btn-minimize" role="button" title="Minimize">
-              <span class="glyphicon glyphicon-minus"></span>			
-            </button>		
-          </div>
-          <span style="padding-left: 3px;">{{hostName}}</span>
-        </div>
-        <div class="cmd-history">
-          <pre ng-repeat="hist in cmd_history">{{hist.command}}{{hist.result}}</pre>
-        </div>
-        <div class="cmd-container">
-          <div style="display:table; width: 100%;">
-            <div class="cwdLabel" style="display: table-cell; width: 1%; white-space: nowrap;">[{{hostName}}]$</div>
-            <input class="cmd" name="cmd" ng-model="cmd" style="display: table-cell; width: 100%; background-color: #333; border: none;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
-          </div>
-        </div>
-      </div>
-      <div id="context-menu" class="">
-        <ul class="dropdown-menu" role="menu" style="">
-          <li><a tabindex="-1">Open</a></li>
-          <li><a tabindex="-1">Close</a></li>
-          <li class="divider"></li>
-          <li><a tabindex="-1">Cut</a></li>
-          <li><a tabindex="-1">Copy</a></li>
-          <li><a tabindex="-1">Paste</a></li>
-          <li class="divider"></li>
-          <li><a tabindex="-1">New</a></li>
-          <li><a tabindex="-1">Delete</a></li>
-          <li><a tabindex="-1">Rename</a></li>
-          <li class="divider"></li>
-          <li><a tabindex="-1">Unzip</a></li>
-          <li><a tabindex="-1">Zip</a></li>
-          <li class="divider"></li>
-          <li><a tabindex="-1">Properties</a></li>
-          <li><a tabindex="-1">Download File</a></li>
-        </ul>
-      </div>
-      <form  style="display: none;" action="http://api.rusty.com/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" multiple="">
-        <br>
-        <input type="submit">
-      </form>
+      <span class="textbox">
+        <input class="path" type="text" list="pathlist" ng-model="path">
+        <datalist id="pathlist" class="path-list">
+          <option ng-repeat="location in filesUnderPath" value="{{location.fullname}}">{{location.fullname}}</option>
+        </datalist>
+      </span>
     </div>
+    <div class="panel-body win-body">
+      <div class="win-body-toolbar">
+        <!-- Right Aligned Buttons -->
+        <button type="button" class="btn btn-xs btn-default win-btn-help" role="button" title="Help">
+          <span class="glyphicon glyphicon-info-sign"></span>&nbsp; Help
+        </button>
+        <button type="button" class="btn btn-xs btn-default win-btn-preview" role="button" title="Preview">
+          <span class="glyphicon glyphicon-eye-open"></span>&nbsp; Preview
+        </button>
+        <button type="button" class="btn btn-xs btn-default win-btn-layout" role="button" title="Layout">
+          <span class="glyphicon glyphicon-object-align-top"></span>&nbsp; Layout
+        </button>
+        <button type="button" class="btn btn-xs btn-default win-btn-upload" role="button" title="Upload">
+          <span class="glyphicon glyphicon-cloud-upload"></span>&nbsp; Upload
+        </button>
+        <!-- End Right Aligned Buttons -->
+
+        <!-- Left Aligned Buttons -->
+        <button type="button" class="btn btn-xs btn-default win-btn-newfolder" role="button" title="Close">
+          <span class="glyphicon glyphicon-folder-close"></span>&nbsp; New folder
+        </button>
+        <button type="button" class="btn btn-xs btn-default win-btn-open" role="button" title="Close">
+          <span class="glyphicon glyphicon-open"></span>&nbsp; Open
+        </button>
+        <!-- End Left Aligned Buttons -->
+      </div>
+      <div class="win-body-center-panel" style="padding-left: 199px; right: 0px;">
+        <div class="loading-dialog" align="center"
+          style="position:fixed; display:{{displayLoading}}; width:100%; height:100%;"><img
+            src="/images/ajax-loader.gif"></div>
+        <table class="table file-explorer">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th align="right">Last Modified</th>
+              <th>User</th>
+              <th>Group</th>
+              <th>Mode</th>
+              <th style="text-align:center;">Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr isDirectory="{{file.isDirectory}}" style="cursor: pointer;" ng-repeat="file in filesUnderPath"
+              onclick="tableRowClick(this);" ng-dblclick="tableRowDoubleClick(this);">
+              <td><span class="{{file.icon}}" style="float: left; margin-right: .3em;"></span><span>{{file.name}}</span>
+              </td>
+              <td>{{file.lastModified}}</td>
+              <td>{{file.user}}</td>
+              <td>{{file.group}}</td>
+              <td>{{file.permissions}}</td>
+              <td style="text-align:center;">{{file.size}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="win-body-left-panel ui-resizable">
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-apps"><span
+            class="glyphicon glyphicon-blackboard"></span>&nbsp; Apps</div>
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-recent"><span
+            class="glyphicon glyphicon-check"></span>&nbsp; Recent</div>
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-home"><span
+            class="glyphicon glyphicon-home"></span>&nbsp; Home</div>
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-desktop"><span
+            class="glyphicon glyphicon-paperclip"></span>&nbsp; Desktop</div>
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-documents"><span
+            class="glyphicon glyphicon-folder-open"></span>&nbsp; Documents</div>
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-downloads"><span
+            class="glyphicon glyphicon-save"></span>&nbsp; Downloads</div>
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-music"><span
+            class="glyphicon glyphicon-music"></span>&nbsp; Music</div>
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-pictures"><span
+            class="glyphicon glyphicon-picture"></span>&nbsp; Pictures</div>
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-videos"><span
+            class="glyphicon glyphicon-facetime-video"></span>&nbsp; Videos</div>
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-trash"><span
+            class="glyphicon glyphicon-trash"></span>&nbsp; Trash</div>
+        <div style="text-align: left;" class="btn btn-xs btn-default btn-block user-lib-storage"><span
+            class="glyphicon glyphicon-hdd"></span>&nbsp; Storage</div>
+      </div>
+      <div class="win-body-right-panel ui-resizable" style="width: 0px; right: 0px;">&nbsp;<div
+          class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+      </div>
+      <div class="win-body-footer">
+        <form name="upload" method="post" action="/upload" enctype="multipart/form-data"><input type="file" name="image"
+            multiple="multiple" style="display: none; width: 0px; height: 0px;"><input type="hidden" name="dir"
+            value="/node/upload/"></form>
+      </div>
+    </div>
+    <div class="terminal" style="display:none;">
+      <div class="title">
+        <div class="win-controls">
+          <button type="button" class="btn btn-xs btn-default win-btn-close" role="button" title="Close">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+          <button type="button" class="btn btn-xs btn-default win-btn-maximize" role="button" title="Maximize">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+          <button type="button" class="btn btn-xs btn-default win-btn-minimize" role="button" title="Minimize">
+            <span class="glyphicon glyphicon-minus"></span>
+          </button>
+        </div>
+        <span style="padding-left: 3px;">{{hostName}}</span>
+      </div>
+      <div class="cmd-history">
+        <pre ng-repeat="hist in cmd_history">{{hist.command}}{{hist.result}}</pre>
+      </div>
+      <div class="cmd-container">
+        <div style="display:table; width: 100%;">
+          <div class="cwdLabel" style="display: table-cell; width: 1%; white-space: nowrap;">[{{hostName}}]$</div>
+          <input class="cmd" name="cmd" ng-model="cmd"
+            style="display: table-cell; width: 100%; background-color: #333; border: none;" autocomplete="off"
+            autocorrect="off" autocapitalize="off" spellcheck="false" />
+        </div>
+      </div>
+    </div>
+    <div id="context-menu" class="">
+      <ul class="dropdown-menu" role="menu" style="">
+        <li><a tabindex="-1">Open</a></li>
+        <li><a tabindex="-1">Close</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1">Cut</a></li>
+        <li><a tabindex="-1">Copy</a></li>
+        <li><a tabindex="-1">Paste</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1">New</a></li>
+        <li><a tabindex="-1">Delete</a></li>
+        <li><a tabindex="-1">Rename</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1">Unzip</a></li>
+        <li><a tabindex="-1">Zip</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1">Properties</a></li>
+        <li><a tabindex="-1">Download File</a></li>
+      </ul>
+    </div>
+    <form style="display: none;" action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" multiple="">
+      <br>
+      <input type="submit">
+    </form>
+  </div>
 
 
   <script src="/lib/CodeMirror-master/lib/codemirror.js"></script>
   <script src="/lib/CodeMirror-master/mode/meta.js"></script>
-    
-    <script>
-      window.documentKeyDownEvent = {};
 
-      function getScope(){
-        return angular.element(document.querySelector('.app')).scope();
+  <script>
+    window.documentKeyDownEvent = {};
+
+    function getScope() {
+      return angular.element(document.querySelector('.app')).scope();
+    }
+
+    function getHost() {
+      var host = document.querySelector('.host option:checked'),
+        name = host.text,
+        value = host.value,
+        user = name.substr(0, name.indexOf('@')),
+        domain = name.substr(name.indexOf('@') + 1);
+      return { name: name, value: value, user: user, domain: domain };
+    }
+
+    function getElement(name) {
+      return document.getElementsByClassName(name)[0];
+    }
+
+    function getQueryVariable(variable) {
+      var query = window.location.search.substring(1);
+      var vars = query.split("&");
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
       }
+      return (false);
+    }
 
-      function getHost(){
-        var host = document.querySelector('.host option:checked'),
-            name = host.text, 
-            value = host.value,
-            user = name.substr(0, name.indexOf('@')), 
-            domain = name.substr(name.indexOf('@') + 1);
-        return { name: name, value: value, user: user, domain: domain};
+
+    const API_HOSTNAME = getQueryVariable('api') || "api.localhost";
+
+    function getFileExtention(filename) {
+      return filename.split('.').pop();
+    }
+
+    function getMode(filename) {
+      var modeInfo = CodeMirror.findModeByFileName(filename),
+        mode = "htmlmixed";
+      if (modeInfo) {
+        mode = modeInfo.mode;
       }
+      return mode;
+    }
 
-      function getElement(name){
-        return document.getElementsByClassName(name)[0];
+    function getMode_backup(filename) {
+      var mode = 'htmlmixed';
+      var modes = ['htmlmixed', 'xml', 'javascript', 'css'];
+      var ext = filename.split('.').pop();
+      mode = ext.toLowerCase();
+      switch (mode) {
+        case "html":
+          mode = 'htmlmixed';
+          break;
+        case "js":
+          mode = "javascript";
+          break;
       }
-
-      function getQueryVariable(variable)
-      {
-        var query = window.location.search.substring(1);
-        var vars = query.split("&");
-        for (var i=0;i<vars.length;i++) {
-          var pair = vars[i].split("=");
-          if(pair[0] == variable){return pair[1];}
-        }
-        return(false);
-      }
+      return mode;
+    }
 
 
-      const API_HOSTNAME = getQueryVariable('api') || "api.rusty.com";
+    function renameFieldKeyDownEventHandle(e, textElement) {
+      var enterKeyCode = 13, escapeKeyCode = 27;
+      var orig = e.target.getAttribute('original-value');
+      if (e.keyCode == enterKeyCode) {
+        textElement.innerHTML = e.target.value;
+        var pathValue = document.querySelector('.path').value,
+          path = pathValue + '/' + orig,
+          newPath = pathValue + '/' + e.target.value;
 
-      function getFileExtention(filename){
-        return filename.split('.').pop();
-      }
-
-      function getMode(filename){
-        var modeInfo = CodeMirror.findModeByFileName(filename),
-            mode = "htmlmixed";
-        if(modeInfo){
-          mode = modeInfo.mode;
-        }
-        return mode;
-      }
-      
-      function getMode_backup(filename){
-        var mode = 'htmlmixed';
-        var modes = ['htmlmixed','xml','javascript','css'];
-        var ext = filename.split('.').pop();
-        mode = ext.toLowerCase();
-        switch(mode){
-          case "html":
-            mode = 'htmlmixed';
-            break;
-          case "js":
-            mode = "javascript";
-            break;            
-        }
-        return mode;
-      }
-
-
-      function renameFieldKeyDownEventHandle(e, textElement){
-        var enterKeyCode = 13, escapeKeyCode = 27;
-        var orig = e.target.getAttribute('original-value');
-        if(e.keyCode == enterKeyCode){
-          textElement.innerHTML = e.target.value;
-          var pathValue = document.querySelector('.path').value,
-              path = pathValue + '/' + orig,
-              newPath = pathValue + '/' + e.target.value;
-
-          rename(document.querySelector('.host option:checked').value, path, newPath, res => {
-            console.log(res);
-          });
-        }
-        else if(e.keyCode == escapeKeyCode){
-          textElement.innerHTML = orig;
-        }
-      }
-
-      function openInNewTab(url) {
-        if(!url) return;
-        var a = document.createElement("a");
-        a.target = "_blank";
-        a.href = url;
-        a.click();
-      }
-
-      function getSelectedPaths(){
-        var paths = [];
-        document.querySelectorAll('.file-explorer tbody tr').forEach((tr, index) => {
-          if(tr.classList.contains('active')){
-            var path = getElement('path').value,
-                a = path + tr.children[0].textContent,
-                b = path + '/' + tr.children[0].textContent,
-                fullpath = path.endsWith("/") ? a : b,
-                isDirectory = tr.getAttribute('isdirectory') == 'true';
-            paths.push({ isdirectory: isDirectory, path: fullpath, index: index });
-          }
-        });
-        return paths;
-      }
-
-      function deselectAllTableRows(){
-        document.querySelectorAll('.file-explorer tbody tr').forEach(tr => deselectTableRow(tr))
-      }
-
-      function selectAllTableRows(){
-        document.querySelectorAll('.file-explorer tbody tr').forEach(tr => selectTableRow(tr))
-      }
-
-      function selectTableRow(tr){
-        tr.classList.add('active');
-        var children = tr.children;
-        for(var i =0;i<children.length;i++){
-          children[i].classList.add('active');
-        }
-      }
-
-      function deselectTableRow(tr){
-        tr.classList.remove('active');
-        var children = tr.children;
-        for(var i =0;i<children.length;i++){
-          children[i].classList.remove('active');
-        }
-      }
-
-      function tableRowClick(tr){
-
-        if(!window.documentKeyDownEvent.ctrlKey){
-          deselectAllTableRows();
-        }
-
-        var firstChild = tr.firstElementChild;
-        if(firstChild.classList.contains('active')){
-          deselectTableRow(tr);
-        }
-        else selectTableRow(tr);
-        var $scope = angular.element(tr).scope();
-        //console.log('scope', $scope);
-      }
-
-      function HttpPost(url, params, cb){
-        var http = new XMLHttpRequest();
-        http.open('POST', url, true);
-        //Send the proper header information along with the request
-        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        //Call a function when the state changes.    
-        http.onreadystatechange = function() {
-          if(http.readyState == 4) {
-            if(cb) cb(http.responseText, http.status, http);
-          }
-        }
-        http.send(params);
-        return http;
-      }
-
-      function HttpGet(url, params, cb){
-        var http = new XMLHttpRequest();
-        http.open('GET', url + '?' + params);
-        //Call a function when the state changes.
-        http.onreadystatechange = function() {
-          if(http.readyState == 4) {
-            if(cb) cb(http.responseText, http.status, http);
-          }
-        }
-        http.send();
-        return http;
-      }
-
-      function mkdir(id, path, cb){
-        HttpPost('http://'+API_HOSTNAME+'/v1/ssh2/mkdir','id='+id+'&path='+path, res => { 
-          if(cb) cb(res);
+        rename(document.querySelector('.host option:checked').value, path, newPath, res => {
+          console.log(res);
         });
       }
+      else if (e.keyCode == escapeKeyCode) {
+        textElement.innerHTML = orig;
+      }
+    }
 
-      function rmdir(id, path, cb){
-        HttpPost('http://'+API_HOSTNAME+'/v1/ssh2/rmdir','id='+id+'&path='+path, res => { 
-          if(cb) cb(res);
-        });
+    function openInNewTab(url) {
+      if (!url) return;
+      var a = document.createElement("a");
+      a.target = "_blank";
+      a.href = url;
+      a.click();
+    }
+
+    function getSelectedPaths() {
+      var paths = [];
+      document.querySelectorAll('.file-explorer tbody tr').forEach((tr, index) => {
+        if (tr.classList.contains('active')) {
+          var path = getElement('path').value,
+            a = path + tr.children[0].textContent,
+            b = path + '/' + tr.children[0].textContent,
+            fullpath = path.endsWith("/") ? a : b,
+            isDirectory = tr.getAttribute('isdirectory') == 'true';
+          paths.push({ isdirectory: isDirectory, path: fullpath, index: index });
+        }
+      });
+      return paths;
+    }
+
+    function deselectAllTableRows() {
+      document.querySelectorAll('.file-explorer tbody tr').forEach(tr => deselectTableRow(tr))
+    }
+
+    function selectAllTableRows() {
+      document.querySelectorAll('.file-explorer tbody tr').forEach(tr => selectTableRow(tr))
+    }
+
+    function selectTableRow(tr) {
+      tr.classList.add('active');
+      var children = tr.children;
+      for (var i = 0; i < children.length; i++) {
+        children[i].classList.add('active');
+      }
+    }
+
+    function deselectTableRow(tr) {
+      tr.classList.remove('active');
+      var children = tr.children;
+      for (var i = 0; i < children.length; i++) {
+        children[i].classList.remove('active');
+      }
+    }
+
+    function tableRowClick(tr) {
+
+      if (!window.documentKeyDownEvent.ctrlKey) {
+        deselectAllTableRows();
       }
 
-      function lstat(id, path, cb){
-        HttpPost('http://'+API_HOSTNAME+'/v1/ssh2/lstat','id='+id+'&path='+path, res => { 
-          if(cb) cb(res);
-        });
+      var firstChild = tr.firstElementChild;
+      if (firstChild.classList.contains('active')) {
+        deselectTableRow(tr);
       }
+      else selectTableRow(tr);
+      var $scope = angular.element(tr).scope();
+      //console.log('scope', $scope);
+    }
 
-      function stat(id, path, cb){
-        HttpPost('http://'+API_HOSTNAME+'/v1/ssh2/stat','id='+id+'&path='+path, res => { 
-          if(cb) cb(res);
-        });
+    function HttpPost(url, params, cb) {
+      var http = new XMLHttpRequest();
+      http.open('POST', url, true);
+      //Send the proper header information along with the request
+      http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      //Call a function when the state changes.    
+      http.onreadystatechange = function () {
+        if (http.readyState == 4) {
+          if (cb) cb(http.responseText, http.status, http);
+        }
       }
+      http.send(params);
+      return http;
+    }
 
-      function unlink(id, path, cb){
-        HttpPost('http://'+API_HOSTNAME+'/v1/ssh2/unlink','id='+id+'&path='+path, res => { 
-          if(cb) cb(res);
-        });
+    function HttpGet(url, params, cb) {
+      var http = new XMLHttpRequest();
+      http.open('GET', url + '?' + params);
+      //Call a function when the state changes.
+      http.onreadystatechange = function () {
+        if (http.readyState == 4) {
+          if (cb) cb(http.responseText, http.status, http);
+        }
       }
+      http.send();
+      return http;
+    }
 
-      function rename(id, path, newPath, cb){
-        HttpPost('http://'+API_HOSTNAME+'/v1/ssh2/rename','id='+id+'&path='+path+'&newPath='+newPath, res => { 
-          if(cb) cb(res);
-        });
-      }
+    function mkdir(id, path, cb) {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/mkdir', 'id=' + id + '&path=' + path, res => {
+        if (cb) cb(res);
+      });
+    }
 
-      function touch_file(id, path, cb){
-        shell(id, 'touch '+path, cb);
-      }
+    function rmdir(id, path, cb) {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/rmdir', 'id=' + id + '&path=' + path, res => {
+        if (cb) cb(res);
+      });
+    }
 
-      function shell(id, cmd, cb){
-        HttpPost('http://'+API_HOSTNAME+'/v1/ssh2/shell', 'id=' + id + '&command=' + cmd, (res)=>{ 
-          if(cb) cb(res);
-        });
-      }
-      
-      function readdir(id, path, cb){
-        let url = 'http://'+API_HOSTNAME+'/v1/ssh2/readdir';
-        HttpPost(url,'id='+ id + '&path=' + path, res=>{
-        	if(cb) cb(res);
-        });
-      }
+    function lstat(id, path, cb) {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/lstat', 'id=' + id + '&path=' + path, res => {
+        if (cb) cb(res);
+      });
+    }
 
-      var app = angular.module('FileSystemApplication', []);
+    function stat(id, path, cb) {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/stat', 'id=' + id + '&path=' + path, res => {
+        if (cb) cb(res);
+      });
+    }
 
-      app.controller('FileSystemController', function($scope, $http) {
+    function unlink(id, path, cb) {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/unlink', 'id=' + id + '&path=' + path, res => {
+        if (cb) cb(res);
+      });
+    }
 
-        function setupController(){
+    function rename(id, path, newPath, cb) {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/rename', 'id=' + id + '&path=' + path + '&newPath=' + newPath, res => {
+        if (cb) cb(res);
+      });
+    }
+
+    function touch_file(id, path, cb) {
+      shell(id, 'touch ' + path, cb);
+    }
+
+    function shell(id, cmd, cb) {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/shell', 'id=' + id + '&command=' + cmd, (res) => {
+        if (cb) cb(res);
+      });
+    }
+
+    function readdir(id, path, cb) {
+      let url = 'http://' + API_HOSTNAME + '/v1/ssh2/readdir';
+      HttpPost(url, 'id=' + id + '&path=' + path, res => {
+        if (cb) cb(res);
+      });
+    }
+
+    var app = angular.module('FileSystemApplication', []);
+
+    app.controller('FileSystemController', function ($scope, $http) {
+
+      function setupController() {
 
 
-		  $scope.appTitle = 'Stack Next SFTP Browser';
-          $scope.displayLoading = 'none';
-          $scope.path = '/';
-          $scope.cmd = '';
-          $scope.hostName = '';
+        $scope.appTitle = 'Stack Next SFTP Browser';
+        $scope.displayLoading = 'none';
+        $scope.path = '/';
+        $scope.cmd = '';
+        $scope.hostName = '';
 
-          $scope.user_action=null;
-          
-          $scope.pathList = [];
+        $scope.user_action = null;
 
-          $scope.command_menu = [
-            { id:'delete', icon: '', name:'Delete', handle:() => { lookupUserAction(); }},
-            { id:'rename', icon: '', name:'Rename', handle:() => { lookupUserAction(); }},
-            { id:'new-file', icon: '', name:'New File', handle:() => { lookupUserAction(); }},
-            { id:'new-folder', icon: '', name:'New Folder', handle:() => { lookupUserAction(); }}
-          ];
+        $scope.pathList = [];
 
-          $scope.cmd_history = [
-            //{ command:'ls\n', result:'data Vargrantfile' }
-          ];
+        $scope.command_menu = [
+          { id: 'delete', icon: '', name: 'Delete', handle: () => { lookupUserAction(); } },
+          { id: 'rename', icon: '', name: 'Rename', handle: () => { lookupUserAction(); } },
+          { id: 'new-file', icon: '', name: 'New File', handle: () => { lookupUserAction(); } },
+          { id: 'new-folder', icon: '', name: 'New Folder', handle: () => { lookupUserAction(); } }
+        ];
 
-          $scope.inventory = [
-            //{"id":"5c1ef708a2b0e55464205569","credential":"vagrant@rusty.com"},
-            //{"id":"5c1efb8c277bbe569276955d","credential":"gateway@userdesktop.com"}
-          ];
+        $scope.cmd_history = [
+          //{ command:'ls\n', result:'data Vargrantfile' }
+        ];
 
-          $scope.filesUnderPath = [
-            /*
-          { icon:'ui-icon folder', name: '..', lastModified: (new Date()).toDateString(), permissions: '-----', size: '' },
-          { icon:'ui-icon file file-html', name: 'desktop.html', lastModified: (new Date()).toDateString(), permissions: 'rwxrw-', size: '0.001MB' },
-          { icon:'ui-icon file file-html', name: 'file-system.html', lastModified: (new Date()).toDateString(), permissions: 'rwxrw-', size: '0.001MB' }
-        */
-          ];
+        $scope.inventory = [
+          //{"id":"5c1ef708a2b0e55464205569","credential":"vagrant@localhost"},
+          //{"id":"5c1efb8c277bbe569276955d","credential":"gateway@userdesktop.com"}
+        ];
 
-          
-
-          $('.terminal')
-            .resizable()
-            .draggable();
-
-          $('.file-explorer').contextmenu({
-            target: '#context-menu',
-            onItem: function(context, e) {
-              // execute on menu item selection
-              var action = $(e.target).text();
-
-              switch(action){
-                case "Open":
-                  action_open();
-                  break;
-                case "Close":
-                  action_close();
-                  break;
-                case "Cut":
-                  action_cut();
-                  break;
-                case "Copy":
-                  action_copy();
-                  break;
-                case "Paste":
-                  action_paste();
-                  break;
-                case "New":
-                  action_new();
-                  break;
-                case "Delete":
-                  action_delete();
-                  break;
-                case "Rename":
-                  action_rename();
-                  break;
-                case "Unzip":
-                  action_unzip();
-                  break;
-                case "Zip":
-                  action_zip();
-                  break;
-                case "Properties":
-                  action_properties();
-                  break;
-                case "Download File":
-                  action_download_file();
-                  break;
-                default:
-                  alert(action + " has not been defined.");
-                  break;
-              }
-            }
-          });
-
-          document.querySelectorAll("[class*=user-lib-]").forEach(div=>{ 
-            div.addEventListener('click', e => {
-              var title = e.target.textContent.trim(),
-                  id = e.target.classList.toString().split(' ').pop();
-              doUserLibAction(id, title);
-            });
-          });
+        $scope.filesUnderPath = [
+          /*
+        { icon:'ui-icon folder', name: '..', lastModified: (new Date()).toDateString(), permissions: '-----', size: '' },
+        { icon:'ui-icon file file-html', name: 'desktop.html', lastModified: (new Date()).toDateString(), permissions: 'rwxrw-', size: '0.001MB' },
+        { icon:'ui-icon file file-html', name: 'file-system.html', lastModified: (new Date()).toDateString(), permissions: 'rwxrw-', size: '0.001MB' }
+      */
+        ];
 
 
 
-          $scope.doUserAction = function(){
-            for(var i in $scope.command_menu){
-              if($scope.command_menu[i].id == $scope.user_action){
-                var cmd = $scope.command_menu[i].handle;
-                if(cmd) cmd();
+        $('.terminal')
+          .resizable()
+          .draggable();
+
+        $('.file-explorer').contextmenu({
+          target: '#context-menu',
+          onItem: function (context, e) {
+            // execute on menu item selection
+            var action = $(e.target).text();
+
+            switch (action) {
+              case "Open":
+                action_open();
                 break;
-              }
+              case "Close":
+                action_close();
+                break;
+              case "Cut":
+                action_cut();
+                break;
+              case "Copy":
+                action_copy();
+                break;
+              case "Paste":
+                action_paste();
+                break;
+              case "New":
+                action_new();
+                break;
+              case "Delete":
+                action_delete();
+                break;
+              case "Rename":
+                action_rename();
+                break;
+              case "Unzip":
+                action_unzip();
+                break;
+              case "Zip":
+                action_zip();
+                break;
+              case "Properties":
+                action_properties();
+                break;
+              case "Download File":
+                action_download_file();
+                break;
+              default:
+                alert(action + " has not been defined.");
+                break;
             }
           }
+        });
 
-          $scope.tableRowDoubleClick = function(tr) {
-            //console.log('double click', tr.file);
-            var filename = tr.file.name;
-            let fullpath = $scope.path.endsWith("/") ? $scope.path + filename : $scope.path + "/" + filename;
-            if(tr.file.isDirectory){
-              $scope.path = fullpath;
-              fetchPathData();
+        document.querySelectorAll("[class*=user-lib-]").forEach(div => {
+          div.addEventListener('click', e => {
+            var title = e.target.textContent.trim(),
+              id = e.target.classList.toString().split(' ').pop();
+            doUserLibAction(id, title);
+          });
+        });
+
+
+
+        $scope.doUserAction = function () {
+          for (var i in $scope.command_menu) {
+            if ($scope.command_menu[i].id == $scope.user_action) {
+              var cmd = $scope.command_menu[i].handle;
+              if (cmd) cmd();
+              break;
+            }
+          }
+        }
+
+        $scope.tableRowDoubleClick = function (tr) {
+          //console.log('double click', tr.file);
+          var filename = tr.file.name;
+          let fullpath = $scope.path.endsWith("/") ? $scope.path + filename : $scope.path + "/" + filename;
+          if (tr.file.isDirectory) {
+            $scope.path = fullpath;
+            fetchPathData();
+          }
+          else {
+            RunApplication(fullpath);
+          }
+        }
+
+        $scope.hostChanged = function () {
+          $scope.path = '/';
+          fetchPathData();
+          $scope.hostName = getElement('host').selectedOptions[0].text;
+        }
+
+
+        //load inventory data
+        $http.get('http://' + API_HOSTNAME + '/v1/inventory/search').then(response => {
+          console.log('inventory', response.data);
+          $scope.inventory = response.data;
+        });
+
+        getElement('win-btn-maximize').addEventListener('click', buttonWinMaximizeClick);
+        getElement('win-btn-minimize').addEventListener('click', buttonWinMinimizeClick);
+        getElement('win-btn-close').addEventListener('click', buttonWinCloseClick);
+
+        getElement('cmd').addEventListener('keypress', onKeyPressed);
+
+        getElement('path').addEventListener('keypress', onKeyPressed);
+
+        //getElement('win-btn-back').addEventListener('click', buttonNavBackClick);
+        //getElement('win-btn-fwd').addEventListener('click', buttonNavFwdClick);
+        getElement('win-btn-up').addEventListener('click', buttonNavUpClick);
+
+        getElement('win-btn-refresh').addEventListener('click', buttonRefreshClick);
+        getElement('win-btn-search').addEventListener('click', buttonSearchClick);
+        getElement('win-btn-newfolder').addEventListener('click', buttonNewFolderClick);
+        getElement('win-btn-open').addEventListener('click', buttonOpenClick);
+        getElement('win-btn-upload').addEventListener('click', buttonUploadClick);
+        getElement('win-btn-layout').addEventListener('click', buttonLayoutClick);
+        getElement('win-btn-preview').addEventListener('click', buttonPreviewClick);
+        getElement('win-btn-help').addEventListener('click', buttonHelpClick);
+
+        document.addEventListener('keydown', function (e) {
+          window.documentKeyDownEvent = e;
+          console.log('document.keydown', e);
+          if (e.altKey && e.key == 't') {
+            $('.terminal').toggle();
+          }
+        });
+
+        document.addEventListener('keyup', function (e) {
+          window.documentKeyDownEvent = e;
+        });
+      }
+
+      function doUserLibAction(id, title) {
+        var host = getHost(),
+          homePath = '/home/' + host.user;
+        switch (id) {
+          case "user-lib-home":
+            $scope.path = homePath;
+            $scope.$apply();//render ui
+            fetchPathData(); //update table
+            break;
+          default:
+            var dir = homePath + title;
+            alert([id, title, dir].join(','));
+            break;
+        }
+      }
+
+      function action_open() { }
+      function action_close() { }
+      function action_cut() { }
+      function action_copy() { }
+      function action_paste() { }
+      function action_new() {
+        var filename = prompt('Filename:');
+        if (filename) {
+          var fullpath = $scope.path + "/" + filename;
+          touch_file($scope.host, fullpath, function (res) {
+            var result = JSON.parse(res);
+            console.log(result);
+            if (result.error) {
+              alert(result.error);
             }
             else {
-              RunApplication(fullpath);
-            }
-          }
-
-          $scope.hostChanged = function(){
-            $scope.path = '/';
-            fetchPathData();
-            $scope.hostName = getElement('host').selectedOptions[0].text;
-          }
-
-
-          //load inventory data
-          $http.get('http://'+API_HOSTNAME+'/v1/inventory/search').then(response =>{ 
-            console.log('inventory', response.data);
-            $scope.inventory = response.data;
-          });
-
-          getElement('win-btn-maximize').addEventListener('click', buttonWinMaximizeClick);
-          getElement('win-btn-minimize').addEventListener('click', buttonWinMinimizeClick);
-          getElement('win-btn-close').addEventListener('click', buttonWinCloseClick);
-
-          getElement('cmd').addEventListener('keypress', onKeyPressed);
-
-          getElement('path').addEventListener('keypress', onKeyPressed);
-
-          //getElement('win-btn-back').addEventListener('click', buttonNavBackClick);
-          //getElement('win-btn-fwd').addEventListener('click', buttonNavFwdClick);
-          getElement('win-btn-up').addEventListener('click', buttonNavUpClick);
-          
-          getElement('win-btn-refresh').addEventListener('click', buttonRefreshClick);
-          getElement('win-btn-search').addEventListener('click', buttonSearchClick);
-          getElement('win-btn-newfolder').addEventListener('click', buttonNewFolderClick);
-          getElement('win-btn-open').addEventListener('click', buttonOpenClick);
-          getElement('win-btn-upload').addEventListener('click', buttonUploadClick);
-          getElement('win-btn-layout').addEventListener('click', buttonLayoutClick);
-          getElement('win-btn-preview').addEventListener('click', buttonPreviewClick);
-          getElement('win-btn-help').addEventListener('click', buttonHelpClick);
-
-          document.addEventListener('keydown', function(e){
-            window.documentKeyDownEvent = e;
-            console.log('document.keydown', e);
-            if(e.altKey && e.key == 't'){
-              $('.terminal').toggle();
+              alert("'" + fullpath + '\' has been created.');
             }
           });
-
-          document.addEventListener('keyup', function(e){
-            window.documentKeyDownEvent = e;
-          });
         }
-
-        function doUserLibAction(id, title){
-          var host = getHost(),
-              homePath = '/home/'+host.user;
-          switch(id){
-            case "user-lib-home":
-              $scope.path = homePath;
-              $scope.$apply();//render ui
-              fetchPathData(); //update table
-              break;
-            default:
-              var dir = homePath + title;
-              alert([id, title, dir].join(','));
-              break;
-          }        
+      }
+      function action_delete() {
+        var paths = getSelectedPaths(),
+          msg = '';
+        for (var i in paths) {
+          var path = paths[i].path;
+          msg += path + '\n';
         }
-
-        function action_open(){}
-        function action_close(){}
-        function action_cut(){}
-        function action_copy(){}
-        function action_paste(){}
-        function action_new(){
-          var filename= prompt('Filename:');
-          if(filename){
-            var fullpath = $scope.path + "/" + filename;
-            touch_file($scope.host, fullpath, function(res){
-              var result = JSON.parse(res);
-              console.log(result);
-              if(result.error){
-                alert(result.error);
-              }
-              else {
-                alert("'"+fullpath + '\' has been created.');
-              }
-            });
-          }
-        }
-        function action_delete(){
-          var paths = getSelectedPaths(),
-              msg = '';
-          for(var i in paths){
+        var sure = confirm('Are you sure you want to delete ' + paths.length + ' paths?\n' + msg);
+        if (sure) {
+          for (var i in paths) {
             var path = paths[i].path;
-            msg += path + '\n';
-          }
-          var sure = confirm('Are you sure you want to delete '+ paths.length + ' paths?\n' + msg);
-          if(sure){
-            for(var i in paths){
-              var path = paths[i].path;
-              if(paths[i].isdirectory){
-                rmdir($scope.host, path, (res, status, xhr) => {
-                  console.log(res);
-                });
-              }
-              else {
-                unlink($scope.host, path, (res, status, xhr) => {
-                  console.log(res);
-                });
-              }
+            if (paths[i].isdirectory) {
+              rmdir($scope.host, path, (res, status, xhr) => {
+                console.log(res);
+              });
             }
-          }
-        }
-        function action_rename(){
-          document.querySelectorAll('.file-explorer tbody tr.active').forEach((tr, index) => { 
-            var textElement = tr.children[0].children[1],
-                text = textElement.textContent,
-                input = document.createElement('input');
-            input.setAttribute('type','text');
-            input.setAttribute('value', text);
-            input.setAttribute('original-value', text);
-            input.addEventListener('keydown', function(e){
-              renameFieldKeyDownEventHandle(e, textElement);
-            });
-            textElement.innerHTML = '';
-            textElement.append(input);
-            console.log(text);
-          });
-        }
-        function action_unzip(){}
-        function action_zip(){}
-        function action_properties(){}
-        function action_download_file(){}
-
-        function getTextEditorURL(path, mode){
-          return '/apps/editor/index.html?id='+$scope.host+'&source='+path+(mode ? '&mode='+mode : '');
-        }
-
-        function RunApplication(fullpath){
-          //alert('Please select a folder!');
-          var url = undefined;
-          var ext = getFileExtention(fullpath).toLowerCase();
-          switch(ext){
-            case "exe":
-              //executable
-              break;
-            case "jpg":
-            case "png":
-            case "tiff":
-            case "tif":
-            case "gif":
-            case "jpeg":
-            case "svg":
-              //images
-              break;
-            default:
-              //text editor
-              var mode = getMode(fullpath);
-              url = getTextEditorURL(fullpath, mode);
-          }
-
-          openInNewTab(url);
-        }
-
-        function deletePath(path, isDirectory){
-          let url = 'http://'+API_HOSTNAME+'/v1/ssh?action=delete&id='+ $scope.host + '&path=' + path + '&directory='+isDirectory;
-          $http.get(url).then(response => {
-            console.log('deletePath:', response);
-          });
-        }
-
-        function padNumber(num, count){
-          if(num < 10){
-            num = '0'+ num; 
-          }
-          return num;
-        }
-
-        function fetchPathData(){
-          if(!$scope.host) return;
-          $scope.displayLoading = '';
-          let path = $scope.path;
-          let url = 'http://'+API_HOSTNAME+'/v1/ssh2/readdir?id='+ $scope.host + '&path=' + path;
-          $http.get(url).then(response => {
-            //console.log('response', response);
-            let data = response.data;
-            $scope.filesUnderPath = [];
-            var folders = [];
-            var files = [];
-            for(var i in data) {
-              let file = data[i],
-                  filename = file.filename,
-                  fileExt = file.filename.split('.').pop(),
-                  fullname = path + (path.endsWith("/")?"":"/") + filename,
-                  lastModifiedString = file.attrs.mtime * 1000,
-                  lastModifiedDate = new Date(lastModifiedString),
-                  lastModifiedDateFormatted = padNumber(lastModifiedDate.getMonth()+1) + "/" + padNumber(lastModifiedDate.getDate()) + "/" + lastModifiedDate.getFullYear(),
-                  filePermissions = modeToString(unmaskMode(file.attrs.permissions)),
-                  isDirectory = file.longname.startsWith('d'),
-                  filesize = isDirectory ? "" : formatFileSize(file.attrs.size),
-                  fileInfo = file.longname.replace(/  +/g, ' ').split(' '),
-                  userGroupInfo = fileInfo.slice(2,4);
-              
-              filePermissions = fileInfo[0];
-              
-              //console.log(fileInfo, userGroupInfo);
-              
-              let icon =  isDirectory ? 'ui-icon folder' : 'ui-icon file file-'+ fileExt.toLowerCase();
-              let entry = { 
-                icon:icon, 
-                fullname: fullname,
-                name:filename, 
-                lastModified:lastModifiedDateFormatted, 
-                permissions:filePermissions, 
-                size: filesize, 
-                isDirectory: isDirectory,
-                user: userGroupInfo[0],
-                group: userGroupInfo[1]
-              };
-              if(isDirectory) folders.push(entry);
-              else files.push(entry);
-            }
-            folders.sort((a,b)=>{
-              return a.name.localeCompare(b.name);
-            });
-            files.sort((a,b)=>{
-              return a.name.localeCompare(b.name);
-            });
-            for(var i in folders){
-              $scope.filesUnderPath.push(folders[i]);
-            }
-            for(var i in files){
-              $scope.filesUnderPath.push(files[i]);
-            }
-            //$scope.filesUnderPath.sort((a,b)=>{
-            //// true values first
-            //return (a.isDirectory === b.isDirectory)? 0 : a.isDirectory? -1 : 1;
-            //// false values first
-            //// return (a.isDirectory === b.isDirectory)? 0 : a.isDirectory? 1 : -1;
-            //});
-            $scope.displayLoading = 'none';
-            
-            
-          });
-        }
-        
-        function fileSizeInMegabytes(bytes){
-          return (bytes / 1048576.0).toFixed(3);
-        }
-        function fileSizeInKilobytes(bytes){
-          return (bytes / 1024.0).toFixed(3);
-        }
-        function formatFileSize(bytes){
-          return fileSizeInMegabytes(bytes) == 0.000 ? fileSizeInKilobytes(bytes)+"KB" : fileSizeInMegabytes(bytes)+"MB";
-        }
-
-        function unmaskMode(statsMode){
-          let mode = Object.create(null);
-          mode.public = {
-            execute : statsMode & 1 ? true : false,
-            write 	: statsMode & 2 ? true: false,
-            read 	: statsMode & 4 ? true : false
-          };
-          mode.group = {
-            execute : statsMode & 10 ? true : false,
-            write 	: statsMode & 20 ? true : false,
-            read 	: statsMode & 40 ? true : false
-          };
-          mode.owner = {
-            execute : statsMode & 100 ? true : false,
-            write 	: statsMode & 200 ? true : false,
-            read 	: statsMode & 400 ? true : false
-          };
-          return mode;
-        }
-
-        function modeClassToString(mode){
-          if(!mode) return "";
-          let str = "";
-          str += mode.read ? "r" : "-";
-          str += mode.write ? "w" : "-";
-          str += mode.execute ? "x" : "-";
-          return str;
-        }
-
-        function modeToString(mode){
-          if(!mode) return "";
-          let str = modeClassToString(mode.owner);
-          str += modeClassToString(mode.group);
-          str += modeClassToString(mode.execute);
-          return str;
-        }
-
-        function buttonNavBackClick(){}
-        function buttonNavFwdClick(){}
-        function buttonNavUpClick(){
-          var paths = $scope.path.split('/');
-          paths.pop();//remove last item from array
-          $scope.path = paths.join('/') || '/';
-          console.log($scope.path);
-          $scope.$apply();//render ui
-          fetchPathData();
-        }
-        function buttonRefreshClick(){
-          fetchPathData();
-        }
-        function buttonSearchClick(){
-          console.log('host', $scope.host);
-        }
-        function buttonNewFolderClick(){
-          var filename= prompt('Filename:');
-          if(filename){
-            mkdir($scope.host, $scope.path + "/" + filename, function(res){
-              var result = JSON.parse(res);
-              console.log(result);
-              if(result.error){
-                alert(result.error);
-              }
-              else {
-                alert(result.message);
-              }
-            });
-          }
-        }
-
-        function buttonOpenClick(){}
-        function buttonUploadClick(){}
-        function buttonLayoutClick(){}
-        function buttonPreviewClick(){}
-        function buttonHelpClick(){}
-
-
-        function lookupUserAction(){
-          switch($scope.user_action){
-            case "delete":
-              action_delete();
-              break;
-            case "new-file":
-              action_new();
-              break;
-            case "new-folder":
-              buttonNewFolderClick();
-              break;
-            case "rename":
-              action_rename();
-              break;
-          }
-          console.log($scope.user_action,'!!!');
-          $scope.user_action = null;
-        }
-
-        function buttonWinMinimizeClick(){
-          $('.terminal').hide();
-        }
-        function buttonWinMaximizeClick(){
-
-        }
-        function buttonWinCloseClick(){
-          $('.terminal').hide();
-        }
-
-        function onKeyPressed(keyboardEvent){
-          var inputElem = this;
-          if(keyboardEvent.key == "Enter"){
-            if(inputElem.classList.contains('path')){
-              console.log('Path:', $scope.path);
-              buttonRefreshClick();
-            }
-            else if(inputElem.classList.contains('cmd')){
-              var cmd = $scope.cmd;
-              console.log(cmd);
-              HttpPost('http://'+API_HOSTNAME+'/v1/ssh2/shell', 'id=' + $scope.host + '&command=' + cmd, (res)=>{ 
-                var result = JSON.parse(res);
-                $scope.cmd_history.push({ command: cmd + '\n', result: result.data.trim() });
-                $scope.cmd = '';
-                $scope.$apply();//render ui
-                var hist = getElement('cmd-history');
-                hist.scrollTop = hist.scrollHeight;
+            else {
+              unlink($scope.host, path, (res, status, xhr) => {
+                console.log(res);
               });
             }
           }
-          //else console.log(keyboardEvent);
+        }
+      }
+      function action_rename() {
+        document.querySelectorAll('.file-explorer tbody tr.active').forEach((tr, index) => {
+          var textElement = tr.children[0].children[1],
+            text = textElement.textContent,
+            input = document.createElement('input');
+          input.setAttribute('type', 'text');
+          input.setAttribute('value', text);
+          input.setAttribute('original-value', text);
+          input.addEventListener('keydown', function (e) {
+            renameFieldKeyDownEventHandle(e, textElement);
+          });
+          textElement.innerHTML = '';
+          textElement.append(input);
+          console.log(text);
+        });
+      }
+      function action_unzip() { }
+      function action_zip() { }
+      function action_properties() { }
+      function action_download_file() { }
+
+      function getTextEditorURL(path, mode) {
+        return '/apps/editor/index.html?id=' + $scope.host + '&source=' + path + (mode ? '&mode=' + mode : '');
+      }
+
+      function RunApplication(fullpath) {
+        //alert('Please select a folder!');
+        var url = undefined;
+        var ext = getFileExtention(fullpath).toLowerCase();
+        switch (ext) {
+          case "exe":
+            //executable
+            break;
+          case "jpg":
+          case "png":
+          case "tiff":
+          case "tif":
+          case "gif":
+          case "jpeg":
+          case "svg":
+            //images
+            break;
+          default:
+            //text editor
+            var mode = getMode(fullpath);
+            url = getTextEditorURL(fullpath, mode);
         }
 
-		setupController();
+        openInNewTab(url);
+      }
 
-      });
-    </script>
-  </body>
+      function deletePath(path, isDirectory) {
+        let url = 'http://' + API_HOSTNAME + '/v1/ssh?action=delete&id=' + $scope.host + '&path=' + path + '&directory=' + isDirectory;
+        $http.get(url).then(response => {
+          console.log('deletePath:', response);
+        });
+      }
+
+      function padNumber(num, count) {
+        if (num < 10) {
+          num = '0' + num;
+        }
+        return num;
+      }
+
+      function fetchPathData() {
+        if (!$scope.host) return;
+        $scope.displayLoading = '';
+        let path = $scope.path;
+        let url = 'http://' + API_HOSTNAME + '/v1/ssh2/readdir?id=' + $scope.host + '&path=' + path;
+        $http.get(url).then(response => {
+          //console.log('response', response);
+          let data = response.data;
+          $scope.filesUnderPath = [];
+          var folders = [];
+          var files = [];
+          for (var i in data) {
+            let file = data[i],
+              filename = file.filename,
+              fileExt = file.filename.split('.').pop(),
+              fullname = path + (path.endsWith("/") ? "" : "/") + filename,
+              lastModifiedString = file.attrs.mtime * 1000,
+              lastModifiedDate = new Date(lastModifiedString),
+              lastModifiedDateFormatted = padNumber(lastModifiedDate.getMonth() + 1) + "/" + padNumber(lastModifiedDate.getDate()) + "/" + lastModifiedDate.getFullYear(),
+              filePermissions = modeToString(unmaskMode(file.attrs.permissions)),
+              isDirectory = file.longname.startsWith('d'),
+              filesize = isDirectory ? "" : formatFileSize(file.attrs.size),
+              fileInfo = file.longname.replace(/  +/g, ' ').split(' '),
+              userGroupInfo = fileInfo.slice(2, 4);
+
+            filePermissions = fileInfo[0];
+
+            //console.log(fileInfo, userGroupInfo);
+
+            let icon = isDirectory ? 'ui-icon folder' : 'ui-icon file file-' + fileExt.toLowerCase();
+            let entry = {
+              icon: icon,
+              fullname: fullname,
+              name: filename,
+              lastModified: lastModifiedDateFormatted,
+              permissions: filePermissions,
+              size: filesize,
+              isDirectory: isDirectory,
+              user: userGroupInfo[0],
+              group: userGroupInfo[1]
+            };
+            if (isDirectory) folders.push(entry);
+            else files.push(entry);
+          }
+          folders.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+          });
+          files.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+          });
+          for (var i in folders) {
+            $scope.filesUnderPath.push(folders[i]);
+          }
+          for (var i in files) {
+            $scope.filesUnderPath.push(files[i]);
+          }
+          //$scope.filesUnderPath.sort((a,b)=>{
+          //// true values first
+          //return (a.isDirectory === b.isDirectory)? 0 : a.isDirectory? -1 : 1;
+          //// false values first
+          //// return (a.isDirectory === b.isDirectory)? 0 : a.isDirectory? 1 : -1;
+          //});
+          $scope.displayLoading = 'none';
+
+
+        });
+      }
+
+      function fileSizeInMegabytes(bytes) {
+        return (bytes / 1048576.0).toFixed(3);
+      }
+      function fileSizeInKilobytes(bytes) {
+        return (bytes / 1024.0).toFixed(3);
+      }
+      function formatFileSize(bytes) {
+        return fileSizeInMegabytes(bytes) == 0.000 ? fileSizeInKilobytes(bytes) + "KB" : fileSizeInMegabytes(bytes) + "MB";
+      }
+
+      function unmaskMode(statsMode) {
+        let mode = Object.create(null);
+        mode.public = {
+          execute: statsMode & 1 ? true : false,
+          write: statsMode & 2 ? true : false,
+          read: statsMode & 4 ? true : false
+        };
+        mode.group = {
+          execute: statsMode & 10 ? true : false,
+          write: statsMode & 20 ? true : false,
+          read: statsMode & 40 ? true : false
+        };
+        mode.owner = {
+          execute: statsMode & 100 ? true : false,
+          write: statsMode & 200 ? true : false,
+          read: statsMode & 400 ? true : false
+        };
+        return mode;
+      }
+
+      function modeClassToString(mode) {
+        if (!mode) return "";
+        let str = "";
+        str += mode.read ? "r" : "-";
+        str += mode.write ? "w" : "-";
+        str += mode.execute ? "x" : "-";
+        return str;
+      }
+
+      function modeToString(mode) {
+        if (!mode) return "";
+        let str = modeClassToString(mode.owner);
+        str += modeClassToString(mode.group);
+        str += modeClassToString(mode.execute);
+        return str;
+      }
+
+      function buttonNavBackClick() { }
+      function buttonNavFwdClick() { }
+      function buttonNavUpClick() {
+        var paths = $scope.path.split('/');
+        paths.pop();//remove last item from array
+        $scope.path = paths.join('/') || '/';
+        console.log($scope.path);
+        $scope.$apply();//render ui
+        fetchPathData();
+      }
+      function buttonRefreshClick() {
+        fetchPathData();
+      }
+      function buttonSearchClick() {
+        console.log('host', $scope.host);
+      }
+      function buttonNewFolderClick() {
+        var filename = prompt('Filename:');
+        if (filename) {
+          mkdir($scope.host, $scope.path + "/" + filename, function (res) {
+            var result = JSON.parse(res);
+            console.log(result);
+            if (result.error) {
+              alert(result.error);
+            }
+            else {
+              alert(result.message);
+            }
+          });
+        }
+      }
+
+      function buttonOpenClick() { }
+      function buttonUploadClick() { }
+      function buttonLayoutClick() { }
+      function buttonPreviewClick() { }
+      function buttonHelpClick() { }
+
+
+      function lookupUserAction() {
+        switch ($scope.user_action) {
+          case "delete":
+            action_delete();
+            break;
+          case "new-file":
+            action_new();
+            break;
+          case "new-folder":
+            buttonNewFolderClick();
+            break;
+          case "rename":
+            action_rename();
+            break;
+        }
+        console.log($scope.user_action, '!!!');
+        $scope.user_action = null;
+      }
+
+      function buttonWinMinimizeClick() {
+        $('.terminal').hide();
+      }
+      function buttonWinMaximizeClick() {
+
+      }
+      function buttonWinCloseClick() {
+        $('.terminal').hide();
+      }
+
+      function onKeyPressed(keyboardEvent) {
+        var inputElem = this;
+        if (keyboardEvent.key == "Enter") {
+          if (inputElem.classList.contains('path')) {
+            console.log('Path:', $scope.path);
+            buttonRefreshClick();
+          }
+          else if (inputElem.classList.contains('cmd')) {
+            var cmd = $scope.cmd;
+            console.log(cmd);
+            HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/shell', 'id=' + $scope.host + '&command=' + cmd, (res) => {
+              var result = JSON.parse(res);
+              $scope.cmd_history.push({ command: cmd + '\n', result: result.data.trim() });
+              $scope.cmd = '';
+              $scope.$apply();//render ui
+              var hist = getElement('cmd-history');
+              hist.scrollTop = hist.scrollHeight;
+            });
+          }
+        }
+        //else console.log(keyboardEvent);
+      }
+
+      setupController();
+
+    });
+  </script>
+</body>
+
 </html>
-
-
-
-
-
-
-
-
-

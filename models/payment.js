@@ -1,6 +1,6 @@
 var paypal = require('paypal-rest-sdk');
 
-function CreatePayPalTransactionJSON(params){
+function CreatePayPalTransactionJSON(params) {
   return {
     "intent": "sale",
     "payer": {
@@ -37,16 +37,16 @@ function CreatePayPalTransactionJSON(params){
 
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
-  'client_id': 'Af1oDqoIasdi79vTONFgv6IoNCGPxBGOAMDHNTXYIV5GgL_k0iPycGi6E4hI18_yz9T-Ub_0IdAQsL8C',
-  'client_secret': 'EC3aH3i_sIm2wamXQ683qNvYGLfJJJC0dfFAHt9DspJrRW_CPfGbbjCF19_oo-XroW0nBpg782zxwZRg'
+  'client_id': process.env.CLIENT_ID,
+  'client_secret': process.env.CLIENT_SECRET
 });
 
-function creditCardPayment(params, callback){
-  var pmt = CreatePayPalTransactionJSON(params); 
+function creditCardPayment(params, callback) {
+  var pmt = CreatePayPalTransactionJSON(params);
   paypal.payment.create(pmt, callback);
 }
 
-function saveCreditCard(card, callback){
+function saveCreditCard(card, callback) {
   var savedCard = {
     "type": card.type,
     "number": card.number,
@@ -58,22 +58,22 @@ function saveCreditCard(card, callback){
   };
   paypal.creditCard.create(savedCard, callback);
 }
-function listCreditCards(callback){
+function listCreditCards(callback) {
   paypal.creditCard.list(callback);
 }
-function getCreditCard(id, callback){
+function getCreditCard(id, callback) {
   paypal.creditCard.get(id, callback);
 }
 
-function deleteCreditCard(id, callback){
+function deleteCreditCard(id, callback) {
   paypal.creditCard.del(id, callback);
 }
 
-function getCreditCardSale(saleId, callback){
-  paypal.sale.get(saleId, callback);  
+function getCreditCardSale(saleId, callback) {
+  paypal.sale.get(saleId, callback);
 };
 
-function refundCreditCard(saleId, amount, callback){
+function refundCreditCard(saleId, amount, callback) {
   var data = {
     "amount": {
       "currency": "USD",
@@ -83,14 +83,14 @@ function refundCreditCard(saleId, amount, callback){
   paypal.sale.refund(saleId, data, callback);
 }
 
-function createInvoice(params, callback){
+function createInvoice(params, callback) {
   var create_invoice_json = {
     "merchant_info": {
-      "business_name":"La Gloria Hacienda & Motel",
-      "email" : "russell.c.page-facilitator@gmail.com",
-      "first_name":"Russell",
-      "last_name" :"Page",
-      "website":"www.lagloriahacienda.com",
+      "business_name": "La Gloria Hacienda & Motel",
+      "email": "russell.c.page-facilitator@gmail.com",
+      "first_name": "Russell",
+      "last_name": "Page",
+      "website": "www.lagloriahacienda.com",
       "phone": {
         "country_code": "001",
         "national_number": "5122709768"
@@ -134,16 +134,16 @@ function createInvoice(params, callback){
   };
   paypal.invoice.create(create_invoice_json, callback);
 }
-function getInvoice(id, callback){
+function getInvoice(id, callback) {
   paypal.invoice.get(id, callback);
 }
-function deleteInvoice(id, callback){
+function deleteInvoice(id, callback) {
   paypal.invoice.del(id, callback);
 }
-function listInvoice(callback){
-  paypal.invoice.list(callback); 
+function listInvoice(callback) {
+  paypal.invoice.list(callback);
 }
-function cancelInvoice(id, callback){
+function cancelInvoice(id, callback) {
   var options = {
     "subject": "Canceling invoice",
     "note": "Canceling invoice",
@@ -154,7 +154,7 @@ function cancelInvoice(id, callback){
   paypal.invoice.cancel(id, options, callback);
 }
 
-function listPayments(params, callback){
+function listPayments(params, callback) {
   var listPayment = {
     'count': params.count ? params.count : '1',
     'start_index': params.startIndex ? params.startIndex : '0'
@@ -162,7 +162,7 @@ function listPayments(params, callback){
   paypal.payment.list(listPayment, callback);
 }
 
-function formatDate(date, tZoneHour, tZoneMin){
+function formatDate(date, tZoneHour, tZoneMin) {
   //'yyyy-MM-dd HH:mm:ss z'
   var yyyy = date.getFullYear();
   var MM = ('0' + (date.getMonth() + 1)).substr(-2);
@@ -171,11 +171,11 @@ function formatDate(date, tZoneHour, tZoneMin){
   var mm = ('0' + date.getMinutes()).substr(-2);
   var ss = ('0' + date.getSeconds()).substr(-2);
   var zone = tZoneHour ? ('0' + tZoneHour).substr(-2) : '00';
-  var offset = tZoneMin ? ('0' + tZoneMin).substr(-2)  : '00';
+  var offset = tZoneMin ? ('0' + tZoneMin).substr(-2) : '00';
   return yyyy + '-' + MM + '-' + dd + 'T' + HH + ':' + mm + ':' + ss + '-' + zone + ':' + offset;
 }
 
-function getDateParts(date){
+function getDateParts(date) {
   var yyyy = date.getFullYear().toString();
   var MM = ('0' + (date.getMonth() + 1)).substr(-2);
   var dd = ('0' + date.getDate()).substr(-2);
@@ -183,56 +183,56 @@ function getDateParts(date){
   var mm = ('0' + date.getMinutes()).substr(-2);
   var ss = ('0' + date.getSeconds()).substr(-2);
   return {
-  	fullYear : yyyy,
-    month : MM,
-    day : dd,
-    hour : HH,
-    min : mm,
-    sec : ss,
-    yyyy:yyyy,
-    MM:MM,
-    dd:dd,
-    HH:HH,
-    mm:mm,
-    ss:ss
+    fullYear: yyyy,
+    month: MM,
+    day: dd,
+    hour: HH,
+    min: mm,
+    sec: ss,
+    yyyy: yyyy,
+    MM: MM,
+    dd: dd,
+    HH: HH,
+    mm: mm,
+    ss: ss
   }
 }
 
 
 
-function recordPayment(invoiceId, params, callback){
-  var recordPaymentDateFormat = function(date, tZone){
+function recordPayment(invoiceId, params, callback) {
+  var recordPaymentDateFormat = function (date, tZone) {
     var d = getDateParts(date);
     var zone = tZone ? tZone : 'MST';
     return d.yyyy + '-' + d.MM + '-' + d.dd + ' ' + d.HH + ':' + d.mm + ':' + d.ss + ' ' + zone;
   }
   var payment_attr = {
-    "method" : params.method ? params.method : "CASH",
-    "date" : params.date ? recordPaymentDateFormat(new Date(params.date)) : recordPaymentDateFormat(new Date()),
-    "note" : params.note ? params.note : ""
+    "method": params.method ? params.method : "CASH",
+    "date": params.date ? recordPaymentDateFormat(new Date(params.date)) : recordPaymentDateFormat(new Date()),
+    "note": params.note ? params.note : ""
   };
   paypal.invoice.recordPayment(invoiceId, payment_attr, callback);
 }
 
 module.exports = {
   invoice: {
-    get : getInvoice,
+    get: getInvoice,
     list: listInvoice,
     delete: deleteInvoice,
     cancel: cancelInvoice,
     create: createInvoice,
     recordPayment: recordPayment,
   },
-  creditCard : {
-    payment : getCreditCardSale,
-    sale : creditCardPayment,
+  creditCard: {
+    payment: getCreditCardSale,
+    sale: creditCardPayment,
     refund: refundCreditCard,
-    save : saveCreditCard,
+    save: saveCreditCard,
     get: getCreditCard,
     list: listCreditCards,
-    delete : deleteCreditCard
+    delete: deleteCreditCard
   },
-  list : listPayments
+  list: listPayments
 }
 
 
