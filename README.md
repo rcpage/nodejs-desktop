@@ -6,17 +6,7 @@ Run Example
 ```
 node HttpTestServer.js
 ```
-Build binaries from package.json
 
-```sh
-pkg .
-```
-
-Command create following binaries.
-
-- desktop-linux - Linux
-- desktop-macos - MacOS 
-- desktop-win.exe - Windows
 
 
 ### Browser Preview (AngularJS Application)
@@ -92,3 +82,17 @@ domainManager.add('api.localhost', 'http://localhost:8090');
 domainManager.add('localhost', 'http://localhost:8091');
 domainManager.start(8080);
 ```
+
+
+
+Build binaries from package.json
+
+```sh
+pkg .
+```
+
+Command create following binaries.
+
+- desktop-linux - Linux
+- desktop-macos - MacOS 
+- desktop-win.exe - Windows
