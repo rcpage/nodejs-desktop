@@ -4,6 +4,8 @@
 Run Example
 
 ```
+git clone https://github.com/rcpage/nodejs-desktop.git
+cd nodejs-desktop
 node HttpTestServer.js
 ```
 
@@ -23,7 +25,6 @@ http://localhost:8091/apps/desktop/index.html
 global.System = require('./System.js');
 using('System.Network.WebApi');
 using('System.Network.HTTP.Microservice');
-using('System.Network.HTTP.Session.MongoDBSession');
 
 class Example extends Microservice {
     static get path() {
