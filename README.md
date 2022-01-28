@@ -117,6 +117,21 @@ fileServer.start(8091);
 ```
 
 ```
+node fileserver.js 
+System.Server
+System.Network.HTTP.HTTPStatusCode
+System.Network.Authenticate
+System.Network.HTTP.SessionManager
+System.Network.HTTP.ServerResponse
+System.Network.HTTP.IncomingMessage
+System.Network.HTTP.ContentType
+System.Network.PublicServer
+System.Network.PublicFileService
+PublicFileService server listening on port 8091.
+PublicFileService started Fri Jan 28 2022 12:40:20 GMT-0600 (Central Standard Time)
+```
+
+```
 http://localhost:8091/apps/desktop/index.html
 ```
 
@@ -132,9 +147,26 @@ domainManager.add('localhost', 'http://localhost:8091');
 domainManager.start(8080);
 ```
 
+```
+node router.js 
+System.Server
+System.Network.HTTP.HTTPStatusCode
+System.Network.Authenticate
+System.Network.HTTP.SessionManager
+System.Network.HTTP.ServerResponse
+System.Network.HTTP.IncomingMessage
+System.Network.HTTP.ContentType
+System.Network.PublicServer
+System.Network.DomainManager
+DOMAIN http://api.localhost
+DOMAIN http://localhost
+DomainManager server listening on port 8080.
+DomainManager started Fri Jan 28 2022 12:40:52 GMT-0600 (Central Standard Time)
+```
 
 
-Build binaries from package.json
+
+### Build binaries from package.json
 
 ```sh
 pkg .
