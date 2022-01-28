@@ -1,2 +1,0 @@
-#Add entry to /etc/hosts file to run HttpTestServer.js in browser
-3.2.1.10 localhost api.localhost
