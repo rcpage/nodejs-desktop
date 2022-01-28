@@ -1,15 +1,16 @@
 # Desktop Application Server
 
 
-Run Example
+The application implements a desktop-like environment for remote hosts.  Credentials are used to connect via SSH using microservice REST API to implement a file explorer over the web (similar to native desktop applications running on a PC or laptop). A text editor allows users to edit files remotely.
+
+### Run Example
+
 
 ```
 git clone https://github.com/rcpage/nodejs-desktop.git
 cd nodejs-desktop
 node HttpTestServer.js
 ```
-
-
 
 ### Browser Preview (AngularJS Application)
 
@@ -48,17 +49,32 @@ webAPI.start(8090);
 
 # Browser Preview (application/json)
 ```
-node microservice.js
+node microservice.js 
+System.Server
+System.Network.HTTP.HTTPStatusCode
+System.Network.Authenticate
+System.Network.HTTP.SessionManager
+System.Network.HTTP.ServerResponse
+System.Network.HTTP.IncomingMessage
+System.Network.HTTP.ContentType
+System.Network.PublicServer
+System.Network.HTTP.Handle
+System.Network.HTTP.Microservice
+System.Network.WebApi
+System.Network.HTTP.Session.MongoDBSession
+HTTP Handle Example /microservice
+WebApi server listening on port 8090.
+WebApi started Fri Jan 28 2022 11:53:47 GMT-0600 (Central Standard Time)
 ```
 ```
-http://localhost:8090/microservice?a=1&b=2&c=3
+http://localhost:8090/microservice?hello=world!
 ```
 
 ```
-{"a":"1","b":"2","c":"3"}
+{"hello":"world!"}
 ```
 
-# File Server
+# File Server Example
 
 ```
 global.System = require('./System.js');
