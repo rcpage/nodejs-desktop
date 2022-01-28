@@ -159,120 +159,119 @@
 
 <script src="/lib/CodeMirror-master/addon/display/panel.js"></script>
 <script type="text/javascript">
-    function getQueryVariable(variable)
-    {
-      var query = window.location.search.substring(1);
-      var vars = query.split("&");
-      for (var i=0;i<vars.length;i++) {
-        var pair = vars[i].split("=");
-        if(pair[0] == variable){return pair[1];}
-      }
-      return(false);
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+      if (pair[0] == variable) { return pair[1]; }
     }
+    return (false);
+  }
 
-    function setMode(mode){
-      codeMirror.setOption('mode', mode); 
+  function setMode(mode) {
+    codeMirror.setOption('mode', mode);
+  }
+
+  function HttpHeadersToJson(str) {
+    var result = {};
+    if (!str) return result;
+    var lines = str.split('\n');
+    for (var i in lines) {
+      var item = lines[i];
+      if (item.length == 0) continue;
+      var nameValuePair = item.split(':');
+      result[nameValuePair[0].trim()] = nameValuePair[1].trim();
     }
+    return result;
+  }
 
-    function HttpHeadersToJson(str){
-      var result = {};
-      if(!str) return result;
-      var lines = str.split('\n');
-      for(var i in lines){
-        var item = lines[i];
-        if(item.length==0)continue;
-        var nameValuePair = item.split(':');
-        result[nameValuePair[0].trim()] = nameValuePair[1].trim();
-      }
-      return result;
-    }
-
-    function fetchFile(id, host, source){
-      if(source){
-        var url = '/v1/ssh2/fastGet?id='+id+'&remotePath='+source+'&download=true';
-        $.get(url, function(txt, result, xhr){ 
-          codeMirror.setValue(xhr.responseText);
-          document.querySelector('.loading-dialog').style.display = 'none';
-        });
-      }
-    }
-
-    function fetchFile2(id, host, source){
-      if(source){
-        var url = '/v1/ssh2/fastGet?remotePath='+source+'&download=true';
-        $.get(url, function(txt, result, xhr){ 
-          codeMirror.setValue(txt);
-          document.querySelector('.loading-dialog').style.display = 'none';
-        });
-      }
-    }
-
-    function setupCodeMirror(){
-      window.codeMirror = CodeMirror.fromTextArea(document.getElementById("editor"), {
-        lineNumbers: true,
-        mode: getQueryVariable('mode') || "htmlmixed",
-        matchTags: { bothTags: true },
-        matchBrackets: true,
-        foldGutter: true,
-        styleActiveLine: true,
-        extraKeys: { 
-          "Ctrl-Space": "autocomplete"
-          , "Alt-F": "findPersistent"
-        },
-        gutters: ["CodeMirror-lint-markers", "CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-        lint: true
+  function fetchFile(id, host, source) {
+    if (source) {
+      var url = 'localhost:8090/v1/ssh2/fastGet?id=' + id + '&remotePath=' + source + '&download=true';
+      $.get(url, function (txt, result, xhr) {
+        codeMirror.setValue(xhr.responseText);
+        document.querySelector('.loading-dialog').style.display = 'none';
       });
-      //
-      // fetch file
-      //
-      fetchFile(getQueryVariable('id'), getQueryVariable('host'), getQueryVariable('source'));
     }
+  }
 
-    $(document).ready(function() {
-      var queryMode = getQueryVariable('mode'),
-          loadedModes = CodeMirror.modes,
-          isModeLoaded = loadedModes[queryMode] != undefined;
-      if(isModeLoaded == false){
-        $.getScript('/lib/CodeMirror-master/mode/'+queryMode+'/'+queryMode+'.js', function(){
-          setupCodeMirror();
-        });
-      } 
-      else {
+  function fetchFile2(id, host, source) {
+    if (source) {
+      var url = 'localhost:8090/v1/ssh2/fastGet?remotePath=' + source + '&download=true';
+      $.get(url, function (txt, result, xhr) {
+        codeMirror.setValue(txt);
+        document.querySelector('.loading-dialog').style.display = 'none';
+      });
+    }
+  }
+
+  function setupCodeMirror() {
+    window.codeMirror = CodeMirror.fromTextArea(document.getElementById("editor"), {
+      lineNumbers: true,
+      mode: getQueryVariable('mode') || "htmlmixed",
+      matchTags: { bothTags: true },
+      matchBrackets: true,
+      foldGutter: true,
+      styleActiveLine: true,
+      extraKeys: {
+        "Ctrl-Space": "autocomplete"
+        , "Alt-F": "findPersistent"
+      },
+      gutters: ["CodeMirror-lint-markers", "CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+      lint: true
+    });
+    //
+    // fetch file
+    //
+    fetchFile(getQueryVariable('id'), getQueryVariable('host'), getQueryVariable('source'));
+  }
+
+  $(document).ready(function () {
+    var queryMode = getQueryVariable('mode'),
+      loadedModes = CodeMirror.modes,
+      isModeLoaded = loadedModes[queryMode] != undefined;
+    if (isModeLoaded == false) {
+      $.getScript('/lib/CodeMirror-master/mode/' + queryMode + '/' + queryMode + '.js', function () {
         setupCodeMirror();
-      }
-    });
-
-    function getElement(name){
-      return document.getElementsByClassName(name)[0];
+      });
     }
+    else {
+      setupCodeMirror();
+    }
+  });
 
-    var app = angular.module('Application', []);
+  function getElement(name) {
+    return document.getElementsByClassName(name)[0];
+  }
 
-    app.controller('Controller', function($scope, $http) {
+  var app = angular.module('Application', []);
 
-      //$scope.displayLoading = 'none';
+  app.controller('Controller', function ($scope, $http) {
 
-      $scope.path = getQueryVariable('source');
-      $scope.filename = $scope.path.split('/').pop();
-      document.title = $scope.filename;
-      //getElement('btn-new').addEventListener('click', function(){
-      //	alert('new');
-      //});
-      //getElement('btn-open').addEventListener('click', function(){
-      //	alert('open');
-      //});
+    //$scope.displayLoading = 'none';
 
-      getElement('btn-save').addEventListener('click', function(){
-        var lines = codeMirror.getValue();
-        var source = getQueryVariable('source');
-        var host = getQueryVariable('host');
-        var id = getQueryVariable('id');
-        var url = '/v1/ssh2/fastPut?id='+id+'&remotePath='+source;
-        $.post(url, { body: lines }, function(result, status, xhr){
-          console.log(result);
-        });
+    $scope.path = getQueryVariable('source');
+    $scope.filename = $scope.path.split('/').pop();
+    document.title = $scope.filename;
+    //getElement('btn-new').addEventListener('click', function(){
+    //	alert('new');
+    //});
+    //getElement('btn-open').addEventListener('click', function(){
+    //	alert('open');
+    //});
+
+    getElement('btn-save').addEventListener('click', function () {
+      var lines = codeMirror.getValue();
+      var source = getQueryVariable('source');
+      var host = getQueryVariable('host');
+      var id = getQueryVariable('id');
+      var url = 'localhost:8090/v1/ssh2/fastPut?id=' + id + '&remotePath=' + source;
+      $.post(url, { body: lines }, function (result, status, xhr) {
+        console.log(result);
       });
     });
+  });
 
 </script>
 

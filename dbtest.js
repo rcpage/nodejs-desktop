@@ -23,7 +23,7 @@ var fileServer = new PublicFileService(__dirname + '/www/');
 //fileServer.setSessionManager(MongoDBSession);
 fileServer.start(1010);
 
-class test extends Endpoint {
+class test extends Microservice {
   static get path() {
     return ["/test"]
   }

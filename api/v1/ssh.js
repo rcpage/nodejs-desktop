@@ -1,15 +1,15 @@
 using('System.Network.PublicFileService');
 using('System.Network.HTTP.HTTPStatusCode');
-class ssh extends Endpoint {
+class ssh extends Microservice {
 
   static get path() {
-    return "/v1/ssh";
+    return "localhost:8090/v1/ssh";
   }
 
   static getHostCredentials(id, cb) {
     let request = System.getModule('request');
     request.get({
-      url: '/v1/inventory/view?id=' + id
+      url: 'localhost:8090/v1/inventory/view?id=' + id
     }, (err, response, body) => {
       if (cb) {
         cb(err, JSON.parse(body));

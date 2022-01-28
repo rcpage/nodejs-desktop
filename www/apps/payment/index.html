@@ -435,130 +435,130 @@
 
 
   <script>
-      function HttpPost(url, params, cb){
-        var http = new XMLHttpRequest();
-        http.open('POST', url, true);
-        //Send the proper header information along with the request
-        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        //Call a function when the state changes.    
-        http.onreadystatechange = function() {
-          if(http.readyState == 4) {
-            if(cb) cb(http.responseText, http.status, http);
-          }
+    function HttpPost(url, params, cb) {
+      var http = new XMLHttpRequest();
+      http.open('POST', url, true);
+      //Send the proper header information along with the request
+      http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      //Call a function when the state changes.    
+      http.onreadystatechange = function () {
+        if (http.readyState == 4) {
+          if (cb) cb(http.responseText, http.status, http);
         }
-        http.send(params);
-        return http;
       }
+      http.send(params);
+      return http;
+    }
 
-      function HttpGet(url, params, cb){
-        var http = new XMLHttpRequest();
-        http.open('GET', url + '?' + params);
-        //Call a function when the state changes.
-        http.onreadystatechange = function() {
-          if(http.readyState == 4) {
-            if(cb) cb(http.responseText, http.status, http);
-          }
+    function HttpGet(url, params, cb) {
+      var http = new XMLHttpRequest();
+      http.open('GET', url + '?' + params);
+      //Call a function when the state changes.
+      http.onreadystatechange = function () {
+        if (http.readyState == 4) {
+          if (cb) cb(http.responseText, http.status, http);
         }
-        http.send();
-        return http;
       }
+      http.send();
+      return http;
+    }
 
-      function get_payment_methods(cb){
-        HttpGet('/v1/payment',"",function(result){ 
-          var json = JSON.parse(result).reverse();
-          if(cb) cb(json);
-        });
-      }
-
-      function list_invoices(cb){
-        HttpGet('/v1/payment/invoice/list','', function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function get_invoice(id, cb){
-        HttpGet('/v1/payment/invoice/get','id='+id, function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function delete_invoice(id, cb){
-        HttpGet('/v1/payment/invoice/delete','id='+id, function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function cancel_invoice(id, cb){
-        HttpGet('/v1/payment/invoice/cancel','id='+id, function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function create_invoice(params, cb){
-        HttpPost('/v1/payment/invoice/create', $.param(params), function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function update_invoice_payment_status(id, params, cb){
-        HttpGet('/v1/payment/invoice/recordPayment','id='+id, function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function list_payments(cb){
-        HttpGet('/v1/payment/list', "", function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function get_credit_card_payment(id, cb){
-        HttpPost('/v1/payment/creditCard/payment', "id="+id, function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function list_credit_cards(cb){
-        HttpGet('/v1/payment/creditCard/list', "", function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function get_credit_card(id, cb){
-        HttpPost('/v1/payment/creditCard/get', "id="+id, function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function delete_credit_card(id, cb){
-        HttpPost('/v1/payment/creditCard/delete', "id="+id, function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function save_credit_card(params, cb){
-        HttpPost('/v1/payment/creditCard/save', $.param(params), function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      function credit_card_sale(params, cb){
-        HttpPost('/v1/payment/creditCard/sale', $.param(params), function(result){
-          if(cb) cb(result);
-        });
-      }
-
-      var app = angular.module('FileSystemApplication', []);
-
-      app.controller('FileSystemController', function($scope, $http) {
-        $scope.commands = [/*{ name: 'test' }*/];
-        get_payment_methods(json => {
-          for(var i in json){
-            $scope.commands.push({ name: json[i][0] + '(' + json[i][1].join(',') + ')' });
-            $scope.$apply();
-          }
-        });
+    function get_payment_methods(cb) {
+      HttpGet('localhost:8090/v1/payment', "", function (result) {
+        var json = JSON.parse(result).reverse();
+        if (cb) cb(json);
       });
+    }
+
+    function list_invoices(cb) {
+      HttpGet('localhost:8090/v1/payment/invoice/list', '', function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function get_invoice(id, cb) {
+      HttpGet('localhost:8090/v1/payment/invoice/get', 'id=' + id, function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function delete_invoice(id, cb) {
+      HttpGet('localhost:8090/v1/payment/invoice/delete', 'id=' + id, function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function cancel_invoice(id, cb) {
+      HttpGet('localhost:8090/v1/payment/invoice/cancel', 'id=' + id, function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function create_invoice(params, cb) {
+      HttpPost('localhost:8090/v1/payment/invoice/create', $.param(params), function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function update_invoice_payment_status(id, params, cb) {
+      HttpGet('localhost:8090/v1/payment/invoice/recordPayment', 'id=' + id, function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function list_payments(cb) {
+      HttpGet('localhost:8090/v1/payment/list', "", function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function get_credit_card_payment(id, cb) {
+      HttpPost('localhost:8090/v1/payment/creditCard/payment', "id=" + id, function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function list_credit_cards(cb) {
+      HttpGet('localhost:8090/v1/payment/creditCard/list', "", function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function get_credit_card(id, cb) {
+      HttpPost('localhost:8090/v1/payment/creditCard/get', "id=" + id, function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function delete_credit_card(id, cb) {
+      HttpPost('localhost:8090/v1/payment/creditCard/delete', "id=" + id, function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function save_credit_card(params, cb) {
+      HttpPost('localhost:8090/v1/payment/creditCard/save', $.param(params), function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    function credit_card_sale(params, cb) {
+      HttpPost('localhost:8090/v1/payment/creditCard/sale', $.param(params), function (result) {
+        if (cb) cb(result);
+      });
+    }
+
+    var app = angular.module('FileSystemApplication', []);
+
+    app.controller('FileSystemController', function ($scope, $http) {
+      $scope.commands = [/*{ name: 'test' }*/];
+      get_payment_methods(json => {
+        for (var i in json) {
+          $scope.commands.push({ name: json[i][0] + '(' + json[i][1].join(',') + ')' });
+          $scope.$apply();
+        }
+      });
+    });
   </script>
 </body>
 

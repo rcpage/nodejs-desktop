@@ -424,482 +424,482 @@
 
 
   <script>
-      function HttpPost(url, params, cb){
-        var http = new XMLHttpRequest();
-        http.open('POST', url, true);
-        //Send the proper header information along with the request
-        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        //Call a function when the state changes.    
-        http.onreadystatechange = function() {
-          if(http.readyState == 4) {
-            if(cb) cb(http.responseText, http.status, http);
+    function HttpPost(url, params, cb) {
+      var http = new XMLHttpRequest();
+      http.open('POST', url, true);
+      //Send the proper header information along with the request
+      http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      //Call a function when the state changes.    
+      http.onreadystatechange = function () {
+        if (http.readyState == 4) {
+          if (cb) cb(http.responseText, http.status, http);
+        }
+      }
+      http.send(params);
+      return http;
+    }
+
+    function HttpGet(url, params, cb) {
+      var http = new XMLHttpRequest();
+      http.open('GET', url + '?' + params);
+      //Call a function when the state changes.
+      http.onreadystatechange = function () {
+        if (http.readyState == 4) {
+          if (cb) cb(http.responseText, http.status, http);
+        }
+      }
+      http.send();
+      return http;
+    }
+
+    function lookupField(name, list) {
+      for (var i in list) {
+        if (list[i].name == name) return list[i];
+      }
+      return null;
+    }
+
+    function parseField(str) {
+      var obj = {};
+      var lines = str.split('\n');
+      for (var i in lines) {
+        console.log(lines[i]);
+      }
+      return str;
+    }
+
+    function getScope() {
+      return angular.element(document.querySelector('.app')).scope();
+    }
+
+    function serializedArrayToJson(fields) {
+      var json = {};
+      for (var i in fields) {
+        json[fields[i].name] = jsyaml.load(fields[i].value);
+      }
+      return json;
+    }
+
+    $('#new-playbook').click(function (e) {
+      var name = prompt('Playbook Name');
+      if (name) {
+        addPlaybook({ name: name }, result => {
+          getScope().reload();
+        });
+      }
+    });
+
+    $('#new-task').click(function (e) {
+      var name = prompt('Task Name');
+      if (name) {
+        addTask({ name: name }, result => {
+          getScope().reload();
+        });
+      }
+    });
+
+    $('#copy-task').click(function (e) {
+      $('input:checked').each((i, item) => {
+        copyTask(item.id, response => console.log(response));
+      });
+    });
+
+    $('#delete-task').click(function (e) {
+      var checkedItems = $('input:checked');
+      var sure = confirm('Are you sure you want to delete ' + checkedItems.size() + ' items?');
+      if (sure) {
+        checkedItems.each((i, item) => {
+          deleteTask(item.id, response => console.log(response));
+        });
+      }
+
+    });
+
+
+
+    $('#save-playbook').click(function (e) {
+      savePlaybook();
+    });
+
+    $('#save-task').click(function (e) {
+      var fields = $('form#task').serializeArray();
+      var task = serializedArrayToJson(fields);
+      var scope = getScope();
+      updateTask(scope.activeTaskId, task, (responseText, status, xhr) => {
+        console.log(responseText);
+        scope.reloadTasks(() => {
+          scope.playbookChanged();
+        });
+      });
+
+    });
+
+    function copyTask(id, cb) {
+      HttpPost('localhost:8090/v1/ansible_task/copy', "id=" + id, (responseText, status, xhr) => {
+        if (cb) cb(responseText);
+      });
+    }
+
+    function deleteTask(id, cb) {
+      var sure = confirm('Are you sure you want to delete task id=' + id + '?');
+      if (sure) {
+        HttpPost('localhost:8090/v1/ansible_task/delete', "id=" + id, (responseText, status, xhr) => {
+          if (cb) cb(responseText);
+        });
+      }
+    }
+
+    function addTask(task, cb) {
+      var taskJsonString = JSON.stringify(task, null, 2),
+        document = encodeURIComponent(taskJsonString);
+      HttpPost('localhost:8090/v1/ansible_task/add', "document=" + document, (responseText, status, xhr) => {
+        if (cb) cb(responseText);
+      });
+    }
+
+    function updateTask(id, task, cb) {
+      var taskJsonString = JSON.stringify(task, null, 2),
+        document = encodeURIComponent(taskJsonString);
+      HttpPost('localhost:8090/v1/ansible_task/update', "id=" + id + "&document=" + document, (responseText, status, xhr) => {
+        if (cb) cb(responseText, status, xhr);
+      });
+    }
+
+    function getAllTasks(cb) {
+      HttpGet('localhost:8090/v1/ansible_task/list', "", (responseText, status, xhr) => {
+        var tasks = JSON.parse(responseText);
+        if (cb) cb(tasks);
+      });
+    }
+
+    function getAllPlaybooks(cb) {
+      HttpGet('localhost:8090/v1/ansible_playbook/list', "", (responseText, status, xhr) => {
+        var tasks = JSON.parse(responseText);
+        if (cb) cb(tasks);
+      });
+    }
+
+    function updatePlaybook(id, playbook, cb) {
+      var taskJsonString = JSON.stringify(playbook, null, 2),
+        document = encodeURIComponent(taskJsonString);
+      HttpPost('localhost:8090/v1/ansible_playbook/update', "id=" + id + "&document=" + document, (responseText, status, xhr) => {
+        if (cb) cb(responseText, status, xhr);
+      });
+    }
+
+    function updatePlaybookTask(task_id, playbook_id, cb) {
+      HttpPost('localhost:8090/v1/ansible_playbook/updateTask', "task_id=" + task_id + "&playbook_id=" + playbook_id, (responseText, status, xhr) => {
+        if (cb) cb(responseText, status, xhr);
+      });
+    }
+
+    function addPlaybook(playbook, cb) {
+      var taskJsonString = JSON.stringify(playbook, null, 2),
+        document = encodeURIComponent(taskJsonString);
+      HttpPost('localhost:8090/v1/ansible_playbook/add', "document=" + document, (responseText, status, xhr) => {
+        if (cb) cb(responseText);
+      });
+    }
+
+    function savePlaybook() {
+      var playbook = getPlaybook();
+      var id = $('form select[id=playbook] option:checked').val();
+      //playbook.name = $('form select[id=playbook] option:checked').text();
+      updatePlaybook(id, playbook, (responseText) => {
+        console.log(responseText);
+      });
+      for (var i in playbook.tasks) {
+        var taskId = playbook.tasks[i];
+        var task = getPlaybookTaskById(taskId);
+        updatePlaybookTask(taskId, id, result => console.log(result));
+      }
+    }
+
+    function getPlaybook() {
+      var playbook = serializedArrayToJson($('form#playbook').serializeArray())
+      playbook.tasks = [];
+      var tasks = getScope().playbookTasks;
+      for (var i in tasks) {
+        var item = tasks[i];
+        playbook.tasks.push(item._id);
+      }
+      //JSON.stringify(playbook, null, 2)
+      return playbook;
+    }
+
+    function createPlaybook() {
+      var playbook = serializedArrayToJson($('form#playbook').serializeArray())
+      playbook.tasks = [];
+      var tasks = getScope().playbookTasks;
+      for (var i in tasks) {
+        var task = tasks[i].task;
+
+        task[task.module] = task.module_params;
+        delete task.module_params;
+        delete task.module;
+
+        playbook.tasks.push(task);
+      }
+      //JSON.stringify(playbook, null, 2)
+      return playbook;
+    }
+
+    function createTaskTableMarkdown() {
+      var playbook = createPlaybookJSON();
+      var txt = "| Sequence | Task | Tags |\n" +
+        "| -------- | ---- | ---- |\n";
+      for (var i in playbook[0].tasks) {
+        txt += "| " + i + " | " + playbook[0].tasks[i].name + " | " + playbook[0].tasks[i].tags.join(', ').toLowerCase() + " |\n";
+      }
+      return txt;
+    }
+
+    function createPlaybookYAML() {
+      //convert to JSON string to remove "undefined" tags
+      var jsonString = JSON.stringify([createPlaybook()]);
+      return "---\n" + jsyaml.dump(JSON.parse(jsonString));
+    }
+
+    function createPlaybookJSON() {
+      return jsyaml.load(createPlaybookYAML());
+    }
+
+    function findTask(id) {
+      var task = getTaskById(id);
+      if (!task) task = getPlaybookTaskById(id);
+      return task;
+    }
+
+    function getTaskById(id) {
+      var tasks = getScope().tasks;
+      for (var i in tasks) {
+        if (tasks[i]._id == id) {
+          return tasks[i];
+        }
+      }
+      return null;
+    }
+
+    function getPlaybookTaskById(id) {
+      var tasks = getScope().playbookTasks;
+      for (var i in tasks) {
+        if (tasks[i]._id == id) {
+          return tasks[i];
+        }
+      }
+      return null;
+    }
+
+    function clearTaskForm() {
+      var fields = $('form#task').serializeArray();
+      for (var i in fields) {
+        $('form#task [name=' + fields[i].name + ']').val('');
+      }
+    }
+
+    function clearPlaybookForm() {
+      var fields = $('form#playbook').serializeArray();
+      for (var i in fields) {
+        $('form#playbook [name=' + fields[i].name + ']').val('');
+      }
+    }
+
+    function addEventTaskClickEventListener() {
+
+      $('.user-task').unbind('click');
+
+      $('.user-task').click(function (e) {
+        var id = this.id,
+          scope = getScope(),
+          taskFoundHandle = function (task) {
+            clearTaskForm();
+            scope.activeTaskId = id;
+            scope.$apply();
+            for (var field in task) {
+              var value = field == 'module' ? task[field] : jsyaml.dump(task[field]);
+              $('form#task [name=' + field + ']').val(value);
+            }
+          };
+
+        for (var i in scope.tasks) {
+          if (scope.tasks[i]._id == id) {
+            var task = scope.tasks[i].task;
+            taskFoundHandle(task);
           }
         }
-        http.send(params);
-        return http;
-      }
-
-      function HttpGet(url, params, cb){
-        var http = new XMLHttpRequest();
-        http.open('GET', url + '?' + params);
-        //Call a function when the state changes.
-        http.onreadystatechange = function() {
-          if(http.readyState == 4) {
-            if(cb) cb(http.responseText, http.status, http);
+        for (var i in scope.playbookTasks) {
+          if (scope.playbookTasks[i]._id == id) {
+            var task = scope.playbookTasks[i].task;
+            taskFoundHandle(task);
           }
         }
-        http.send();
-        return http;
-      }
+      });
+    }
 
-      function lookupField(name, list){
-        for(var i in list){
-          if(list[i].name == name) return list[i];
-        }
-        return null;
-      }
-
-      function parseField(str){
-        var obj = {};
-        var lines = str.split('\n');
-        for(var i in lines){
-          console.log(lines[i]);
-        }
-        return str;
-      }
-
-      function getScope(){
-        return angular.element(document.querySelector('.app')).scope();
-      }
-
-      function serializedArrayToJson(fields){
-        var json = {};
-        for(var i in fields){
-          json[fields[i].name] = jsyaml.load(fields[i].value);
-        }
-        return json;
-      }
-
-      $('#new-playbook').click(function(e){
-        var name = prompt('Playbook Name');
-        if(name){
-          addPlaybook({ name: name }, result=>{
-            getScope().reload();
-          });
+    function updateTaskListOrder() {
+      $('#sortable-tasklist div').each((i, elem) => {
+        var task = getPlaybookTaskById(elem.id);
+        if (task) {
+          task.index = Number(i);
+          //console.log('sortable-tasklist', task._id +' Index: '+ i)
         }
       });
-
-      $('#new-task').click(function(e){
-        var name = prompt('Task Name');
-        if(name){
-          addTask({ name: name }, result=>{
-            getScope().reload();
-          });
-        }
+      //sort task list
+      getScope().playbookTasks.sort(function (a, b) {
+        return a.index > b.index ? 1 : -1;
       });
 
-      $('#copy-task').click(function(e){
-        $('input:checked').each((i, item)=>{
-          copyTask(item.id, response=>console.log(response));
-        });
+      $('#global-tasklist div').each((i, elem) => {
+        var task = getTaskById(elem.id);
+        if (task) {
+          task.index = Number(i);
+          //console.log('global-tasklist', task._id +' Index: '+ i)
+        }
+      });
+      //sort task list
+      getScope().tasks.sort(function (a, b) {
+        return a.index > b.index ? 1 : -1;
       });
 
-      $('#delete-task').click(function(e){
-        var checkedItems = $('input:checked');
-        var sure = confirm('Are you sure you want to delete '+checkedItems.size()+' items?');
-        if(sure){
-          checkedItems.each((i, item)=>{
-            deleteTask(item.id, response=>console.log(response));
-          });
-        }
+      addEventTaskClickEventListener();
 
-      });
+    }
 
-
-
-      $('#save-playbook').click(function(e){
-        savePlaybook();
-      });
-
-      $('#save-task').click(function(e){
-        var fields = $('form#task').serializeArray();
-        var task = serializedArrayToJson(fields);
-        var scope = getScope();
-        updateTask(scope.activeTaskId, task, (responseText, status, xhr) => {
-          console.log(responseText);
-          scope.reloadTasks(() => {
-            scope.playbookChanged();
-          });
-        });
-
-      });
-
-      function copyTask(id, cb){
-        HttpPost('/v1/ansible_task/copy', "id=" + id, (responseText, status, xhr) => {
-          if(cb) cb(responseText);
-        });
+    $('#global-tasklist').sortable({
+      connectWith: ".connectedSortable",
+      receive: function (e, ui) {
+        var taskId = ui.item.context.id,
+          task = getPlaybookTaskById(taskId);
+        console.log('#global-tasklist add id=' + taskId + ' @ index=' + task.index);
+        getScope().tasks.push(task);
+        getScope().playbookTasks.splice(task.index, 1);
+        updateTaskListOrder();
+      },
+      remove: function (e, ui) {
+        var taskId = ui.item.context.id,
+          task = getTaskById(taskId);
+        console.log('#global-tasklist removed id=' + taskId + ' @ index=' + task.index);
+      },
+      stop: function (e, ui) {
+        console.log('update global-tasklist');
+        updateTaskListOrder();
       }
+    });
 
-      function deleteTask(id, cb){
-        var sure = confirm('Are you sure you want to delete task id='+id+'?');
-        if(sure){
-          HttpPost('/v1/ansible_task/delete', "id=" + id, (responseText, status, xhr) => {
-            if(cb) cb(responseText);
-          });
-        }
+    $('#sortable-tasklist').sortable({
+      connectWith: ".connectedSortable",
+      receive: function (e, ui) {
+        var taskId = ui.item.context.id,
+          task = getTaskById(taskId);
+        console.log('#sortable-tasklist add id=' + taskId + ' @ index=' + task.index);
+        getScope().playbookTasks.push(task);
+        getScope().tasks.splice(task.index, 1);
+        updateTaskListOrder();
+      },
+      remove: function (e, ui) {
+        var taskId = ui.item.context.id,
+          task = getPlaybookTaskById(taskId);
+        console.log('#sortable-tasklist removed id=' + taskId + ' @ index=' + task.index);
+      },
+      stop: function (e, ui) {
+        console.log('update sortable-tasklist')
+        updateTaskListOrder();
       }
+    });
 
-      function addTask(task, cb){
-        var taskJsonString = JSON.stringify(task, null, 2),
-            document = encodeURIComponent(taskJsonString);
-        HttpPost('/v1/ansible_task/add', "document=" + document, (responseText, status, xhr) => {
-          if(cb) cb(responseText);
-        });
-      }
+    var app = angular.module('FileSystemApplication', []);
 
-      function updateTask(id, task, cb){
-        var taskJsonString = JSON.stringify(task, null, 2),
-            document = encodeURIComponent(taskJsonString);
-        HttpPost('/v1/ansible_task/update', "id="+id+"&document=" + document, (responseText, status, xhr) => {
-          if(cb) cb(responseText, status, xhr);
-        });
-      }
+    app.controller('FileSystemController', function ($scope, $http) {
+      $scope.playbookID = null;
+      $scope.tasks = [];
+      $scope.playbookTasks = [];
+      $scope.playbookList = [];
+      $scope.activeTaskId = "";
 
-      function getAllTasks(cb){
-        HttpGet('/v1/ansible_task/list', "", (responseText, status, xhr) => {
-          var tasks = JSON.parse(responseText);
-          if(cb) cb(tasks);
-        });
-      }
 
-      function getAllPlaybooks(cb){
-        HttpGet('/v1/ansible_playbook/list', "", (responseText, status, xhr) => {
-          var tasks = JSON.parse(responseText);
-          if(cb) cb(tasks);
-        });
-      }
+      $scope.displayLoading = "none";
 
-      function updatePlaybook(id, playbook, cb){
-        var taskJsonString = JSON.stringify(playbook, null, 2),
-            document = encodeURIComponent(taskJsonString);
-        HttpPost('/v1/ansible_playbook/update', "id="+id+"&document=" + document, (responseText, status, xhr) => {
-          if(cb) cb(responseText, status, xhr);
-        });
-      }
-
-      function updatePlaybookTask(task_id, playbook_id, cb){
-        HttpPost('/v1/ansible_playbook/updateTask', "task_id="+task_id+"&playbook_id=" + playbook_id, (responseText, status, xhr) => {
-          if(cb) cb(responseText, status, xhr);
-        });
-      }
-
-      function addPlaybook(playbook, cb){
-        var taskJsonString = JSON.stringify(playbook, null, 2),
-            document = encodeURIComponent(taskJsonString);
-        HttpPost('/v1/ansible_playbook/add', "document=" + document, (responseText, status, xhr) => {
-          if(cb) cb(responseText);
-        });
-      }
-
-      function savePlaybook(){
-        var playbook = getPlaybook();
-        var id = $('form select[id=playbook] option:checked').val();
-        //playbook.name = $('form select[id=playbook] option:checked').text();
-        updatePlaybook(id, playbook, (responseText) => {
-          console.log(responseText);
-        });
-        for(var i in playbook.tasks){
-          var taskId = playbook.tasks[i];
-          var task = getPlaybookTaskById(taskId);
-          updatePlaybookTask(taskId, id, result=>console.log(result));
-        }
-      }
-
-      function getPlaybook(){
-        var playbook = serializedArrayToJson($('form#playbook').serializeArray())
-        playbook.tasks = [];
-        var tasks = getScope().playbookTasks;
-        for(var i in tasks){
-          var item = tasks[i];
-          playbook.tasks.push(item._id);
-        }
-        //JSON.stringify(playbook, null, 2)
-        return playbook;
-      }
-
-      function createPlaybook(){
-        var playbook = serializedArrayToJson($('form#playbook').serializeArray())
-        playbook.tasks = [];
-        var tasks = getScope().playbookTasks;
-        for(var i in tasks){
-          var task = tasks[i].task;
-
-          task[task.module] = task.module_params;
-          delete task.module_params;
-          delete task.module;
-
-          playbook.tasks.push(task);
-        }
-        //JSON.stringify(playbook, null, 2)
-        return playbook;
-      }
-
-      function createTaskTableMarkdown(){
-        var playbook = createPlaybookJSON();
-        var txt="| Sequence | Task | Tags |\n" +
-            "| -------- | ---- | ---- |\n";
-        for(var i  in playbook[0].tasks) { 
-          txt+="| "+i+" | "+playbook[0].tasks[i].name + " | "+ playbook[0].tasks[i].tags.join(', ').toLowerCase() + " |\n";
-        }
-        return txt;
-      }
-
-      function createPlaybookYAML(){
-        //convert to JSON string to remove "undefined" tags
-        var jsonString = JSON.stringify([createPlaybook()]);
-        return "---\n" + jsyaml.dump(JSON.parse(jsonString));
-      }
-
-      function createPlaybookJSON(){
-        return jsyaml.load(createPlaybookYAML());
-      }
-
-      function findTask(id){
-        var task = getTaskById(id);
-        if(!task) task = getPlaybookTaskById(id);
-        return task;
-      }
-
-      function getTaskById(id){
-        var tasks = getScope().tasks;
-        for(var i in tasks){
-          if(tasks[i]._id == id){
-            return tasks[i];
+      $scope.playbookChanged = function () {
+        console.log($scope.playbookID);
+        var playbook = null;
+        for (var i in $scope.playbookList) {
+          if ($scope.playbookList[i]._id == $scope.playbookID) {
+            playbook = $scope.playbookList[i];
           }
         }
-        return null;
-      }
 
-      function getPlaybookTaskById(id){
-        var tasks = getScope().playbookTasks;
-        for(var i in tasks){
-          if(tasks[i]._id == id){
-            return tasks[i];
-          }
+        //empty playbook tasks into task list
+        while ($scope.playbookTasks.length > 0) {
+          var task = $scope.playbookTasks.pop()
+          $scope.tasks.push(task);
         }
-        return null;
-      }
 
-      function clearTaskForm(){
-        var fields = $('form#task').serializeArray();
-        for(var i in fields){
-          $('form#task [name='+fields[i].name+']').val('');
-        }
-      }
+        clearPlaybookForm();
 
-      function clearPlaybookForm(){
-        var fields = $('form#playbook').serializeArray();
-        for(var i in fields){
-          $('form#playbook [name='+fields[i].name+']').val('');
-        }
-      }
+        if (playbook) {
 
-      function addEventTaskClickEventListener(){
 
-        $('.user-task').unbind('click');
-
-        $('.user-task').click(function(e){
-          var id = this.id,
-              scope = getScope(),
-              taskFoundHandle = function(task){
-                clearTaskForm();
-                scope.activeTaskId = id;
-                scope.$apply();
-                for(var field in task){
-                  var value = field=='module' ? task[field] : jsyaml.dump(task[field]);
-                  $('form#task [name='+field+']').val(value);
-                }
-              };
-
-          for(var i in scope.tasks){
-            if(scope.tasks[i]._id == id){
-              var task = scope.tasks[i].task;
-              taskFoundHandle(task);
+          var fields = serializedArrayToJson($('form#playbook').serializeArray());
+          for (var field in fields) {
+            if (playbook.playbook[field]) {
+              var val = jsyaml.dump(playbook.playbook[field]);
+              //console.log(field, val);
+              $('form#playbook [name=' + field + ']').val(val);
             }
           }
-          for(var i in scope.playbookTasks){
-            if(scope.playbookTasks[i]._id == id){
-              var task = scope.playbookTasks[i].task;
-              taskFoundHandle(task);
+
+          //add playbook tasks to list
+          for (var i in playbook.playbook.tasks) {
+            var taskId = playbook.playbook.tasks[i];
+            var task = findTask(taskId);
+            $scope.playbookTasks.push(task);
+            var taskIndex = -1;
+            while (taskIndex++ < $scope.tasks.length) {
+              if ($scope.tasks[taskIndex] && $scope.tasks[taskIndex]._id == taskId) {
+                $scope.tasks.splice(taskIndex, 1);
+                break;
+              }
             }
           }
-        });
+        }
+
+
+
+        //let angular do its thing!
+        setTimeout(function () {
+          addEventTaskClickEventListener();
+          updateTaskListOrder();
+        }, 100);
       }
 
-      function updateTaskListOrder(){
-        $('#sortable-tasklist div').each((i, elem)=>{
-          var task = getPlaybookTaskById(elem.id);
-          if(task){	
-            task.index = Number(i);
-            //console.log('sortable-tasklist', task._id +' Index: '+ i)
-          }
-        });
-        //sort task list
-        getScope().playbookTasks.sort(function(a,b){ 
-          return a.index > b.index ? 1:-1;
-        });
-
-        $('#global-tasklist div').each((i, elem)=>{
-          var task = getTaskById(elem.id);
-          if(task){	
-            task.index = Number(i);
-            //console.log('global-tasklist', task._id +' Index: '+ i)
-          }
-        });
-        //sort task list
-        getScope().tasks.sort(function(a,b){ 
-          return a.index > b.index ? 1:-1;
-        });
-
-        addEventTaskClickEventListener();
-
-      }
-
-      $('#global-tasklist').sortable({
-        connectWith: ".connectedSortable",
-        receive:function(e, ui){
-          var taskId = ui.item.context.id, 
-              task = getPlaybookTaskById(taskId);
-          console.log('#global-tasklist add id='+ taskId + ' @ index=' + task.index);
-          getScope().tasks.push(task);
-          getScope().playbookTasks.splice(task.index, 1);
-          updateTaskListOrder();
-        },
-        remove: function(e, ui){
-          var taskId = ui.item.context.id, 
-              task = getTaskById(taskId);
-          console.log('#global-tasklist removed id='+ taskId + ' @ index=' + task.index);
-        },
-        stop: function(e, ui){
-          console.log('update global-tasklist');
-          updateTaskListOrder();
-        }
-      });
-
-      $('#sortable-tasklist').sortable({
-        connectWith: ".connectedSortable",
-        receive:function(e, ui){
-          var taskId = ui.item.context.id, 
-              task = getTaskById(taskId);
-          console.log('#sortable-tasklist add id='+ taskId + ' @ index='+task.index);
-          getScope().playbookTasks.push(task);
-          getScope().tasks.splice(task.index, 1);
-          updateTaskListOrder();
-        },
-        remove: function(e, ui){
-          var taskId = ui.item.context.id,
-              task = getPlaybookTaskById(taskId);
-          console.log('#sortable-tasklist removed id='+ taskId + ' @ index='+task.index);
-        },
-        stop: function(e, ui){
-          console.log('update sortable-tasklist')
-          updateTaskListOrder();
-        }
-      });
-
-      var app = angular.module('FileSystemApplication', []);
-
-      app.controller('FileSystemController', function($scope, $http) {
-        $scope.playbookID = null;
-        $scope.tasks = [];
-        $scope.playbookTasks = [];
+      $scope.reloadPlaybooks = function (onComplete) {
         $scope.playbookList = [];
-        $scope.activeTaskId = "";
-
-
-        $scope.displayLoading = "none";
-
-        $scope.playbookChanged = function(){
-          console.log($scope.playbookID);
-          var playbook = null;
-          for(var i in $scope.playbookList){
-            if($scope.playbookList[i]._id == $scope.playbookID){
-              playbook = $scope.playbookList[i];
-            }
+        getAllPlaybooks(list => {
+          $scope.playbookList = list;
+          $scope.$apply();
+          if (onComplete) onComplete();
+        });
+      }
+      $scope.reloadTasks = function (onComplete) {
+        $scope.tasks = [];
+        getAllTasks((tasks) => {
+          for (var i in tasks) {
+            tasks[i].index = Number(i);
+            $scope.tasks.push(tasks[i]);
           }
+          $scope.$apply();
+          addEventTaskClickEventListener();
+          if (onComplete) onComplete();
+        });
+      };
 
-          //empty playbook tasks into task list
-          while($scope.playbookTasks.length > 0){
-            var task = $scope.playbookTasks.pop()
-            $scope.tasks.push(task);
-          }
+      $scope.reload = function (a, b) {
+        $scope.reloadTasks(a);
+        $scope.reloadPlaybooks(b);
+      }
 
-          clearPlaybookForm();
-
-          if(playbook){
-
-
-            var fields = serializedArrayToJson($('form#playbook').serializeArray());
-            for(var field in fields){
-              if(playbook.playbook[field]){
-                var val = jsyaml.dump(playbook.playbook[field]);
-                //console.log(field, val);
-                $('form#playbook [name='+field+']').val(val);
-              }
-            }
-
-            //add playbook tasks to list
-            for(var i in playbook.playbook.tasks){
-              var taskId = playbook.playbook.tasks[i];
-              var task = findTask(taskId);
-              $scope.playbookTasks.push(task);
-              var taskIndex = -1;
-              while( taskIndex++ < $scope.tasks.length){
-                if($scope.tasks[taskIndex] && $scope.tasks[taskIndex]._id == taskId){
-                  $scope.tasks.splice(taskIndex, 1);
-                  break;
-                }
-              }
-            }
-          }
-
-
-
-          //let angular do its thing!
-          setTimeout(function(){
-            addEventTaskClickEventListener();
-            updateTaskListOrder();
-          }, 100);
-        }
-
-        $scope.reloadPlaybooks = function(onComplete){
-          $scope.playbookList = [];
-          getAllPlaybooks(list=> {
-            $scope.playbookList = list;
-            $scope.$apply();
-            if(onComplete) onComplete();
-          });
-        }
-        $scope.reloadTasks = function(onComplete){
-          $scope.tasks = [];
-          getAllTasks((tasks) => {
-            for(var i in tasks){
-              tasks[i].index = Number(i);
-              $scope.tasks.push(tasks[i]);
-            }
-            $scope.$apply();
-            addEventTaskClickEventListener();
-            if(onComplete) onComplete();
-          });
-        };
-
-        $scope.reload = function(a,b){
-          $scope.reloadTasks(a);
-          $scope.reloadPlaybooks(b);
-        }
-
-        $scope.reload();
-      });
+      $scope.reload();
+    });
   </script>
 </body>
 

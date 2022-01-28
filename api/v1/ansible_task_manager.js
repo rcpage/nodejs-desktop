@@ -1,26 +1,26 @@
-class ansible_task_manager extends Endpoint {
-  static get path(){
-    return ["/v1/ansible_task/{action}","/v1/ansible_task/{name}/{action}"];
+class ansible_task_manager extends Microservice {
+  static get path() {
+    return ["localhost:8090/v1/ansible_task/{action}", "localhost:8090/v1/ansible_task/{name}/{action}"];
   }
 
-  POST(){
+  POST() {
     this.executeAction();
   }
 
-  GET(){
+  GET() {
     this.executeAction();
   }
 
-  executeAction(){
+  executeAction() {
     try {
       let urlParams = this.req.pathParam,
-          origin = this.req.headers.origin;
+        origin = this.req.headers.origin;
 
-      if(origin){
+      if (origin) {
         this.res.setHeader('Access-Control-Allow-Origin', origin);
       }
 
-      switch(urlParams.action){
+      switch (urlParams.action) {
         case "list":
           this.listAllTasks();
           break;
@@ -43,22 +43,22 @@ class ansible_task_manager extends Endpoint {
           this.delete();
           break;
         default:
-          var msg = { error:true, message:"Action '"+urlParams.action+"' not defined." };
+          var msg = { error: true, message: "Action '" + urlParams.action + "' not defined." };
           this.res.json(msg);
           break;
       }
     }
-    catch(e){
+    catch (e) {
       console.log(e);
     }
   }
 
-  update(){
+  update() {
     var id = this.getRequestParameter('id');
     let task = JSON.parse(this.getRequestParameter('document'));
     console.log(task);
-    mongo.db.collections.update('user_tasks', { _id:mongo.db.ObjectId(id) }, { $set: { "task": task } }, (err, result)=>{
-      if(err) {
+    mongo.db.collections.update('user_tasks', { _id: mongo.db.ObjectId(id) }, { $set: { "task": task } }, (err, result) => {
+      if (err) {
         this.res.json(err);
         return;
       }
@@ -66,18 +66,18 @@ class ansible_task_manager extends Endpoint {
     });
   }
 
-  copy(){
+  copy() {
     var id = this.getRequestParameter('id');
-    mongo.db.collections.search('user_tasks', { _id:mongo.db.ObjectId(id) }, (err, result)=>{
-      if(err) {
+    mongo.db.collections.search('user_tasks', { _id: mongo.db.ObjectId(id) }, (err, result) => {
+      if (err) {
         this.res.json(err);
         return;
       }
-      if(result.length>0){
-        for(var i in result){
+      if (result.length > 0) {
+        for (var i in result) {
           var task = result[i].task;
-          mongo.db.collections.insert('user_tasks', { task: task }, (err, copy_result) =>{
-            if(err) {
+          mongo.db.collections.insert('user_tasks', { task: task }, (err, copy_result) => {
+            if (err) {
               this.res.json(err);
               return;
             }
@@ -86,15 +86,15 @@ class ansible_task_manager extends Endpoint {
         }
       }
       else {
-        this.res.json({ message : "No record found." });
+        this.res.json({ message: "No record found." });
       }
     });
   }
 
-  delete(){
+  delete() {
     var id = this.getRequestParameter('id');
-    mongo.db.collections.delete('user_tasks', { _id:mongo.db.ObjectId(id) }, (err, result)=>{
-      if(err) {
+    mongo.db.collections.delete('user_tasks', { _id: mongo.db.ObjectId(id) }, (err, result) => {
+      if (err) {
         this.res.json(err);
         return;
       }
@@ -102,59 +102,59 @@ class ansible_task_manager extends Endpoint {
     });
   }
 
-  get(){
+  get() {
     var id = this.getRequestParameter('id');
-    mongo.db.collections.search('user_tasks', { _id:mongo.db.ObjectId(id) }, (err, result)=>{
-      if(err) {
+    mongo.db.collections.search('user_tasks', { _id: mongo.db.ObjectId(id) }, (err, result) => {
+      if (err) {
         this.res.json(err);
         return;
       }
-      if(result.length>0){
+      if (result.length > 0) {
         this.res.json(result);
       }
       else {
-        this.res.json({ message : "No record found." });
+        this.res.json({ message: "No record found." });
       }
     });
   }
 
-  add(){
+  add() {
     let task = JSON.parse(this.getRequestParameter('document'));
-    mongo.db.collections.insert('user_tasks', { task: task } , (err, result) => {
-      if(err){
-        this.res.json({message:"User key cannot be added."});
-        return; 
+    mongo.db.collections.insert('user_tasks', { task: task }, (err, result) => {
+      if (err) {
+        this.res.json({ message: "User key cannot be added." });
+        return;
       }
-      this.res.json({message:"User key has been added."});
-    });   
+      this.res.json({ message: "User key has been added." });
+    });
   }
 
-  listAllTasks(){
-    mongo.db.collections.search('user_tasks', {}, (err, result)=>{
-      if(err) {
+  listAllTasks() {
+    mongo.db.collections.search('user_tasks', {}, (err, result) => {
+      if (err) {
         this.res.json(err);
         return;
       }
-      if(result.length>0){
+      if (result.length > 0) {
         this.res.json(result);
       }
       else {
-        this.res.json({ message : "No record found." });
+        this.res.json({ message: "No record found." });
       }
     });
   }
 
-  listNewTasks(){
-    mongo.db.collections.search('user_tasks', { playbook_id: null }, (err, result)=>{
-      if(err) {
+  listNewTasks() {
+    mongo.db.collections.search('user_tasks', { playbook_id: null }, (err, result) => {
+      if (err) {
         this.res.json(err);
         return;
       }
-      if(result.length>0){
+      if (result.length > 0) {
         this.res.json(result);
       }
       else {
-        this.res.json({ message : "No record found." });
+        this.res.json({ message: "No record found." });
       }
     });
   }

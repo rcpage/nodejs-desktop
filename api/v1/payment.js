@@ -1,19 +1,19 @@
 using('System.Network.PublicFileService');
 using('System.Network.HTTP.HTTPStatusCode');
-using('System.Network.HTTP.Endpoint');
-class payment extends Endpoint {
+using('System.Network.HTTP.Microservice');
+class payment extends Microservice {
 
-  static get model(){
+  static get model() {
     return System.getModule(global.rootDirectory + '/models/payment.js');
   }
 
-  static get path(){
-    return ['/v1/payment','/v1/payment/{context}', '/v1/payment/{context}/{action}'];
+  static get path() {
+    return ['localhost:8090/v1/payment', 'localhost:8090/v1/payment/{context}', 'localhost:8090/v1/payment/{context}/{action}'];
   }
 
-  static getFunctionParams(func){
+  static getFunctionParams(func) {
     return (func + '')
-      .replace(/[/][/].*$/mg,'') // strip single-line comments
+      .replace(/[/][/].*$/mg, '') // strip single-line comments
       .replace(/\s+/g, '') // strip white space
       .replace(/[/][*][^/*]*[*][/]/g, '') // strip multi-line comments  
       .split('){', 1)[0].replace(/^[^(]*[(]/, '') // extract the parameters  
@@ -21,30 +21,30 @@ class payment extends Endpoint {
       .split(',').filter(Boolean); // split & filter [""]
   }
 
-  GET(){
+  GET() {
     this.executeAction();
   }
-  POST(){
+  POST() {
     this.executeAction();
   }
 
-  executeAction(){
+  executeAction() {
     this.res.setHeader('Access-Control-Allow-Origin', '*');
     //
     var context = this.req.pathParam.context,
-        action = this.req.pathParam.action,
-        fn = null, 
-        defaultHandle = (err, result)=>this.res.json([err, result]);
-    switch(context){
+      action = this.req.pathParam.action,
+      fn = null,
+      defaultHandle = (err, result) => this.res.json([err, result]);
+    switch (context) {
       case "list":
         fn = payment.model.list;
-        fn.apply(fn, [this.getParamObject(['startIndex','count']), defaultHandle]);
+        fn.apply(fn, [this.getParamObject(['startIndex', 'count']), defaultHandle]);
         break;
       case "creditCard":
         fn = payment.model.creditCard[action];
-        switch(action){
+        switch (action) {
           case "list":
-            fn.apply(fn, [defaultHandle]);            
+            fn.apply(fn, [defaultHandle]);
             break;
           case "payment":
           case "get":
@@ -89,11 +89,11 @@ class payment extends Endpoint {
         //fn((err, result)=>this.res.json([err, result]));
         //return;
         var method = fn;
-        if(method){
+        if (method) {
           var cmd_args = payment.getFunctionParams(method);
           console.log(method.name, cmd_args);
           var args = [], params = [];
-          if(method.name == "createInvoice"){
+          if (method.name == "createInvoice") {
             args.push(this.getParamObject([
               'firstName',
               'lastName',
@@ -109,8 +109,8 @@ class payment extends Endpoint {
               'note',
               'dueNow'
             ]));
-          } 
-          else if(method.name == "recordPayment"){
+          }
+          else if (method.name == "recordPayment") {
             args.push(this.getRequestParameter('id'));
             args.push(this.getParamObject([
               'method',
@@ -119,10 +119,10 @@ class payment extends Endpoint {
             ]));
           }
           else {
-            for(var i=0;i<cmd_args.length-1;i++){
+            for (var i = 0; i < cmd_args.length - 1; i++) {
               var arg = cmd_args[i],
-                  val = this.getRequestParameter(arg);
-              console.log('parameter...' + arg+"="+val);
+                val = this.getRequestParameter(arg);
+              console.log('parameter...' + arg + "=" + val);
               args.push(val);
             }
           }
@@ -141,25 +141,25 @@ class payment extends Endpoint {
     }
   }
 
-  getParamObject(params){
+  getParamObject(params) {
     var obj = {};
-    for(var i in params){
+    for (var i in params) {
       var arg = params[i],
-          val = this.getRequestParameter(arg);
+        val = this.getRequestParameter(arg);
       obj[arg] = val;
     }
     return obj;
   }
 
-  printKeyNames(name, obj, list){
-    var result = list || [], 
-        keys = Object.keys(obj);
-    for(var i in keys){
+  printKeyNames(name, obj, list) {
+    var result = list || [],
+      keys = Object.keys(obj);
+    for (var i in keys) {
       var keyName = keys[i],
-          parentName = name + "." + keyName,
-          parentObj = obj[keyName];
-      if(!this.isFunction(parentObj)) {
-        result = this.printKeyNames(parentName, parentObj, result); 
+        parentName = name + "." + keyName,
+        parentObj = obj[keyName];
+      if (!this.isFunction(parentObj)) {
+        result = this.printKeyNames(parentName, parentObj, result);
       } else {
         result.push([parentName, payment.getFunctionParams(parentObj)]);
       }

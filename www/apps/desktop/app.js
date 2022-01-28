@@ -535,9 +535,9 @@ app.controller('DesktopController', function ($scope) {
     return $scope._windowCount++;
   }
   $scope.Tasks = [
-    (new TaskMenu(1, 'File Navigator')).addWindow(1, 'File Navigator', 'http://localhost/angular/controller/file-system.html'),
-    (new TaskMenu(2, 'Text Editor')).addWindow(2, 'Test Editor', 'http://localhost/angular/controller/text-editor.html?id=5c2d3cc8b8b96f59fcc331dd&source=/home/vagrant/stack/www/angular/controller/desktop/index.html&mode=htmlmixed'),
-    (new TaskMenu(3, 'Fedora29 Workstation')).addWindow(3, 'Fedora29 Workstation', 'https://fedora29:9090/')
+    (new TaskMenu(1, 'File Navigator')).addWindow(1, 'File Navigator', 'http://localhost:8091/angular/controller/file-system.html'),
+    (new TaskMenu(2, 'Text Editor')).addWindow(2, 'Test Editor', 'http://localhost:8091/angular/controller/text-editor.html?id=5c2d3cc8b8b96f59fcc331dd&source=/home/vagrant/stack/www/angular/controller/desktop/index.html&mode=htmlmixed'),
+    (new TaskMenu(3, 'Fedora Workstation')).addWindow(3, 'Fedora Workstation', 'http://localhost:9090/')
   ];
 
   $scope.addTask = function (id, title, content) {

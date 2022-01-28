@@ -21,7 +21,7 @@ using('api.v1.upload');
 using('api.v1.payment');
 using('api.v1.ansible_task_manager');
 using('api.v1.ansible_playbook_manager');
-class test extends Endpoint {
+class test extends Microservice {
   static get path() {
     return ["/test"]
   }
@@ -45,10 +45,10 @@ webAPI.start(8090);
 
 
 
-var domainManager = new DomainManager();
-domainManager.add('api.emergeplatform.com', 'http://localhost:8090');
-domainManager.add('emergeplatform.com', 'http://localhost:8091');
-domainManager.start(8080);
+// var domainManager = new DomainManager();
+// domainManager.add('api.emergeplatform.com', 'http://localhost:8090');
+// domainManager.add('emergeplatform.com', 'http://localhost:8091');
+// domainManager.start(8080);
 
 
 

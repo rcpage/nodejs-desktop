@@ -2,8 +2,8 @@ try:
     frozenset
 except NameError:
     # Import from the sets module for python 2.3
-    from sets import Set as set
     from sets import ImmutableSet as frozenset
+    from sets import Set as set
 
 try:
     any
@@ -30,21 +30,20 @@ except:
 import sys
 import types
 
+import constants
 import inputstream
 import tokenizer
-
 import treebuilders
-from treebuilders._base import Marker
-from treebuilders import simpletree
-
 import utils
-import constants
-from constants import spaceCharacters, asciiUpper2Lower
-from constants import formattingElements, specialElements
-from constants import headingElements, tableInsertModeElements
-from constants import cdataElements, rcdataElements, voidElements
-from constants import tokenTypes, ReparseException, namespaces, spaceCharacters
-from constants import htmlIntegrationPointElements, mathmlTextIntegrationPointElements
+from constants import (ReparseException, asciiUpper2Lower, cdataElements,
+                       formattingElements, headingElements,
+                       htmlIntegrationPointElements,
+                       mathmlTextIntegrationPointElements, namespaces,
+                       rcdataElements, spaceCharacters, specialElements,
+                       tableInsertModeElements, tokenTypes, voidElements)
+from treebuilders import simpletree
+from treebuilders._base import Marker
+
 
 def parse(doc, treebuilder="simpletree", encoding=None,
           namespaceHTMLElements=True):

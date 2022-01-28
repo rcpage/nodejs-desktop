@@ -21,7 +21,7 @@ using('api.v1.upload');
 using('api.v1.payment');
 using('api.v1.ansible_task_manager');
 using('api.v1.ansible_playbook_manager');
-class test extends Endpoint {
+class test extends Microservice {
   static get path() {
     return ["/test"]
   }
