@@ -45,7 +45,7 @@ var webAPI = new WebApi([Example]);
 webAPI.start(8090);
 ```
 
-# Brower Preview (application/json)
+# Browser Preview (application/json)
 ```
 node microservice.js
 ```
