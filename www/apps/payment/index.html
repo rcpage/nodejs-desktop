@@ -464,86 +464,86 @@
     }
 
     function get_payment_methods(cb) {
-      HttpGet('localhost:8090/v1/payment', "", function (result) {
+      HttpGet('/v1/payment', "", function (result) {
         var json = JSON.parse(result).reverse();
         if (cb) cb(json);
       });
     }
 
     function list_invoices(cb) {
-      HttpGet('localhost:8090/v1/payment/invoice/list', '', function (result) {
+      HttpGet('/v1/payment/invoice/list', '', function (result) {
         if (cb) cb(result);
       });
     }
 
     function get_invoice(id, cb) {
-      HttpGet('localhost:8090/v1/payment/invoice/get', 'id=' + id, function (result) {
+      HttpGet('/v1/payment/invoice/get', 'id=' + id, function (result) {
         if (cb) cb(result);
       });
     }
 
     function delete_invoice(id, cb) {
-      HttpGet('localhost:8090/v1/payment/invoice/delete', 'id=' + id, function (result) {
+      HttpGet('/v1/payment/invoice/delete', 'id=' + id, function (result) {
         if (cb) cb(result);
       });
     }
 
     function cancel_invoice(id, cb) {
-      HttpGet('localhost:8090/v1/payment/invoice/cancel', 'id=' + id, function (result) {
+      HttpGet('/v1/payment/invoice/cancel', 'id=' + id, function (result) {
         if (cb) cb(result);
       });
     }
 
     function create_invoice(params, cb) {
-      HttpPost('localhost:8090/v1/payment/invoice/create', $.param(params), function (result) {
+      HttpPost('/v1/payment/invoice/create', $.param(params), function (result) {
         if (cb) cb(result);
       });
     }
 
     function update_invoice_payment_status(id, params, cb) {
-      HttpGet('localhost:8090/v1/payment/invoice/recordPayment', 'id=' + id, function (result) {
+      HttpGet('/v1/payment/invoice/recordPayment', 'id=' + id, function (result) {
         if (cb) cb(result);
       });
     }
 
     function list_payments(cb) {
-      HttpGet('localhost:8090/v1/payment/list', "", function (result) {
+      HttpGet('/v1/payment/list', "", function (result) {
         if (cb) cb(result);
       });
     }
 
     function get_credit_card_payment(id, cb) {
-      HttpPost('localhost:8090/v1/payment/creditCard/payment', "id=" + id, function (result) {
+      HttpPost('/v1/payment/creditCard/payment', "id=" + id, function (result) {
         if (cb) cb(result);
       });
     }
 
     function list_credit_cards(cb) {
-      HttpGet('localhost:8090/v1/payment/creditCard/list', "", function (result) {
+      HttpGet('/v1/payment/creditCard/list', "", function (result) {
         if (cb) cb(result);
       });
     }
 
     function get_credit_card(id, cb) {
-      HttpPost('localhost:8090/v1/payment/creditCard/get', "id=" + id, function (result) {
+      HttpPost('/v1/payment/creditCard/get', "id=" + id, function (result) {
         if (cb) cb(result);
       });
     }
 
     function delete_credit_card(id, cb) {
-      HttpPost('localhost:8090/v1/payment/creditCard/delete', "id=" + id, function (result) {
+      HttpPost('/v1/payment/creditCard/delete', "id=" + id, function (result) {
         if (cb) cb(result);
       });
     }
 
     function save_credit_card(params, cb) {
-      HttpPost('localhost:8090/v1/payment/creditCard/save', $.param(params), function (result) {
+      HttpPost('/v1/payment/creditCard/save', $.param(params), function (result) {
         if (cb) cb(result);
       });
     }
 
     function credit_card_sale(params, cb) {
-      HttpPost('localhost:8090/v1/payment/creditCard/sale', $.param(params), function (result) {
+      HttpPost('/v1/payment/creditCard/sale', $.param(params), function (result) {
         if (cb) cb(result);
       });
     }

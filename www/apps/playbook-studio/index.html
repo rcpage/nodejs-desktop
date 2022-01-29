@@ -535,7 +535,7 @@
     });
 
     function copyTask(id, cb) {
-      HttpPost('localhost:8090/v1/ansible_task/copy', "id=" + id, (responseText, status, xhr) => {
+      HttpPost('/v1/ansible_task/copy', "id=" + id, (responseText, status, xhr) => {
         if (cb) cb(responseText);
       });
     }
@@ -543,7 +543,7 @@
     function deleteTask(id, cb) {
       var sure = confirm('Are you sure you want to delete task id=' + id + '?');
       if (sure) {
-        HttpPost('localhost:8090/v1/ansible_task/delete', "id=" + id, (responseText, status, xhr) => {
+        HttpPost('/v1/ansible_task/delete', "id=" + id, (responseText, status, xhr) => {
           if (cb) cb(responseText);
         });
       }
@@ -552,7 +552,7 @@
     function addTask(task, cb) {
       var taskJsonString = JSON.stringify(task, null, 2),
         document = encodeURIComponent(taskJsonString);
-      HttpPost('localhost:8090/v1/ansible_task/add', "document=" + document, (responseText, status, xhr) => {
+      HttpPost('/v1/ansible_task/add', "document=" + document, (responseText, status, xhr) => {
         if (cb) cb(responseText);
       });
     }
@@ -560,20 +560,20 @@
     function updateTask(id, task, cb) {
       var taskJsonString = JSON.stringify(task, null, 2),
         document = encodeURIComponent(taskJsonString);
-      HttpPost('localhost:8090/v1/ansible_task/update', "id=" + id + "&document=" + document, (responseText, status, xhr) => {
+      HttpPost('/v1/ansible_task/update', "id=" + id + "&document=" + document, (responseText, status, xhr) => {
         if (cb) cb(responseText, status, xhr);
       });
     }
 
     function getAllTasks(cb) {
-      HttpGet('localhost:8090/v1/ansible_task/list', "", (responseText, status, xhr) => {
+      HttpGet('/v1/ansible_task/list', "", (responseText, status, xhr) => {
         var tasks = JSON.parse(responseText);
         if (cb) cb(tasks);
       });
     }
 
     function getAllPlaybooks(cb) {
-      HttpGet('localhost:8090/v1/ansible_playbook/list', "", (responseText, status, xhr) => {
+      HttpGet('/v1/ansible_playbook/list', "", (responseText, status, xhr) => {
         var tasks = JSON.parse(responseText);
         if (cb) cb(tasks);
       });
@@ -582,13 +582,13 @@
     function updatePlaybook(id, playbook, cb) {
       var taskJsonString = JSON.stringify(playbook, null, 2),
         document = encodeURIComponent(taskJsonString);
-      HttpPost('localhost:8090/v1/ansible_playbook/update', "id=" + id + "&document=" + document, (responseText, status, xhr) => {
+      HttpPost('/v1/ansible_playbook/update', "id=" + id + "&document=" + document, (responseText, status, xhr) => {
         if (cb) cb(responseText, status, xhr);
       });
     }
 
     function updatePlaybookTask(task_id, playbook_id, cb) {
-      HttpPost('localhost:8090/v1/ansible_playbook/updateTask', "task_id=" + task_id + "&playbook_id=" + playbook_id, (responseText, status, xhr) => {
+      HttpPost('/v1/ansible_playbook/updateTask', "task_id=" + task_id + "&playbook_id=" + playbook_id, (responseText, status, xhr) => {
         if (cb) cb(responseText, status, xhr);
       });
     }
@@ -596,7 +596,7 @@
     function addPlaybook(playbook, cb) {
       var taskJsonString = JSON.stringify(playbook, null, 2),
         document = encodeURIComponent(taskJsonString);
-      HttpPost('localhost:8090/v1/ansible_playbook/add', "document=" + document, (responseText, status, xhr) => {
+      HttpPost('/v1/ansible_playbook/add', "document=" + document, (responseText, status, xhr) => {
         if (cb) cb(responseText);
       });
     }

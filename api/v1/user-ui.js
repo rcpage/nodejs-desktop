@@ -29,7 +29,7 @@ class userui extends Microservice {
   static POST() {
     let request = System.getModule('request');
     request.post({
-      url: 'http://api.userdesktop.comlocalhost:8090/v1/user/auth',
+      url: 'http://api.userdesktop.com/v1/user/auth',
       body: System.serialize({ email: this.req.post.email, password: this.req.post.password })
     }, (err, response, body) => {
       if (err) {
@@ -49,7 +49,7 @@ class userui extends Microservice {
 
   static loginForm(context) {
     try {
-      var html = System.renderTemplate(global.stack + '/apilocalhost:8090/v1/templates/user-login.html', context);
+      var html = System.renderTemplate(global.stack + '/api/v1/templates/user-login.html', context);
       this.res.end(html);
     }
     catch (e) {
@@ -60,7 +60,7 @@ class userui extends Microservice {
   static loginAuthorized(context) {
     try {
       if (this.req.session.userIsAuthorized) {
-        var html = System.renderTemplate(global.stack + '/apilocalhost:8090/v1/templates/user-authorized.html', context);
+        var html = System.renderTemplate(global.stack + '/api/v1/templates/user-authorized.html', context);
         this.res.end(html);
       }
       else this.loginForm({ message: "You are not authorized. Please sign in." });

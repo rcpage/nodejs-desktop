@@ -29,15 +29,15 @@ api.v1.inventory
 System.Text
 api.v1.upload
 api.v1.payment
-HTTP Handle ssh2 localhost:8090/v1/ssh2
-HTTP Handle ssh2 localhost:8090/v1/ssh2/{action}
+HTTP Handle ssh2 /v1/ssh2
+HTTP Handle ssh2 /v1/ssh2/{action}
 HTTP Handle test /test
-HTTP Handle inventory localhost:8090/v1/inventory
-HTTP Handle inventory localhost:8090/v1/inventory/{action}
+HTTP Handle inventory /v1/inventory
+HTTP Handle inventory /v1/inventory/{action}
 HTTP Handle Upload /upload
-HTTP Handle payment localhost:8090/v1/payment
-HTTP Handle payment localhost:8090/v1/payment/{context}
-HTTP Handle payment localhost:8090/v1/payment/{context}/{action}
+HTTP Handle payment /v1/payment
+HTTP Handle payment /v1/payment/{context}
+HTTP Handle payment /v1/payment/{context}/{action}
 PublicFileService server listening on port 8091.
 PublicFileService started Fri Jan 28 2022 12:33:22 GMT-0600 (Central Standard Time)
 WebApi server listening on port 8090.

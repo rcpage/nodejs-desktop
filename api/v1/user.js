@@ -1,7 +1,7 @@
 using('System.Network.HTTP.Microservice');
 class user extends Microservice {
   static get path() {
-    return ["localhost:8090/v1/user/{action}", "localhost:8090/v1/user/{host}/{action}"];
+    return ["/v1/user/{action}", "/v1/user/{host}/{action}"];
   }
 
   static POST() {

@@ -8,7 +8,7 @@ class payment extends Microservice {
   }
 
   static get path() {
-    return ['localhost:8090/v1/payment', 'localhost:8090/v1/payment/{context}', 'localhost:8090/v1/payment/{context}/{action}'];
+    return ['/v1/payment', '/v1/payment/{context}', '/v1/payment/{context}/{action}'];
   }
 
   static getFunctionParams(func) {

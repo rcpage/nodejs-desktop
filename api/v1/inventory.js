@@ -1,7 +1,7 @@
 using('System.Network.HTTP.Microservice');
 class inventory extends Microservice {
   static get path() {
-    return ["localhost:8090/v1/inventory", "localhost:8090/v1/inventory/{action}"];
+    return ["/v1/inventory", "/v1/inventory/{action}"];
   }
 
   POST() {

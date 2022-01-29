@@ -143,31 +143,31 @@ function V1CloudSshKeys() {
         return "https://api.godaddy.com/v1/cloud/sshKeys?body=" + body + "";
     }
 }
-/* resourcePath: localhost:8090/v1/shoppers */
+/* resourcePath: /v1/shoppers */
 function V1Shoppers() {
 
-    /* localhost:8090/v1/shoppers/{shopperId} */
+    /* /v1/shoppers/{shopperId} */
     //Update details for the specified Shopper
     function update(shopperId, shopper) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/shoppers/{shopperId}?shopperId=" + shopperId + "&shopper=" + shopper + "";
+        return "https://api.ote-godaddy.com/v1/shoppers/{shopperId}?shopperId=" + shopperId + "&shopper=" + shopper + "";
     }
 
-    /* localhost:8090/v1/shoppers/{shopperId} */
+    /* /v1/shoppers/{shopperId} */
     //Get details for the specified Shopper
     function get(shopperId) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/shoppers/{shopperId}?shopperId=" + shopperId + "";
+        return "https://api.ote-godaddy.com/v1/shoppers/{shopperId}?shopperId=" + shopperId + "";
     }
 
-    /* localhost:8090/v1/shoppers */
+    /* /v1/shoppers */
     //Create a Shopper
     function create() {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/shoppers?";
+        return "https://api.ote-godaddy.com/v1/shoppers?";
     }
 
-    /* localhost:8090/v1/shoppers/subaccount */
+    /* /v1/shoppers/subaccount */
     //Create a Subaccount owned by the authenticated Reseller
     function createSubaccount(subaccount) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/shoppers/subaccount?subaccount=" + subaccount + "";
+        return "https://api.ote-godaddy.com/v1/shoppers/subaccount?subaccount=" + subaccount + "";
     }
 }
 /* resourcePath: /v1/cloud/servers */
@@ -239,125 +239,125 @@ function V1CloudServers() {
         return "https://api.godaddy.com/v1/cloud/servers/{serverId}/actions?serverId=" + serverId + "&type=" + type + "&limit=" + limit + "&offset=" + offset + "";
     }
 }
-/* resourcePath: localhost:8090/v1/domains */
+/* resourcePath: /v1/domains */
 function V1Domains(serviceName) {
 
-    /* localhost:8090/v1/domains/{domain} */
+    /* /v1/domains/{domain} */
     //Update details for the specified Domain
     function update(domain, XShopperId, body) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}?domain=" + domain + "&X-Shopper-Id=" + XShopperId + "&body=" + body + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}?domain=" + domain + "&X-Shopper-Id=" + XShopperId + "&body=" + body + "";
     }
 
-    /* localhost:8090/v1/domains/{domain} */
+    /* /v1/domains/{domain} */
     //Cancel a purchased domain
     function cancel(domain) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}?domain=" + domain + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}?domain=" + domain + "";
     }
 
-    /* localhost:8090/v1/domains/{domain} */
+    /* /v1/domains/{domain} */
     //Retrieve details for the specified Domain
     function get(XShopperId, domain) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "";
     }
 
-    /* localhost:8090/v1/domains/available */
+    /* /v1/domains/available */
     //Determine whether or not the specified domain is available for purchase
     function available(domain, checkType, forTransfer, waitMs) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/available?domain=" + domain + "&checkType=" + checkType + "&forTransfer=" + forTransfer + "&waitMs=" + waitMs + "";
+        return "https://api.ote-godaddy.com/v1/domains/available?domain=" + domain + "&checkType=" + checkType + "&forTransfer=" + forTransfer + "&waitMs=" + waitMs + "";
     }
 
-    /* localhost:8090/v1/domains */
+    /* /v1/domains */
     //Retrieve a list of Domains for the specified Shopper
     function list(XShopperId, limit, marker, includes) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains?X-Shopper-Id=" + XShopperId + "&limit=" + limit + "&marker=" + marker + "&includes=" + includes + "";
+        return "https://api.ote-godaddy.com/v1/domains?X-Shopper-Id=" + XShopperId + "&limit=" + limit + "&marker=" + marker + "&includes=" + includes + "";
     }
 
-    /* localhost:8090/v1/domains/{domain}/privacy */
+    /* /v1/domains/{domain}/privacy */
     //Submit a privacy cancellation request for the given domain
     function cancelPrivacy(XShopperId, domain) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}/privacy?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}/privacy?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "";
     }
 
-    /* localhost:8090/v1/domains/{domain}/contacts */
+    /* /v1/domains/{domain}/contacts */
     //Update domain
     function updateContacts(XShopperId, domain, contacts) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}/contacts?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&contacts=" + contacts + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}/contacts?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&contacts=" + contacts + "";
     }
 
-    /* localhost:8090/v1/domains/{domain}/verifyRegistrantEmail */
+    /* /v1/domains/{domain}/verifyRegistrantEmail */
     //Re-send Contact E-mail Verification for specified Domain
     function verifyEmail(XShopperId, domain) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}/verifyRegistrantEmail?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}/verifyRegistrantEmail?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "";
     }
 
-    /* localhost:8090/v1/domains/tlds */
+    /* /v1/domains/tlds */
     //Retrieves a list of TLDs supported and enabled for sale
     function tlds() {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/tlds?";
+        return "https://api.ote-godaddy.com/v1/domains/tlds?";
     }
 
-    /* localhost:8090/v1/domains/purchase */
+    /* /v1/domains/purchase */
     //Purchase and register the specified Domain
     function purchase(XShopperId, body) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/purchase?X-Shopper-Id=" + XShopperId + "&body=" + body + "";
+        return "https://api.ote-godaddy.com/v1/domains/purchase?X-Shopper-Id=" + XShopperId + "&body=" + body + "";
     }
 
-    /* localhost:8090/v1/domains/purchase/schema/{tld} */
+    /* /v1/domains/purchase/schema/{tld} */
     //Retrieve the schema to be submitted when registering a Domain for the specified TLD
     function schema(tld) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/purchase/schema/{tld}?tld=" + tld + "";
+        return "https://api.ote-godaddy.com/v1/domains/purchase/schema/{tld}?tld=" + tld + "";
     }
 
-    /* localhost:8090/v1/domains/purchase/validate */
+    /* /v1/domains/purchase/validate */
     //Validate the request body using the Domain Purchase Schema for the specified TLD
     function validate(body) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/purchase/validate?body=" + body + "";
+        return "https://api.ote-godaddy.com/v1/domains/purchase/validate?body=" + body + "";
     }
 
-    /* localhost:8090/v1/domains/agreements */
+    /* /v1/domains/agreements */
     //Retrieve the legal agreement(s) required to purchase the specified TLD and add-ons
     function getAgreement(tlds, privacy) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/agreements?tlds=" + tlds + "&privacy=" + privacy + "";
+        return "https://api.ote-godaddy.com/v1/domains/agreements?tlds=" + tlds + "&privacy=" + privacy + "";
     }
 
-    /* localhost:8090/v1/domains/{domain}/records/{type?}/{name?} */
+    /* /v1/domains/{domain}/records/{type?}/{name?} */
     //Retrieve DNS Records for the specified Domain, optionally with the specified Type and/or Name
     function recordGet(XShopperId, domain, type, name, offset, limit) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}/records/{type?}/{name?}?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&type=" + type + "&name=" + name + "&offset=" + offset + "&limit=" + limit + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}/records/{type?}/{name?}?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&type=" + type + "&name=" + name + "&offset=" + offset + "&limit=" + limit + "";
     }
 
-    /* localhost:8090/v1/domains/{domain}/records */
+    /* /v1/domains/{domain}/records */
     //Replace all DNS Records for the specified Domain
     function recordReplace(XShopperId, domain, records) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}/records?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&records=" + records + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}/records?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&records=" + records + "";
     }
 
-    /* localhost:8090/v1/domains/{domain}/records */
+    /* /v1/domains/{domain}/records */
     //Add the specified DNS Records to the specified Domain
     function recordAdd(XShopperId, domain, records) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}/records?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&records=" + records + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}/records?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&records=" + records + "";
     }
 
-    /* localhost:8090/v1/domains/{domain}/records/{type} */
+    /* /v1/domains/{domain}/records/{type} */
     //Replace all DNS Records for the specified Domain with the specified Type
     function recordReplaceType(XShopperId, domain, type, records) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}/records/{type}?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&type=" + type + "&records=" + records + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}/records/{type}?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&type=" + type + "&records=" + records + "";
     }
 
-    /* localhost:8090/v1/domains/{domain}/records/{type}/{name} */
+    /* /v1/domains/{domain}/records/{type}/{name} */
     //Replace all DNS Records for the specified Domain with the specified Type and Name
     function recordReplaceTypeName(XShopperId, domain, type, name, records) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/{domain}/records/{type}/{name}?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&type=" + type + "&name=" + name + "&records=" + records + "";
+        return "https://api.ote-godaddy.com/v1/domains/{domain}/records/{type}/{name}?X-Shopper-Id=" + XShopperId + "&domain=" + domain + "&type=" + type + "&name=" + name + "&records=" + records + "";
     }
 
-    /* localhost:8090/v1/domains/suggest */
+    /* /v1/domains/suggest */
     //Suggest alternate Domain names based on a seed Domain or set of keywords
     function suggest(XShopperId, query, country, city, sources, tlds, lengthMax, lengthMin, limit, waitMs) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/suggest?X-Shopper-Id=" + XShopperId + "&query=" + query + "&country=" + country + "&city=" + city + "&sources=" + sources + "&tlds=" + tlds + "&lengthMax=" + lengthMax + "&lengthMin=" + lengthMin + "&limit=" + limit + "&waitMs=" + waitMs + "";
+        return "https://api.ote-godaddy.com/v1/domains/suggest?X-Shopper-Id=" + XShopperId + "&query=" + query + "&country=" + country + "&city=" + city + "&sources=" + sources + "&tlds=" + tlds + "&lengthMax=" + lengthMax + "&lengthMin=" + lengthMin + "&limit=" + limit + "&waitMs=" + waitMs + "";
     }
 
     function suggest(query) {
-        return "https://api.ote-godaddy.comlocalhost:8090/v1/domains/suggest?query=" + query;
+        return "https://api.ote-godaddy.com/v1/domains/suggest?query=" + query;
     }
 
     function fetchURL(serviceURL, cb) {

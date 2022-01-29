@@ -1,6 +1,6 @@
 class ansible_playbook_manager extends Microservice {
   static get path() {
-    return ["localhost:8090/v1/ansible_playbook/{action}", "localhost:8090/v1/ansible_playbook/{name}/{action}"];
+    return ["/v1/ansible_playbook/{action}", "/v1/ansible_playbook/{name}/{action}"];
   }
 
   POST() {

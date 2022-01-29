@@ -311,7 +311,7 @@
     }
 
 
-    const API_HOSTNAME = getQueryVariable('api') || "api.localhost";
+    const API_HOSTNAME = getQueryVariable('api') || "api.localhost:8090";
 
     function getFileExtention(filename) {
       return filename.split('.').pop();
@@ -443,37 +443,37 @@
     }
 
     function mkdir(id, path, cb) {
-      HttpPost('http://' + API_HOSTNAME + 'localhost:8090/v1/ssh2/mkdir', 'id=' + id + '&path=' + path, res => {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/mkdir', 'id=' + id + '&path=' + path, res => {
         if (cb) cb(res);
       });
     }
 
     function rmdir(id, path, cb) {
-      HttpPost('http://' + API_HOSTNAME + 'localhost:8090/v1/ssh2/rmdir', 'id=' + id + '&path=' + path, res => {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/rmdir', 'id=' + id + '&path=' + path, res => {
         if (cb) cb(res);
       });
     }
 
     function lstat(id, path, cb) {
-      HttpPost('http://' + API_HOSTNAME + 'localhost:8090/v1/ssh2/lstat', 'id=' + id + '&path=' + path, res => {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/lstat', 'id=' + id + '&path=' + path, res => {
         if (cb) cb(res);
       });
     }
 
     function stat(id, path, cb) {
-      HttpPost('http://' + API_HOSTNAME + 'localhost:8090/v1/ssh2/stat', 'id=' + id + '&path=' + path, res => {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/stat', 'id=' + id + '&path=' + path, res => {
         if (cb) cb(res);
       });
     }
 
     function unlink(id, path, cb) {
-      HttpPost('http://' + API_HOSTNAME + 'localhost:8090/v1/ssh2/unlink', 'id=' + id + '&path=' + path, res => {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/unlink', 'id=' + id + '&path=' + path, res => {
         if (cb) cb(res);
       });
     }
 
     function rename(id, path, newPath, cb) {
-      HttpPost('http://' + API_HOSTNAME + 'localhost:8090/v1/ssh2/rename', 'id=' + id + '&path=' + path + '&newPath=' + newPath, res => {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/rename', 'id=' + id + '&path=' + path + '&newPath=' + newPath, res => {
         if (cb) cb(res);
       });
     }
@@ -483,13 +483,13 @@
     }
 
     function shell(id, cmd, cb) {
-      HttpPost('http://' + API_HOSTNAME + 'localhost:8090/v1/ssh2/shell', 'id=' + id + '&command=' + cmd, (res) => {
+      HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/shell', 'id=' + id + '&command=' + cmd, (res) => {
         if (cb) cb(res);
       });
     }
 
     function readdir(id, path, cb) {
-      let url = 'http://' + API_HOSTNAME + 'localhost:8090/v1/ssh2/readdir';
+      let url = 'http://' + API_HOSTNAME + '/v1/ssh2/readdir';
       HttpPost(url, 'id=' + id + '&path=' + path, res => {
         if (cb) cb(res);
       });
@@ -633,7 +633,7 @@
 
 
         //load inventory data
-        $http.get('http://' + API_HOSTNAME + 'localhost:8090/v1/inventory/search').then(response => {
+        $http.get('http://' + API_HOSTNAME + '/v1/inventory/search').then(response => {
           console.log('inventory', response.data);
           $scope.inventory = response.data;
         });
@@ -785,7 +785,7 @@
       }
 
       function deletePath(path, isDirectory) {
-        let url = 'http://' + API_HOSTNAME + 'localhost:8090/v1/ssh?action=delete&id=' + $scope.host + '&path=' + path + '&directory=' + isDirectory;
+        let url = 'http://' + API_HOSTNAME + '/v1/ssh?action=delete&id=' + $scope.host + '&path=' + path + '&directory=' + isDirectory;
         $http.get(url).then(response => {
           console.log('deletePath:', response);
         });
@@ -802,7 +802,7 @@
         if (!$scope.host) return;
         $scope.displayLoading = '';
         let path = $scope.path;
-        let url = 'http://' + API_HOSTNAME + 'localhost:8090/v1/ssh2/readdir?id=' + $scope.host + '&path=' + path;
+        let url = 'http://' + API_HOSTNAME + '/v1/ssh2/readdir?id=' + $scope.host + '&path=' + path;
         $http.get(url).then(response => {
           //console.log('response', response);
           let data = response.data;
@@ -991,7 +991,7 @@
           else if (inputElem.classList.contains('cmd')) {
             var cmd = $scope.cmd;
             console.log(cmd);
-            HttpPost('http://' + API_HOSTNAME + 'localhost:8090/v1/ssh2/shell', 'id=' + $scope.host + '&command=' + cmd, (res) => {
+            HttpPost('http://' + API_HOSTNAME + '/v1/ssh2/shell', 'id=' + $scope.host + '&command=' + cmd, (res) => {
               var result = JSON.parse(res);
               $scope.cmd_history.push({ command: cmd + '\n', result: result.data.trim() });
               $scope.cmd = '';

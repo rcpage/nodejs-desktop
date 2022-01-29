@@ -1,6 +1,6 @@
 class ansible_task_manager extends Microservice {
   static get path() {
-    return ["localhost:8090/v1/ansible_task/{action}", "localhost:8090/v1/ansible_task/{name}/{action}"];
+    return ["/v1/ansible_task/{action}", "/v1/ansible_task/{name}/{action}"];
   }
 
   POST() {

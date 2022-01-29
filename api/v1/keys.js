@@ -1,6 +1,6 @@
 class keys extends Microservice {
   static get path() {
-    return ["localhost:8090/v1/keys/{action}", "localhost:8090/v1/keys/{name}/{action}"];
+    return ["/v1/keys/{action}", "/v1/keys/{name}/{action}"];
   }
 
   static POST() {

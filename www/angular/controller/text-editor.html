@@ -188,7 +188,7 @@
 
   function fetchFile(id, host, source) {
     if (source) {
-      var url = 'localhost:8090/v1/ssh2/fastGet?id=' + id + '&remotePath=' + source + '&download=true';
+      var url = '/v1/ssh2/fastGet?id=' + id + '&remotePath=' + source + '&download=true';
       $.get(url, function (txt, result, xhr) {
         codeMirror.setValue(xhr.responseText);
         document.querySelector('.loading-dialog').style.display = 'none';
@@ -198,7 +198,7 @@
 
   function fetchFile2(id, host, source) {
     if (source) {
-      var url = 'localhost:8090/v1/ssh2/fastGet?remotePath=' + source + '&download=true';
+      var url = '/v1/ssh2/fastGet?remotePath=' + source + '&download=true';
       $.get(url, function (txt, result, xhr) {
         codeMirror.setValue(txt);
         document.querySelector('.loading-dialog').style.display = 'none';
@@ -252,7 +252,7 @@
       var source = getQueryVariable('source');
       var host = getQueryVariable('host');
       var id = getQueryVariable('id');
-      var url = 'localhost:8090/v1/ssh2/fastPut?id=' + id + '&remotePath=' + source;
+      var url = '/v1/ssh2/fastPut?id=' + id + '&remotePath=' + source;
       $.post(url, { body: lines }, function (result, status, xhr) {
         console.log(result);
       });

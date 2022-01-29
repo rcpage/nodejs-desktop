@@ -21,13 +21,13 @@ class ssh2 extends Microservice {
   }
 
   static get path() {
-    return ["localhost:8090/v1/ssh2", "localhost:8090/v1/ssh2/{action}"];
+    return ["/v1/ssh2", "/v1/ssh2/{action}"];
   }
 
   getHostCredentials(id, cb) {
     let request = System.getModule('request');
     request.get({
-      url: 'http://localhost:8090localhost:8090/v1/inventory/view?id=' + id
+      url: 'http://localhost:8090/v1/inventory/view?id=' + id
     }, (err, response, body) => {
       if (cb) {
         cb(err, JSON.parse(body));

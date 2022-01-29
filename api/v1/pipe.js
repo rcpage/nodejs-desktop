@@ -3,13 +3,13 @@ using('System.Network.HTTP.Microservice');
 class pipe extends Microservice {
 
   static get path() {
-    return ["localhost:8090/v1/pipe",
+    return ["/v1/pipe",
       //HTTP
-      "localhost:8090/v1/pipe/http/{host}",
-      //"localhost:8090/v1/pipe/http/{host}/{cookie}",
+      "/v1/pipe/http/{host}",
+      //"/v1/pipe/http/{host}/{cookie}",
       //HTTPS
-      "localhost:8090/v1/pipe/https/{host}",
-      //"localhost:8090/v1/pipe/https/{host}/{cookie}"
+      "/v1/pipe/https/{host}",
+      //"/v1/pipe/https/{host}/{cookie}"
     ];
   }
 
